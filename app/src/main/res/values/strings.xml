@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">AppSultan</string>
-    <string name="perfilTitle">Mohammed</string>
+    <string name="password">Senha</string>
+    <string name="username">Usuário</string>
+    <string name="login">Login</string>
+    <string name="singup">Inscrever-se</string>
+    <string name="perfilTitle">Perfil</string>
     <string name="imagem_perfil">Imagem Perfil</string>
     <string name="Perfil_namo">Mohammed</string>
     <string name="Perfil_e_mail">mohammed@sultam.com</string>
