@@ -14,7 +14,7 @@ public class Adapter extends ArrayAdapter<String> {
     int[] imagens;
     Context mContext;
 
-    public Adapter(Context context, String[] nomeProduto, int[] imageProduto) {
+    public Adapter(Context context, String[] nomeProduto, int[] imageProduto ) {
         super(context, R.layout.listview_item);
         this.nomes = nomeProduto;
         this.imagens = imageProduto;
@@ -28,16 +28,34 @@ public class Adapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater mInflator = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        convertView = mInflator.inflate(R.layout.listview_item, parent, false);
+        ViewHolder mViewHolder = new ViewHolder();
 
-        ImageView imagem = (ImageView) convertView.findViewById(R.id.imageView);
-        TextView nome = (TextView) convertView.findViewById(R.id.textView);
+        if (convertView == null) {
 
-        imagem.setImageResource(imagens[position]);
-        nome.setText(nomes[position]);
+            LayoutInflater mInflator = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            convertView = mInflator.inflate(R.layout.listview_item, parent, false);
+
+            mViewHolder.imagem = (ImageView) convertView.findViewById(R.id.imageView);
+            mViewHolder.nome = (TextView) convertView.findViewById(R.id.textView);
+
+            convertView.setTag(mViewHolder);
+        }
+
+        else{
+            mViewHolder = (ViewHolder)convertView.getTag();
+        }
+
+        mViewHolder.imagem.setImageResource(imagens[position]);
+        mViewHolder.nome.setText(nomes[position]);
 
         return convertView;
+    }
+
+    static class ViewHolder{
+        ImageView imagem;
+        TextView nome;
+
     }
 }
