@@ -7,7 +7,7 @@ import android.widget.Toolbar;
 
     public class ProductActivity extends AppCompatActivity {
 
-    Toolbar barra;
+    Toolbar barra2;
     ImageView imagem;
 
     @Override
@@ -15,13 +15,13 @@ import android.widget.Toolbar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        barra = findViewById(R.id.barra2);
+        barra2 = findViewById(R.id.barra2);
         imagem = findViewById(R.id.imageView2);
 
         Bundle mBundle = getIntent().getExtras();
 
         if (mBundle != null){
-            barra.setTitle(mBundle.getString("Nome"));
+            barra2.setTitle(mBundle.getString("Nome"));
             imagem.setImageResource(mBundle.getInt("Imagem"));
 
         }
