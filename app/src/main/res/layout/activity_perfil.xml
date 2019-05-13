@@ -5,13 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <GridLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="1"
-        android:rowCount="8"
-        tools:layout_editor_absoluteX="-188dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:rowCount="8">
 
         <TextView
             android:id="@+id/PerfilText"
@@ -33,7 +31,7 @@
             android:layout_column="0"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
-            android:src="@drawable/Unkown"
+            android:src="@drawable/unkown"
             />
 
         <Button
@@ -100,6 +98,6 @@
             android:layout_rowWeight="0.01"
             android:width="200dp"
             />
-    </GridLayout>
+    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
