@@ -12,31 +12,16 @@ public class PerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        Button btnome = findViewById(R.id.NameButton);
-        Button btemail = findViewById(R.id.EmailButton);
         Button btaddress = findViewById(R.id.AddressButton);
         Button btedit = findViewById(R.id.EditButton);
         Button btrequests = findViewById(R.id.RequestsButton);
         Button btlucro = findViewById(R.id.LucroButton);
 
-        btnome.setOnClickListener(NameHandler);
-        btemail.setOnClickListener(EmailHandler);
         btaddress.setOnClickListener(AddressHandler);
         btedit.setOnClickListener(EditHandler);
         btrequests.setOnClickListener(RequestsHandler);
         btlucro.setOnClickListener(LucroHandler);
     }
-
-    View.OnClickListener NameHandler = new View.OnClickListener(){
-        public void onClick(View v){
-
-        }
-    };
-    View.OnClickListener EmailHandler = new View.OnClickListener(){
-        public void onClick(View v){
-
-        }
-    };
     View.OnClickListener AddressHandler = new View.OnClickListener(){
         public void onClick(View v){
 
