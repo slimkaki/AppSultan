@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">AppSultan</string>
+<<<<<<< HEAD
     <string name="produto1">Produto 1:</string>
+=======
+    <string name="perfilTitle">Perfil</string>
+    <string name="imagem_perfil">Imagem Perfil</string>
+    <string name="Perfil_namo">Nome</string>
+    <string name="Perfil_e_mail">E-mail</string>
+    <string name="adress">Endereço</string>
+    <string name="edit">Editar</string>
+    <string name="requests">Pedidos</string>
+    <string name="lucro">Lucro</string>
+>>>>>>> f5e16c686a665b2e45a05e7d55dc439e18dcf8aa
 </resources>
