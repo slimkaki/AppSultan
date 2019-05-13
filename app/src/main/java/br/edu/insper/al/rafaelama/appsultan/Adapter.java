@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 public class Adapter extends ArrayAdapter<String> {
 
-    String[] nomes;
-    int[] imagens;
-    Context mContext;
+    private String[] nomes;
+    private int[] imagens;
+    private Context mContext;
 
     public Adapter(Context context, String[] nomeProduto, int[] imageProduto) {
         super(context, R.layout.listview_item);
