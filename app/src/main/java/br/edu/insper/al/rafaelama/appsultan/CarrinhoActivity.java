@@ -9,14 +9,18 @@ import android.widget.ImageButton;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
-    private ImageButton backButton = findViewById(R.id.backButton);
-    private Button buttonCancel = findViewById(R.id.buttonCancel);
-    private Button buttonConfirma = findViewById(R.id.buttonConfirm);
+    protected ImageButton backButton;
+    protected Button buttonCancel;
+    protected Button buttonConfirm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrinho);
+
+         backButton = findViewById(R.id.backButton);
+         buttonCancel = findViewById(R.id.buttonCancel);
+         buttonConfirm = findViewById(R.id.buttonConfirm);
 
         backButton.setOnClickListener(new View.OnClickListener() {
 
