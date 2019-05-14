@@ -5,6 +5,7 @@
     <string name="login">Login</string>
     <string name="singup">Inscrever-se</string>
     <string name="perfilTitle">Perfil</string>
+    <string name="forget_password">Esqueci a senha</string>
     <string name="imagem_perfil">Imagem Perfil</string>
     <string name="Perfil_namo">Nome</string>
     <string name="Perfil_e_mail">E-mail</string>
