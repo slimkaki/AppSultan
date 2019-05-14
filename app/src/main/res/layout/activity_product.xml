@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductActivity">
+
     <Toolbar
         android:id="@+id/barra2"
         android:layout_below="@+id/imageView2"
@@ -17,6 +18,7 @@
         android:theme="?attr/actionBarTheme"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
         tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_below="@+id/barra2"
@@ -33,12 +35,38 @@
 
 
     <ImageButton
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:adjustViewBounds="true"
         android:scaleType="fitStart"
         android:src="@drawable/whatsapp"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="665dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:text="@tools:sample/lorem/random" />
+
+    <TextView
+        android:id="@+id/preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc" />
 </android.support.constraint.ConstraintLayout>

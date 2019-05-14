@@ -14,10 +14,40 @@ public class MainActivity extends AppCompatActivity {
     protected Toolbar barra;
     protected ListView catalogo;
 
-    private String[] nomeProduto = {"Sofá", "Tapete"};//, "Toalha", "Toalha de mesa", "Copo", "Prato"};
+    private String[] nomeProduto = {
+            "Sofá",
+            "Tapete",
+            "Toalha",
+            "Toalha de mesa",
+            "Copo",
+            "Prato"};
+
     int[] imagemProduto = {
             R.drawable.blackmetal,
-            R.drawable.mine
+            R.drawable.mine,
+            R.drawable.arveres,
+            R.drawable.bunito,
+            R.drawable.lofi_capa,
+            R.drawable.lvanda
+    };
+    private String[] descri = {
+            "Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam.",
+            "Laura ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
+            "Lorenzo ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
+            "Laurinha ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam.",
+            "Lororo ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
+            "Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. "
+    };
+
+    private String[] preco = {
+            "R$120,00",
+            "R$13,00",
+            "R$130,00",
+            "R$1300,00",
+            "R$13000,00",
+            "R$130000,00"
+
+
     };
 
     @Override
@@ -33,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
         Adapter adapter = new Adapter(MainActivity.this, nomeProduto, imagemProduto);
 
         catalogo.setAdapter(adapter);
+
         catalogo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -41,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
                 mIntent.putExtra("Nome", nomeProduto[position]);
                 mIntent.putExtra("Imagem", imagemProduto[position]);
+                mIntent.putExtra("descri", descri[position]);
+                mIntent.putExtra("preco", preco[position]);
 
                 startActivity(mIntent);
             }
