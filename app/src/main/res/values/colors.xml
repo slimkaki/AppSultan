@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="sultanColor">#7c4b7c</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDarkPink">#FFA3D1</color>
 </resources>
