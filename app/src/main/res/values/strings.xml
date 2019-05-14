@@ -12,4 +12,14 @@
     <string name="edit">Editar</string>
     <string name="requests">Pedidos</string>
     <string name="lucro">Lucro</string>
+    <string name="name">Name</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="email">Email:</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="usu_rio">Usuário:</string>
+    <string name="digite_seu_usu_rio">Digite seu usuário</string>
+    <string name="senha">Senha:</string>
+    <string name="confirme_sua_senha">Confirme sua senha:</string>
+    <string name="cpf">CPF</string>
+    <string name="digite_seu_cpf">Digite seu CPF</string>
 </resources>
