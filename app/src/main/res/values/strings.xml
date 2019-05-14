@@ -22,4 +22,5 @@
     <string name="confirme_sua_senha">Confirme sua senha:</string>
     <string name="cpf">CPF</string>
     <string name="digite_seu_cpf">Digite seu CPF</string>
+    <string name="digite_sua_usu_senha" />
 </resources>
