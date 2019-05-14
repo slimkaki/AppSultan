@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:background="@color/colorWhite">
 
 
     <ImageView
@@ -26,6 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name"
+        android:textColor="@color/colorBlack"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/DigitName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.268"
@@ -38,7 +41,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/digite_seu_nome"
+        android:hint="@string/digite_seu_nome"
         app:layout_constraintBottom_toTopOf="@+id/Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -50,6 +53,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/cpf"
+        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitCPF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.252"
@@ -64,7 +68,7 @@
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/digite_seu_cpf"
+        android:hint="@string/digite_seu_cpf"
         app:layout_constraintBottom_toTopOf="@+id/User"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -78,6 +82,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/email"
+        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.252"
@@ -100,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/usu_rio"
+        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.28"
@@ -111,7 +117,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/digite_seu_usu_rio"
+        android:hint="@string/digite_seu_usu_rio"
         app:layout_constraintBottom_toTopOf="@+id/Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -122,6 +128,7 @@
         android:layout_width="42dp"
         android:layout_height="26dp"
         android:layout_marginStart="100dp"
+        android:textColor="@color/colorBlack"
         android:text="@string/senha"
         app:layout_constraintBottom_toTopOf="@+id/DigitPassword"
         app:layout_constraintStart_toStartOf="parent" />
@@ -132,6 +139,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Digite sua senha"
         app:layout_constraintBottom_toTopOf="@+id/ConfirmPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -142,6 +150,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirme_sua_senha"
+        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitConfirmPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.352"
@@ -153,6 +162,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Confirme sua senha"
         app:layout_constraintBottom_toTopOf="@+id/singup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
