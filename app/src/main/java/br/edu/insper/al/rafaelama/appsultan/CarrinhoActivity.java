@@ -41,7 +41,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             }
         });
 
-        buttonConfirma.setOnClickListener(new View.OnClickListener() {
+        buttonConfirm.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
