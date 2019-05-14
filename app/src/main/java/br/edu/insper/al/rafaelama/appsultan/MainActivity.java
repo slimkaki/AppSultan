@@ -11,10 +11,10 @@ import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar barra;
-    ListView catalogo;
+    protected Toolbar barra;
+    protected ListView catalogo;
 
-    String[] nomeProduto = {"Sofá", "Tapete"};//, "Toalha", "Toalha de mesa", "Copo", "Prato"};
+    private String[] nomeProduto = {"Sofá", "Tapete"};//, "Toalha", "Toalha de mesa", "Copo", "Prato"};
     int[] imagemProduto = {
             R.drawable.blackmetal,
             R.drawable.mine
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        barra = (Toolbar) findViewById(R.id.barra);
+        barra = findViewById(R.id.barra);
         catalogo = (ListView) findViewById(R.id.catalogo);
 
         barra.setTitle("Catálogo");

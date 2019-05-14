@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductActivity">
-
     <Toolbar
         android:id="@+id/barra2"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-
-        />
-
+        tools:ignore="MissingConstraints" />
     <ImageView
         android:id="@+id/imageView2"
+        android:layout_below="@+id/barra2"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginStart="8dp"
@@ -30,4 +31,14 @@
         app:layout_constraintTop_toBottomOf="@+id/barra2"
         app:srcCompat="@mipmap/ic_launcher" />
 
+
+    <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitStart"
+        android:src="@drawable/whatsapp"
+        tools:layout_editor_absoluteX="330dp"
+        tools:layout_editor_absoluteY="665dp"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>
