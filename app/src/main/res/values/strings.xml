@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">AppSultan</string>
-    <string name="produto1">Produto 1:</string>
+    <string name="password">Senha</string>
+    <string name="username">Usuário</string>
+    <string name="login">Login</string>
+    <string name="singup">Inscrever-se</string>
     <string name="perfilTitle">Perfil</string>
     <string name="imagem_perfil">Imagem Perfil</string>
-    <string name="Perfil_namo">Nome</string>
-    <string name="Perfil_e_mail">E-mail</string>
+    <string name="Perfil_namo">Mohammed</string>
+    <string name="Perfil_e_mail">mohammed@sultam.com</string>
     <string name="adress">Endereço</string>
     <string name="edit">Editar</string>
     <string name="requests">Pedidos</string>
@@ -15,4 +18,15 @@
     <string name="precoTotal">R$ 000.00</string>
     <string name="cancel">Cancelar Pedido</string>
     <string name="confirma">Confirmar Pedido</string>
+    <string name="name">Name</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="email">Email:</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="usu_rio">Usuário:</string>
+    <string name="digite_seu_usu_rio">Digite seu usuário</string>
+    <string name="senha">Senha:</string>
+    <string name="confirme_sua_senha">Confirme sua senha:</string>
+    <string name="cpf">CPF</string>
+    <string name="digite_seu_cpf">Digite seu CPF</string>
+    <string name="digite_sua_usu_senha" />
 </resources>
