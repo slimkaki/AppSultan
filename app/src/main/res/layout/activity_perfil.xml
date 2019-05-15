@@ -92,8 +92,17 @@
             android:layout_gravity="center"
             android:text="@string/lucro"
             tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="550dp"
-            />
+            tools:layout_editor_absoluteY="550dp" />
+
+        <Button
+            android:id="@+id/voltar"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="180dp"
+            android:layout_height="43dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            android:text="Voltar" />
+
     </TableLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -13,8 +13,26 @@
     <string name="edit">Editar</string>
     <string name="requests">Pedidos</string>
     <string name="lucro">Lucro</string>
-    <string name="email">E-mail</string>
-    <string name="cancel">Cancelar</string>
+    <string name="cancel_reset">Cancelar</string>
     <string name="confirmar">Confirmar</string>
+    <string name="carrinho">Carrinho</string>
+    <string name="Tapete">Tapete</string>
+    <string name="total">Total:</string>
+    <string name="precoTotal">R$ 000.00</string>
+    <string name="cancel">Cancelar Pedido</string>
+    <string name="confirma">Confirmar Pedido</string>
+    <string name="name">Name</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="usu_rio">Usuário:</string>
+    <string name="digite_seu_usu_rio">Digite seu usuário</string>
+    <string name="senha">Senha:</string>
+    <string name="confirme_sua_senha">Confirme sua senha:</string>
+    <string name="cpf">CPF</string>
+    <string name="digite_seu_cpf">Digite seu CPF</string>
+    <string name="digite_sua_usu_senha" />
+    <string name="Cancelar" />
+    <string name="email">E-mail</string>
+
 
 </resources>
