@@ -13,4 +13,8 @@
     <string name="edit">Editar</string>
     <string name="requests">Pedidos</string>
     <string name="lucro">Lucro</string>
+    <string name="email">E-mail</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirmar">Confirmar</string>
+
 </resources>
