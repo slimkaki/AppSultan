@@ -10,15 +10,18 @@
 
     <ImageView
         android:id="@+id/sultan_logo"
-        android:layout_width="241dp"
-        android:layout_height="wrap_content"
+        android:layout_width="244dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logo_sultan" />
 
 
@@ -31,7 +34,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/DigitName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintHorizontal_bias="0.26"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -40,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/digite_seu_nome"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -50,8 +53,6 @@
         android:id="@+id/Cpf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/cpf"
         android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitCPF"
@@ -63,9 +64,6 @@
         android:id="@+id/DigitCPF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/digite_seu_cpf"
@@ -78,14 +76,12 @@
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="12dp"
         android:text="@string/email"
         android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintHorizontal_bias="0.263"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -127,10 +123,11 @@
         android:id="@+id/Password"
         android:layout_width="42dp"
         android:layout_height="26dp"
-        android:layout_marginStart="100dp"
-        android:textColor="@color/colorBlack"
         android:text="@string/senha"
+        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/DigitPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -139,7 +136,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Digite sua senha"
+        android:hint="@string/digite_sua_senha"
         app:layout_constraintBottom_toTopOf="@+id/ConfirmPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -162,7 +159,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Confirme sua senha"
+        android:hint="@string/entre_novamente_sua_senha"
         app:layout_constraintBottom_toTopOf="@+id/singup_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -172,8 +169,8 @@
         style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/singup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -183,12 +180,11 @@
         style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="56dp"
-        android:text="Cancelar"
+        android:layout_marginBottom="36dp"
+        android:text="@string/cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/singup_button"
-        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
