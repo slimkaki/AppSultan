@@ -33,6 +33,10 @@
     <string name="digite_sua_usu_senha" />
     <string name="Cancelar" />
     <string name="email">E-mail</string>
+    <string name="digite_sua_senha">Digite sua senha</string>
+    <string name="entre_novamente_com_senha">Entre novamente com senha</string>
+    <string name="entre_novamente_sua_senha" />
+    <string name="cancelar">Cancelar</string>
 
 
 </resources>
