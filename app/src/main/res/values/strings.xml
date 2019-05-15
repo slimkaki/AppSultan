@@ -5,6 +5,7 @@
     <string name="login">Login</string>
     <string name="singup">Inscrever-se</string>
     <string name="perfilTitle">Perfil</string>
+    <string name="forget_password">Esqueci a senha</string>
     <string name="imagem_perfil">Imagem Perfil</string>
     <string name="Perfil_namo">Mohammed</string>
     <string name="Perfil_e_mail">mohammed@sultam.com</string>
@@ -12,6 +13,8 @@
     <string name="edit">Editar</string>
     <string name="requests">Pedidos</string>
     <string name="lucro">Lucro</string>
+    <string name="cancel_reset">Cancelar</string>
+    <string name="confirmar">Confirmar</string>
     <string name="carrinho">Carrinho</string>
     <string name="Tapete">Tapete</string>
     <string name="total">Total:</string>
@@ -20,7 +23,6 @@
     <string name="confirma">Confirmar Pedido</string>
     <string name="name">Name</string>
     <string name="digite_seu_nome">Digite seu nome</string>
-    <string name="email">Email:</string>
     <string name="digite_seu_email">Digite seu email</string>
     <string name="usu_rio">Usuário:</string>
     <string name="digite_seu_usu_rio">Digite seu usuário</string>
@@ -30,4 +32,7 @@
     <string name="digite_seu_cpf">Digite seu CPF</string>
     <string name="digite_sua_usu_senha" />
     <string name="Cancelar" />
+    <string name="email">E-mail</string>
+
+
 </resources>
