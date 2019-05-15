@@ -1,5 +1,6 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,10 +18,24 @@ public class PerfilActivity extends AppCompatActivity {
         Button btrequests = findViewById(R.id.RequestsButton);
         Button btlucro = findViewById(R.id.LucroButton);
 
+        Button voltar = findViewById(R.id.voltar);
+
         btaddress.setOnClickListener(AddressHandler);
         btedit.setOnClickListener(EditHandler);
         btrequests.setOnClickListener(RequestsHandler);
         btlucro.setOnClickListener(LucroHandler);
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
+                setResult(2, intent);
+                finish();
+            }
+        });
+
+
     }
     View.OnClickListener AddressHandler = new View.OnClickListener(){
         public void onClick(View v){

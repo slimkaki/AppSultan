@@ -16,6 +16,8 @@ import android.widget.Toolbar;
     TextView desc;
     TextView preco;
     Button botao_perfil;
+    Button voltar;
+    Button carrinho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,9 @@ import android.widget.Toolbar;
         desc = findViewById(R.id.desc);
         preco = findViewById(R.id.preco);
         botao_perfil = findViewById(R.id.perfil);
+        voltar = findViewById(R.id.voltar);
+        carrinho = findViewById(R.id.carrinho);
+
 
         Bundle mBundle = getIntent().getExtras();
 
@@ -43,10 +48,24 @@ import android.widget.Toolbar;
         botao_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent perfil = new Intent(ProductActivity.this, PerfilActivity.class);
                 startActivity(perfil);
+            }
+        });
 
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent voltar = new Intent(ProductActivity.this, MainActivity.class);
+                startActivity(voltar);
+            }
+        });
+
+        carrinho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent carrinho = new Intent(ProductActivity.this, CarrinhoActivity.class);
+                startActivity(carrinho);
 
             }
         });
