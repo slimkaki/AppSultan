@@ -25,6 +25,7 @@
         <TextView
             android:layout_column="0"
             android:textSize="18sp"
+            android:textColor="@color/colorBlack"
             android:layout_row="0"
             android:layout_columnSpan="2"
             android:layout_marginLeft="20dp"
@@ -52,7 +53,7 @@
         android:text="Definir"
         android:outlineSpotShadowColor="#C0BEC3"
         tools:layout_editor_absoluteX="155dp"
-        android:backgroundTint="@color/colorWhite"
+        android:backgroundTint="#C0BEC3"
         tools:layout_editor_absoluteY="550dp"
         tools:ignore="MissingConstraints" />
     <Toolbar
