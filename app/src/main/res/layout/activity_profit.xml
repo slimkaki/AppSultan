@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/lucro"
+        android:gravity="center"
+        android:textSize="56sp"
+        tools:ignore="MissingConstraints" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:columnCount="2"
+        android:rowCount="2"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="140dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_column="0"
+            android:textSize="18sp"
+            android:layout_row="0"
+            android:layout_columnSpan="2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Defina a abaixo quanto de lucro você pretende ter com suas vendas (Lembrando que o lucro é calculado pelo valores dos produtos, multiplicado pela quantidade de lucro que você desejar):"
+            />
+        <TextView
+            android:textSize="200dp"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="%"/>
+        <EditText
+            android:layout_column="0"
+            android:layout_row="1"
+            android:textSize="150dp"
+            android:layout_width="250dp"/>
+    </GridLayout>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Definir"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="550dp" />
+    <Toolbar
+        android:id="@+id/barra2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:gravity="bottom"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="676dp" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/requests"
+        app:layout_constraintStart_toStartOf="@+id/barra2"
+        tools:layout_editor_absoluteY="681dp" />
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/carrinho"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        tools:layout_editor_absoluteY="681dp" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/catalogo"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        tools:layout_editor_absoluteY="681dp" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/perfilTitle"
+        app:layout_constraintEnd_toEndOf="@+id/barra2"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        tools:layout_editor_absoluteY="681dp" />
+</android.support.constraint.ConstraintLayout>
