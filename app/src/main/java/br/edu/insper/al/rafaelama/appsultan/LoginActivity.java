@@ -11,13 +11,13 @@ public class LoginActivity extends AppCompatActivity {
     private String username;
     private String password;
 
-    private boolean loged;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        loged = false;
+        boolean loged = false;
         super.onCreate(savedInstanceState);
         if(loged){
+            username = "aaaaa";
+            password = "senha segura";
             Intent returnIntent = new Intent(LoginActivity.this, MainActivity.class);
             startActivityForResult(returnIntent, 1);
         }
