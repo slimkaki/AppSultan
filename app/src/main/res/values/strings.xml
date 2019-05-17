@@ -12,7 +12,6 @@
     <string name="adress">Endereço</string>
     <string name="edit">Editar</string>
     <string name="requests">Pedidos</string>
-    <string name="lucro">Lucro</string>
     <string name="cancel_reset">Cancelar</string>
     <string name="confirmar">Confirmar</string>
     <string name="carrinho">Carrinho</string>
@@ -37,10 +36,10 @@
     <string name="entre_novamente_com_senha">Entre novamente com senha</string>
     <string name="entre_novamente_sua_senha" />
     <string name="cancelar">Cancelar</string>
-    <string name="lucro">Lucro</string>
     <string name="catalogo">catalogo</string>
     <string name="SearchFiltro">Filtro</string>
     <string name="Catalogo">Catalogo</string>
-
+    <string name="finalizar_pedido">Finalizar Pedido</string>
+    <string name="lucro">Lucro</string>
 
 </resources>
