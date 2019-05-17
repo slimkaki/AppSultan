@@ -68,9 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:text="PREÇO"
-        app:layout_constraintBottom_toTopOf="@+id/carrinho"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc" />
 
