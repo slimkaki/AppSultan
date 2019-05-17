@@ -37,6 +37,8 @@
     <string name="entre_novamente_com_senha">Entre novamente com senha</string>
     <string name="entre_novamente_sua_senha" />
     <string name="cancelar">Cancelar</string>
+    <string name="SearchFiltro">Filtro</string>
+    <string name="Catalogo">Catalogo</string>
 
 
 </resources>
