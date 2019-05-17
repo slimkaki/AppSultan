@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Toolbar
-        android:id="@+id/Searches"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/searches"
         android:backgroundTint="#514375"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,43 +33,48 @@
         android:src="@drawable/filter"
         app:layout_constraintBottom_toTopOf="@+id/catalogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Searches" />
+        app:layout_constraintTop_toTopOf="@+id/searches" />
 
     <ImageButton
         android:id="@+id/buttonSearch"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="#514375"
         android:scaleType="fitXY"
         android:src="@drawable/searchlupa"
         app:layout_constraintBottom_toTopOf="@+id/catalogo"
         app:layout_constraintEnd_toStartOf="@+id/buttonFiltro"
-        app:layout_constraintTop_toTopOf="@+id/Searches" />
+        app:layout_constraintTop_toTopOf="@+id/searches" />
 
     <ListView
         android:id="@+id/catalogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/barra2"
-        app:layout_constraintTop_toBottomOf="@+id/Searches"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintBottom_toTopOf="@+id/barra"
+        app:layout_constraintTop_toBottomOf="@+id/searches"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="8dp" />
+
 <!--Incício da Barra de Navegação-->
-    <Toolbar
+
+    <android.support.v7.widget.Toolbar
         android:id="@+id/barra"
-        android:backgroundTint="#514375"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
         android:background="?attr/colorPrimary"
+        android:backgroundTint="#514375"
         android:gravity="bottom"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="676dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonRequests"
@@ -77,11 +82,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textColor="#C0BEC3"
+        android:layout_marginBottom="2dp"
         android:text="@string/requests"
+        android:textColor="#C0BEC3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/barra"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="680dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonCart"
@@ -89,11 +95,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/carrinho"
-        app:layout_constraintStart_toEndOf="@+id/buttonRequests"
-        tools:ignore="MissingConstraints"
         android:textColor="#C0BEC3"
-        tools:layout_editor_absoluteY="680dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonRequests"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonCat"
@@ -101,26 +108,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:textColor="#C0BEC3"
+        android:layout_marginBottom="2dp"
         android:text="@string/Catalogo"
+        android:textColor="#C0BEC3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonCart"
-        app:layout_constraintTop_toTopOf="@+id/barra"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonProfile"
-        android:textColor="#C0BEC3"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
         android:text="@string/perfilTitle"
+        android:textColor="#C0BEC3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/barra"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/buttonCat"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="680dp" />
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
