@@ -13,8 +13,10 @@ import android.widget.ListView;
 public class MainActivity extends AppCompatActivity {
 
     protected Toolbar barra;
+    protected Toolbar procura;
     protected ListView catalogo;
     protected Button botao_perfil;
+    protected Button botao_carrinho;
 
     private String[] nomeProduto = {
             "Sofá",
@@ -58,9 +60,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         barra = findViewById(R.id.barra);
+
+        procura = findViewById(R.id.searches);
+
         catalogo = (ListView) findViewById(R.id.catalogo);
 
         botao_perfil = findViewById(R.id.buttonProfile);
+
+        botao_carrinho = findViewById(R.id.buttonCart);
+
+        botao_carrinho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(MainActivity.this, CarrinhoActivity.class);
+                startActivity(perfil);
+            }
+        });
+
         botao_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(perfil);
             }
         });
-
-        barra.setTitle("Catálogo");
 
         Adapter adapter = new Adapter(MainActivity.this, nomeProduto, imagemProduto);
 
