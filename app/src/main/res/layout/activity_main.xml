@@ -43,7 +43,7 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="#514375"
         android:scaleType="fitXY"
-        android:src="@drawable/SearchLupa"
+        android:src="@drawable/searchlupa"
         app:layout_constraintBottom_toTopOf="@+id/catalogo"
         app:layout_constraintEnd_toStartOf="@+id/buttonFiltro"
         app:layout_constraintTop_toTopOf="@+id/Searches" />
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Searches"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="1dp" />
-
+<!--Incício da Barra de Navegação-->
     <Toolbar
         android:id="@+id/barra"
         android:backgroundTint="#514375"
