@@ -39,6 +39,8 @@
     <string name="cancelar">Cancelar</string>
     <string name="lucro">Lucro</string>
     <string name="catalogo">catalogo</string>
+    <string name="SearchFiltro">Filtro</string>
+    <string name="Catalogo">Catalogo</string>
 
 
 </resources>
