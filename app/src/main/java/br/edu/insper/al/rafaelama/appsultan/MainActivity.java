@@ -60,15 +60,12 @@ public class MainActivity extends AppCompatActivity {
         barra = findViewById(R.id.barra);
         catalogo = (ListView) findViewById(R.id.catalogo);
 
-        botao_perfil = findViewById(R.id.perfil2);
+        botao_perfil = findViewById(R.id.buttonProfile);
         botao_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent perfil = new Intent(MainActivity.this, PerfilActivity.class);
                 startActivity(perfil);
-
-
             }
         });
 
