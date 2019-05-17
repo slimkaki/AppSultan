@@ -48,19 +48,19 @@
     <GridLayout
         android:id="@+id/ResumeArea"
         android:layout_width="fill_parent"
-        android:layout_height="180dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="8dp"
         android:background="#C0BEC3"
         android:columnCount="2"
         android:columnOrderPreserved="true"
         android:padding="4dp"
         android:rowCount="6"
         app:layout_constraintBottom_toTopOf="@+id/barra"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintStart_toEndOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
 
         <TextView
             android:layout_row="0"
@@ -157,65 +157,14 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="400dp"
-        android:layout_height="396dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="430dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/ResumeArea"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textLabelCarrinho"
         tools:ignore="MissingConstraints,UnknownIdInLayout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-    </ScrollView>
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/barra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:backgroundTint="#514375"
-        android:gravity="bottom"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/buttonRequests"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/requests"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/barra"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/buttonCart"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/carrinho"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonRequests"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonCat"
@@ -230,20 +179,73 @@
         app:layout_constraintStart_toEndOf="@+id/buttonCart"
         tools:ignore="MissingConstraints" />
 
+    </ScrollView>
+    <Toolbar
+        android:id="@+id/barra"
+        android:backgroundTint="#514375"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:gravity="bottom"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="676dp" />
+
+    <Button
+        android:id="@+id/buttonRequests"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="#C0BEC3"
+        android:text="@string/requests"
+        app:layout_constraintStart_toStartOf="@+id/barra"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="680dp" />
+
+    <Button
+        android:id="@+id/buttonCart"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/carrinho"
+        app:layout_constraintStart_toEndOf="@+id/buttonRequests"
+        tools:ignore="MissingConstraints"
+        android:textColor="#C0BEC3"
+        tools:layout_editor_absoluteY="680dp" />
+
+    <Button
+        android:id="@+id/buttonCat"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#C0BEC3"
+        android:text="@string/Catalogo"
+        app:layout_constraintStart_toEndOf="@+id/buttonCart"
+        app:layout_constraintTop_toTopOf="@+id/barra"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/buttonProfile"
+        android:textColor="#C0BEC3"
+
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
         android:text="@string/perfilTitle"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/barra"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/buttonCat"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="680dp" />
+
 
 </android.support.constraint.ConstraintLayout>
