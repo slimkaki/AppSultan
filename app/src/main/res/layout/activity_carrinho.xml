@@ -165,10 +165,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textLabelCarrinho"
         tools:ignore="MissingConstraints,UnknownIdInLayout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/buttonCat"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/Catalogo"
+        android:textColor="#C0BEC3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonCart"
+        tools:ignore="MissingConstraints" />
 
     </ScrollView>
     <Toolbar
@@ -225,6 +234,7 @@
     <Button
         android:id="@+id/buttonProfile"
         android:textColor="#C0BEC3"
+
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -236,5 +246,6 @@
         app:layout_constraintStart_toEndOf="@+id/buttonCat"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="680dp" />
+
 
 </android.support.constraint.ConstraintLayout>

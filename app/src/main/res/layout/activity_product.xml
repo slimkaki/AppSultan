@@ -9,6 +9,7 @@
 
     <Toolbar
         android:id="@+id/barra2"
+        android:backgroundTint="#514375"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView2"

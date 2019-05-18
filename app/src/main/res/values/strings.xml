@@ -30,7 +30,6 @@
     <string name="cpf">CPF</string>
     <string name="digite_seu_cpf">Digite seu CPF</string>
     <string name="digite_sua_usu_senha" />
-    <string name="Cancelar" />
     <string name="email">E-mail</string>
     <string name="digite_sua_senha">Digite sua senha</string>
     <string name="entre_novamente_com_senha">Entre novamente com senha</string>
@@ -42,5 +41,4 @@
     <string name="finalizar_pedido">Finalizar Pedido</string>
     <string name="lucro">Lucro</string>
     <string name="continuar">Continuar</string>
-
 </resources>
