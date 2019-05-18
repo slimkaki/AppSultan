@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/sultanGrayColor">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:text="Pedido Confirmado"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="Parabéns, seu pedido vai te lucrar:" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/sultanColor"
+            android:text="R$0,00"/>
+
+        <ScrollView
+            android:id="@+id/itemPedido"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,UnknownIdInLayout"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="10dp"
+            android:text="O que irá acontecer agora:"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="1. Vamos conferir o estoque"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="2. Vamos enviar uma mensagem no whatsapp para você com as informação"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="3. Você vai efetura o pagamento atraves do meio que melhor te servir"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="4. Separaremos no estoque e enviaremos para porta da sua casa"/>
+        <Button
+            android:id="@+id/buttonOkPedido"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="OK! Entendi"
+            android:background="@color/sultanColor"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <Toolbar
+        android:id="@+id/barra"
+        android:backgroundTint="#514375"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:gravity="bottom"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="676dp" />
+
+    <Button
+        android:id="@+id/buttonRequests"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="#C0BEC3"
+        android:text="@string/requests"
+        app:layout_constraintStart_toStartOf="@+id/barra"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="680dp" />
+
+    <Button
+        android:id="@+id/buttonCart"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/carrinho"
+        app:layout_constraintStart_toEndOf="@+id/buttonRequests"
+        tools:ignore="MissingConstraints"
+        android:textColor="#C0BEC3"
+        tools:layout_editor_absoluteY="680dp" />
+
+    <Button
+        android:id="@+id/buttonCat"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:textColor="#C0BEC3"
+        android:text="@string/Catalogo"
+        app:layout_constraintStart_toEndOf="@+id/buttonCart"
+        app:layout_constraintTop_toTopOf="@+id/barra"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonProfile"
+        android:textColor="#C0BEC3"
+
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/perfilTitle"
+        app:layout_constraintEnd_toEndOf="@+id/barra"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/buttonCat"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="680dp" />
+
+</android.support.constraint.ConstraintLayout>
