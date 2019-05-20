@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,15 +15,12 @@
             android:layout_height="105dp"
             android:gravity="center"
             android:text="@string/perfilTitle"
-            android:textSize="64sp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:textSize="64sp"/>
 
         <ImageView
             android:id="@+id/ImagePerfil"
-
-            android:layout_width="107dp"
-            android:layout_height="115dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_rowWeight="0"
             android:layout_column="0"
@@ -37,72 +32,92 @@
         <TextView
             android:id="@+id/NameButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="@string/Perfil_namo"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="300dp" />
+            android:text="@string/Perfil_namo" />
 
         <TextView
             android:id="@+id/EmailButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="@string/Perfil_e_mail"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="350dp" />
+            android:text="@string/Perfil_e_mail" />
 
         <Button
             android:id="@+id/AddressButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="@string/adress"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="400dp" />
+            android:text="@string/adress" />
 
         <Button
             android:id="@+id/EditButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="@string/edit"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="450dp" />
+            android:text="@string/edit" />
 
         <Button
             android:id="@+id/RequestsButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:text="@string/requests"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="500dp" />
+            android:text="@string/requests" />
 
         <Button
             android:id="@+id/LucroButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="43dp"
             android:layout_gravity="center"
-            android:text="@string/lucro"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="550dp" />
+            android:text="@string/lucro" />
 
         <Button
             android:id="@+id/voltar"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="180dp"
-            android:layout_height="43dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
             android:text="Voltar" />
 
     </TableLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/sultanColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/buttonRequests"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/requests"
+            android:textColor="#C0BEC3" />
+
+        <Button
+            android:id="@+id/buttonCart"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/carrinho"
+            android:textColor="#C0BEC3" />
+
+        <Button
+            android:id="@+id/buttonCat"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/Catalogo"
+            android:textColor="#C0BEC3" />
+
+        <Button
+            android:id="@+id/buttonProfile"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/perfilTitle"
+            android:textColor="#C0BEC3" />
+    </LinearLayout>
+
+</RelativeLayout>

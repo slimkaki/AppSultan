@@ -1,134 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <android.support.v7.widget.Toolbar
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
         android:id="@+id/searches"
-        android:backgroundTint="#514375"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:gravity="bottom"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:background="@color/sultanColor"
+        android:theme="?attr/actionBarTheme">
 
     <ImageButton
         android:id="@+id/buttonFiltro"
         style="@android:style/Widget.DeviceDefault.Light.ImageButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="#514375"
+        android:backgroundTint="@color/sultanColor"
         android:scaleType="fitXY"
-        android:src="@drawable/filter"
-        app:layout_constraintBottom_toTopOf="@+id/catalogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searches" />
+        android:src="@drawable/filter" />
 
     <ImageButton
         android:id="@+id/buttonSearch"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="#514375"
+        android:backgroundTint="@color/sultanColor"
         android:scaleType="fitXY"
-        android:src="@drawable/searchlupa"
-        app:layout_constraintBottom_toTopOf="@+id/catalogo"
-        app:layout_constraintEnd_toStartOf="@+id/buttonFiltro"
-        app:layout_constraintTop_toTopOf="@+id/searches" />
+        android:src="@drawable/searchlupa"/>
+    </LinearLayout>
 
-    <ListView
-        android:id="@+id/catalogo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/barra"
-        app:layout_constraintTop_toBottomOf="@+id/searches"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="8dp" />
+        <ListView
+            android:id="@+id/catalogo"
+            android:layout_width="match_parent"
+            android:layout_height="634dp" />
 
 <!--Incício da Barra de Navegação-->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/barra"
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/sultanColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:background="?attr/colorPrimary"
-        android:backgroundTint="#514375"
-        android:gravity="bottom"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/buttonRequests"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/requests"
+            android:textColor="#C0BEC3" />
 
-    <Button
-        android:id="@+id/buttonRequests"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/requests"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/barra"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/buttonCart"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/carrinho"
+            android:textColor="#C0BEC3" />
 
-    <Button
-        android:id="@+id/buttonCart"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/carrinho"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonRequests"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/buttonCat"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/Catalogo"
+            android:textColor="#C0BEC3" />
 
-    <Button
-        android:id="@+id/buttonCat"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/Catalogo"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonCart"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/buttonProfile"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/perfilTitle"
+            android:textColor="#C0BEC3" />
+        </LinearLayout>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonProfile"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
-        android:text="@string/perfilTitle"
-        android:textColor="#C0BEC3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/barra"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonCat"
-        tools:ignore="MissingConstraints" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
