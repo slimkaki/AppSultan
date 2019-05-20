@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
@@ -14,6 +16,25 @@ public class CarrinhoActivity extends AppCompatActivity {
     protected Button buttonConfirm;
     protected Button botao_perfil;
     protected Button botao_catalogo;
+
+    protected ListView produtos;
+
+    private String[] nomeProduto = {
+            "Sofá",
+            "Tapete",
+            "Toalha",
+            "Toalha de mesa",
+            "Copo",
+            "Prato"};
+
+    int[] imagemProduto = {
+            R.drawable.blackmetal,
+            R.drawable.mine,
+            R.drawable.arveres,
+            R.drawable.bunito,
+            R.drawable.lofi_capa,
+            R.drawable.lvanda
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +46,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         buttonConfirm = findViewById(R.id.buttonConfirm);
         botao_perfil = findViewById(R.id.buttonProfile);
         botao_catalogo = findViewById(R.id.buttonCat);
+
+        produtos = findViewById(R.id.prodCarrinho);
 
         botao_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,5 +91,10 @@ public class CarrinhoActivity extends AppCompatActivity {
 
             }
         });
+
+        Adapter adapter = new Adapter(CarrinhoActivity.this, nomeProduto, imagemProduto);
+
+        produtos.setAdapter(adapter);
+
     }
 }

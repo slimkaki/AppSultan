@@ -14,7 +14,7 @@ public class Adapter extends ArrayAdapter<String> {
     private int[] imagens;
     private Context mContext;
 
-    public Adapter(Context context, String[] nomeProduto, int[] imageProduto ) {
+    public Adapter(Context context, String[] nomeProduto, int[] imageProduto) {
         super(context, R.layout.listview_item);
         this.nomes = nomeProduto;
         this.imagens = imageProduto;
@@ -37,8 +37,8 @@ public class Adapter extends ArrayAdapter<String> {
 
             convertView = mInflator.inflate(R.layout.listview_item, parent, false);
 
-            mViewHolder.imagem = (ImageView) convertView.findViewById(R.id.imageView);
-            mViewHolder.nome = (TextView) convertView.findViewById(R.id.textView);
+            mViewHolder.imagem = convertView.findViewById(R.id.imageView);
+            mViewHolder.nome = convertView.findViewById(R.id.textView);
 
             convertView.setTag(mViewHolder);
         }
