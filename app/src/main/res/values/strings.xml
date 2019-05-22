@@ -41,4 +41,5 @@
     <string name="finalizar_pedido">Finalizar Pedido</string>
     <string name="lucro">Lucro</string>
     <string name="continuar">Continuar</string>
+    <string name="preco">Preço</string>
 </resources>
