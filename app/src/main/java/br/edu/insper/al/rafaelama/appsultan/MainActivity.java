@@ -1,22 +1,43 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ValueEventListener {
 
     protected Toolbar barra;
-    protected Toolbar procura;
+    protected LinearLayout procura;
     protected ListView catalogo;
     protected Button botao_perfil;
     protected Button botao_carrinho;
+    protected Adapter adapter;
+    private String text;
+    public ArrayList<String> list;
+
+
 
     private String[] nomeProduto = {
             "Sofá",
@@ -59,9 +80,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ArrayList<String> list;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference productsList = database.getReference();
+
+        productsList.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot childSnap : dataSnapshot.getChildren()) {
+                    //childSnap.child("price").getValue();
+                    //Log.v("tmz",""+ childSnap.getKey()); //displays the key for the node
+                    //Log.v("tmz",""+ childSnap.child("price").getValue());   //gives the value for given keyname
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        text = productsList.toString();
+
         barra = findViewById(R.id.barra);
 
-        procura = findViewById(R.id.searches);
+        procura = (LinearLayout) findViewById(R.id.searches);
 
         catalogo = (ListView) findViewById(R.id.catalogo);
 
@@ -69,9 +111,11 @@ public class MainActivity extends AppCompatActivity {
 
         botao_carrinho = findViewById(R.id.buttonCart);
 
+
         botao_carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
                 Intent perfil = new Intent(MainActivity.this, CarrinhoActivity.class);
                 startActivity(perfil);
             }
@@ -85,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Adapter adapter = new Adapter(MainActivity.this, nomeProduto, imagemProduto);
+        adapter = new Adapter(MainActivity.this, nomeProduto, imagemProduto);
 
         catalogo.setAdapter(adapter);
 
@@ -104,5 +148,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        this.list = new ArrayList<String>();
+        for(DataSnapshot childSnap : dataSnapshot.getChildren()) {
+            String uid = childSnap.child("price").getValue().toString();
+            list.add(uid);
+        }
+        Map<String, String> map = dataSnapshot.getValue(Map.class);
+        String name = map.get("name");
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
     }
 }

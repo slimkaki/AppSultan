@@ -1,28 +1,48 @@
     package br.edu.insper.al.rafaelama.appsultan;
 
 import android.content.Intent;
+import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
-    public class ProductActivity extends AppCompatActivity {
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-    Toolbar barra2;
-    ImageView imagem;
-    TextView desc;
-    TextView preco;
-    Button botao_perfil;
-    Button voltar;
-    Button carrinho;
+import java.util.ArrayList;
+
+    public class ProductActivity extends AppCompatActivity implements ValueEventListener {
+
+    protected Toolbar barra2;
+    protected ImageView imagem;
+    protected TextView desc;
+    protected TextView preco;
+    protected Button botao_perfil;
+    protected Button voltar;
+    protected Button carrinho;
+    private String text;
+    private ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://appsultanproducts.firebaseio.com");
+        DatabaseReference productsList = database.getReference();
+        productsList.addValueEventListener(ProductActivity.this);
+        text = productsList.toString();
 
         barra2 = findViewById(R.id.barra2);
         imagem = findViewById(R.id.imageView2);
@@ -48,6 +68,10 @@ import android.widget.Toolbar;
         botao_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //System.out.println(" ");
+                //System.out.println(text);
+                //System.out.println(" ");
+                System.out.println(list);
                 Intent perfil = new Intent(ProductActivity.this, PerfilActivity.class);
                 startActivity(perfil);
             }
@@ -71,4 +95,19 @@ import android.widget.Toolbar;
         });
 
     }
-}
+
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            this.list = new ArrayList<String>();
+            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                String uid = ds.getKey();
+                list.add(uid);
+            }
+            System.out.println(list);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+            //Log.d(databaseError.getMessage());
+        }
+    }
