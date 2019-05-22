@@ -3,7 +3,7 @@
     <string name="password">Senha</string>
     <string name="username">Usuário</string>
     <string name="login">Login</string>
-    <string name="singup">Inscrever-se</string>
+    <string name="signup">Inscrever-se</string>
     <string name="perfilTitle">Perfil</string>
     <string name="forget_password">Esqueci a senha</string>
     <string name="imagem_perfil">Imagem Perfil</string>

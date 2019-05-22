@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nome:"/>
             <EditText
+                android:id="@+id/name_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -41,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="E-mail"/>
             <EditText
+                android:id="@+id/email_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -48,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="CPF"/>
             <EditText
+                android:id="@+id/cpf_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -55,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:text="Senha"/>
             <EditText
+                android:id="@+id/password_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
@@ -63,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="Confirme a senha"/>
             <EditText
+                android:id="@+id/password_signup_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
@@ -71,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:text="Telefone / Celular"/>
             <EditText
+                android:id="@+id/celphone_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -78,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:text="CEP"/>
             <EditText
+                android:id="@+id/cep_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -85,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:text="Endereço"/>
             <EditText
+                android:id="@+id/address_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -92,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:text="Número"/>
             <EditText
+                android:id="@+id/number_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <LinearLayout
@@ -106,18 +115,16 @@
                     android:text="@string/cancelar"
                     android:layout_weight="1"/>
                 <Button
-                    android:id="@+id/singup_button"
+                    android:id="@+id/signup_button"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/singup" />
+                    android:text="@string/signup" />
             </LinearLayout>
         </LinearLayout>
 
         </ScrollView>
-
-
     </LinearLayout>
 
 </RelativeLayout>

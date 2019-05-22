@@ -7,13 +7,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    protected Toolbar barra;
-    protected Toolbar procura;
+    protected ImageButton procura;
     protected ListView catalogo;
     protected Button botao_perfil;
     protected Button botao_carrinho;
@@ -59,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        barra = findViewById(R.id.barra);
 
-        procura = findViewById(R.id.searches);
+        procura = findViewById(R.id.buttonSearch);
 
         catalogo = (ListView) findViewById(R.id.catalogo);
 
