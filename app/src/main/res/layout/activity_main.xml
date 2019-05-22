@@ -41,7 +41,7 @@
             android:layout_height="634dp" />
 
 <!--Incício da Barra de Navegação-->
-
+    </LinearLayout>
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:background="@color/sultanColor"
@@ -89,6 +89,6 @@
             android:text="@string/perfilTitle"
             android:textColor="#C0BEC3" />
         </LinearLayout>
-    </LinearLayout>
+
 
 </RelativeLayout>
