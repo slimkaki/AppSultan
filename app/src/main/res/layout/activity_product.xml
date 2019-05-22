@@ -6,11 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:orientation="vertical">
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_marginTop="20dp"
@@ -18,24 +20,28 @@
         android:layout_height="300dp"
         android:layout_gravity="center"
         android:src="@drawable/logo_sultan" />
+
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lectus velit, eleifend ac enim non, sollicitudin auctor magna. Aenean maximus a elit in mattis. Vivamus et tempor ligula. Praesent ex sem, lacinia sodales tempor sed, commodo in nisi. Maecenas vitae nisi diam. Morbi vel nunc aliquet, molestie urna hendrerit, rutrum libero. Aliquam sit amet velit eget sem aliquet euismod in non ex. "
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="32sp"
             android:layout_marginStart="15dp"
             android:text="@string/preco"/>
+
             <TextView
                 android:id="@+id/preco"
                 android:layout_width="wrap_content"
@@ -44,13 +50,15 @@
                 android:text="R$ 100,00"
                 android:layout_marginStart="30dp"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
+
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/zapshare"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="80dp"
                 android:layout_height="50dp"
@@ -58,37 +66,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/whatsapp" />
         </LinearLayout>
-        <!--   <Button
-              android:id="@+id/carrinho"
-              android:layout_width="100dp"
-              android:layout_height="50dp"
-              android:layout_marginStart="32dp"
-              android:layout_marginBottom="32dp"
-              android:text="Adicionar ao carrinho"
-              android:textSize="9sp"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              tools:ignore="MissingConstraints" />
-          <Button
-              android:id="@+id/perfil"
-              style="@style/Widget.AppCompat.Button.Borderless"
-              android:layout_width="80dp"
-              android:layout_height="55dp"
-              android:layout_marginEnd="16dp"
-              android:text="Perfil"
-              app:layout_constraintEnd_toEndOf="@+id/barra2"
-              app:layout_constraintTop_toTopOf="parent" />
 
-          <Button
-              android:id="@+id/voltar"
-              style="@style/Widget.AppCompat.Button.Borderless"
-              android:layout_width="80dp"
-              android:layout_height="55dp"
-              android:layout_marginEnd="32dp"
-              android:layout_marginBottom="8dp"
-              android:text="Voltar"
-              app:layout_constraintBottom_toTopOf="@+id/imageButton"
-              app:layout_constraintEnd_toEndOf="parent" /> -->
     </LinearLayout>
         <LinearLayout
             android:id="@+id/barra"
@@ -97,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/buttonRequests"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -106,6 +85,7 @@
                 android:layout_marginBottom="2dp"
                 android:text="@string/requests"
                 android:textColor="#C0BEC3" />
+
 
             <Button
                 android:id="@+id/buttonCart"
