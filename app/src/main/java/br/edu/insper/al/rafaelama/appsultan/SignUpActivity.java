@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        id = 0;
+        id = 1;
 
         name = findViewById(R.id.name_signup);
         email = findViewById(R.id.email_signup);
@@ -62,7 +62,6 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
         DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
         DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
-        DatabaseReference referenceA_numero = database.getReference(String.valueOf(id)+"/numero");
 
         buttonCancela = findViewById(R.id.buttonCancel);
         buttonInscreve = findViewById(R.id.signup_button);
@@ -79,28 +78,39 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
                 String celularString = celular.getText().toString();
                 String cepString = cep.getText().toString();
                 String addressString = address.getText().toString();
-                String numeroString = numero.getText().toString();
 
-                // O método setValue aceita qualquer objeto e tenta
-                // deduzir qual é o tipo que deve ser escrito no banco.
-                // Nem sempre consegue, então cuidado com exceptions.
-                if(passwordConfirmationString.equals(passwordString)){
-                    referenceA_name.setValue(nameString);
-                    referenceA_email.setValue(emailString);
-                    referenceA_cpf.setValue(cpfString);
-                    referenceA_password.setValue(passwordString);
-                    referenceA_celphone.setValue(celularString);
-                    referenceA_cep.setValue(cepString);
-                    referenceA_address.setValue(addressString);
-                    referenceA_numero.setValue(numeroString);
-                }
-                else {
-                    showToast("aaaa");
-                }
-                id++;
+                if(!nameString.equals("") && !emailString.equals("") && !cpfString.equals("") && !passwordString.equals("") && !celularString.equals("") && !cepString.equals("") && !addressString.equals("")){
+                    if(passwordConfirmationString.equals(passwordString)){
+                        referenceA_name.setValue(nameString);
+                        referenceA_email.setValue(emailString);
+                        referenceA_cpf.setValue(cpfString);
+                        referenceA_password.setValue(passwordString);
+                        referenceA_celphone.setValue(celularString);
+                        referenceA_cep.setValue(cepString);
+                        referenceA_address.setValue(addressString);
 
-                Intent returnIntent = new Intent(SignUpActivity.this, MainActivity.class);
-                startActivityForResult(returnIntent, 1);
+                        id++;
+                        DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
+                        DatabaseReference referenceA_email = database.getReference(String.valueOf(id)+"/email");
+                        DatabaseReference referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
+                        DatabaseReference referenceA_password = database.getReference(String.valueOf(id)+"/password");
+                        DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
+                        DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
+                        DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
+
+                    }
+                    else {
+                        showToast("Senhas diferentes");
+                    }
+
+                }
+                else{
+                    showToast("Campos vazios");
+                }
+
+
+//                Intent returnIntent = new Intent(SignUpActivity.this, MainActivity.class);
+//                startActivityForResult(returnIntent, 1);
             }
         });
         buttonCancela.setOnClickListener(new View.OnClickListener() {

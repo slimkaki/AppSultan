@@ -68,11 +68,11 @@
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
             <TextView
-                android:id="@+id/celphone_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Telefone / Celular"/>
             <EditText
+                android:id="@+id/celphone_signup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
