@@ -51,7 +51,6 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         address = findViewById(R.id.address_signup);
         numero = findViewById(R.id.number_signup);
 
-
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -90,27 +89,26 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
                         referenceA_address.setValue(addressString);
 
                         id++;
-                        DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
-                        DatabaseReference referenceA_email = database.getReference(String.valueOf(id)+"/email");
-                        DatabaseReference referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
-                        DatabaseReference referenceA_password = database.getReference(String.valueOf(id)+"/password");
-                        DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
-                        DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
-                        DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
+//                        referenceA_name = database.getReference(String.valueOf(id)+"/name");
+//                        referenceA_email = database.getReference(String.valueOf(id)+"/email");
+//                        referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
+//                        referenceA_password = database.getReference(String.valueOf(id)+"/password");
+//                        referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
+//                        referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
+//                        referenceA_address = database.getReference(String.valueOf(id)+"/address");
 
+                        Intent main = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(main);
                     }
                     else {
                         showToast("Senhas diferentes");
                     }
-
                 }
                 else{
                     showToast("Campos vazios");
                 }
 
 
-//                Intent returnIntent = new Intent(SignUpActivity.this, MainActivity.class);
-//                startActivityForResult(returnIntent, 1);
             }
         });
         buttonCancela.setOnClickListener(new View.OnClickListener() {
