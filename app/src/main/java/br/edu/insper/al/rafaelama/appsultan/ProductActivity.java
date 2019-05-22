@@ -26,11 +26,11 @@ import android.widget.Toolbar;
 
         barra2 = findViewById(R.id.barra2);
         imagem = findViewById(R.id.imageView2);
-        desc = findViewById(R.id.desc);
+        //desc = findViewById(R.id.desc);
         preco = findViewById(R.id.preco);
-        botao_perfil = findViewById(R.id.perfil);
+        botao_perfil = findViewById(R.id.buttonProfile);
         voltar = findViewById(R.id.voltar);
-        carrinho = findViewById(R.id.carrinho);
+        carrinho = findViewById(R.id.buttonCart);
 
 
         Bundle mBundle = getIntent().getExtras();
