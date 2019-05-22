@@ -9,8 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -24,6 +26,14 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
 
     private int id;
 
+    private void showToast(String text) {
+        // Constrói uma bolha de duração curta.
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+
+        // Mostra essa bolha.
+        toast.show();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,17 +41,18 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
 
         id = 0;
 
-        name = findViewById(R.id.name_singup);
-        email = findViewById(R.id.email_singup);
-        cpf = findViewById(R.id.cpf_singup);
-        password = findViewById(R.id.password_singup);
-        password_confirmation = findViewById(R.id.password_singup_confirmation);
-        celular = findViewById(R.id.celphone_singup);
-        cep = findViewById(R.id.cep_singup);
-        address = findViewById(R.id.address_singup);
-        numero = findViewById(R.id.number_singup);
+        name = findViewById(R.id.name_signup);
+        email = findViewById(R.id.email_signup);
+        cpf = findViewById(R.id.cpf_signup);
+        password = findViewById(R.id.password_signup);
+        password_confirmation = findViewById(R.id.password_signup_confirmation);
+        celular = findViewById(R.id.celphone_signup);
+        cep = findViewById(R.id.cep_signup);
+        address = findViewById(R.id.address_signup);
+        numero = findViewById(R.id.number_signup);
 
 
+        FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
@@ -54,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         DatabaseReference referenceA_numero = database.getReference(String.valueOf(id)+"/numero");
 
         buttonCancela = findViewById(R.id.buttonCancel);
-        buttonInscreve = findViewById(R.id.singup_button);
+        buttonInscreve = findViewById(R.id.signup_button);
 
         buttonInscreve.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
                     referenceA_numero.setValue(numeroString);
                 }
                 else {
-
+                    showToast("aaaa");
                 }
                 id++;
 
