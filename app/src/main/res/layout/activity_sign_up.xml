@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nome:"/>
             <EditText
+                android:id="@+id/name_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="E-mail"/>
             <EditText
+                android:id="@+id/email_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -41,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="CPF"/>
             <EditText
+                android:id="@+id/cpf_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -48,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Senha"/>
             <EditText
+                android:id="@+id/password_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
@@ -56,10 +60,12 @@
                 android:layout_height="wrap_content"
                 android:text="Confirme a senha"/>
             <EditText
+                android:id="@+id/password_singup_confirmation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"/>
             <TextView
+                android:id="@+id/celphone_singup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Telefone / Celular"/>
@@ -71,6 +77,7 @@
                 android:layout_height="wrap_content"
                 android:text="CEP"/>
             <EditText
+                android:id="@+id/cep_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -78,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="Endereço"/>
             <EditText
+                android:id="@+id/address_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -85,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="Número"/>
             <EditText
+                android:id="@+id/number_singup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

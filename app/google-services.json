@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "336970179442",
+    "firebase_url": "https://app-sultan-users.firebaseio.com",
+    "project_id": "app-sultan-users",
+    "storage_bucket": "app-sultan-users.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336970179442:android:98973152ab41e56b",
+        "android_client_info": {
+          "package_name": "br.edu.insper.al.rafaelama.appsultan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336970179442-nju87rvaf4viv4lddkg11l13773jfsou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.insper.al.rafaelama.appsultan",
+            "certificate_hash": "2b0758ff67b02a96512c6ff6ed37b3bc8c5aa8a5"
+          }
+        },
+        {
+          "client_id": "336970179442-pl3ptsmhl42lqprqs3dlb6hsleuhkulg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYcFHE19Piz-oHXcUx2h3bhLxXQYqFDYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336970179442-pl3ptsmhl42lqprqs3dlb6hsleuhkulg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
