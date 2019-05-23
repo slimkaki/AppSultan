@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
-        android:textColor="#514375"
-        android:layout_height="60dp"
+        android:textColor="@color/sultanColor"
+        android:layout_height="wrap_content"
         android:text="@string/lucro"
         android:gravity="center"
         android:textSize="56sp"
@@ -16,12 +18,9 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:columnCount="2"
-        android:rowCount="2"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="140dp"
-        tools:ignore="MissingConstraints">
+        android:rowCount="2">
         <TextView
             android:layout_column="0"
             android:textSize="18sp"
@@ -47,67 +46,55 @@
 
     <Button
         android:id="@+id/DefineLucroButton"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
         android:text="Definir"
         android:outlineSpotShadowColor="#C0BEC3"
-        tools:layout_editor_absoluteX="155dp"
         android:backgroundTint="@color/colorWhite"
-        tools:layout_editor_absoluteY="550dp"
-        tools:ignore="MissingConstraints" />
-    <Toolbar
-        android:id="@+id/barra2"
-        android:backgroundTint="#514375"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@color/sultanColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:gravity="bottom"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="676dp" />
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/buttonRequests"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/ic_requests"/>
 
-    <Button
-        android:id="@+id/buttonrquests"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/requests"
-        app:layout_constraintStart_toStartOf="@+id/barra2"
-        tools:layout_editor_absoluteY="681dp" />
+        <ImageButton
+            android:id="@+id/buttonCart"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/ic_cart" />
 
-    <Button
-        android:id="@+id/buttonCart"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/carrinho"
-        app:layout_constraintStart_toEndOf="@+id/buttonrquests"
-        tools:layout_editor_absoluteY="681dp" />
+        <ImageButton
+            android:id="@+id/buttonCat"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/ic_catalog"/>
 
-    <Button
-        android:id="@+id/buttonCat"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/catalogo"
-        app:layout_constraintStart_toEndOf="@+id/buttonCart"
-        tools:layout_editor_absoluteY="681dp" />
-
-    <Button
-        android:id="@+id/buttonProfile"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/perfilTitle"
-        app:layout_constraintEnd_toEndOf="@+id/barra2"
-        app:layout_constraintStart_toEndOf="@+id/buttonCat"
-        tools:layout_editor_absoluteY="681dp" />
-</android.support.constraint.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/buttonProfile"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/ic_profile"/>
+    </LinearLayout>
+</RelativeLayout>
