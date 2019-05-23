@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -20,6 +21,11 @@ public class PerfilActivity extends AppCompatActivity {
 
         Button voltar = findViewById(R.id.voltar);
 
+        ImageButton perfil = findViewById(R.id.buttonProfile);
+        ImageButton carrinho = findViewById(R.id.buttonCart);
+        ImageButton catalogo = findViewById(R.id.buttonCat);
+        ImageButton pedidos = findViewById(R.id.buttonRequests);
+
         btaddress.setOnClickListener(AddressHandler);
         btedit.setOnClickListener(EditHandler);
         btrequests.setOnClickListener(RequestsHandler);
@@ -34,7 +40,27 @@ public class PerfilActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        carrinho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(PerfilActivity.this, CarrinhoActivity.class);
+                startActivity(perfil);
+            }
+        });
+        catalogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(PerfilActivity.this, MainActivity.class);
+                startActivity(perfil);
+            }
+        });
+        pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(PerfilActivity.this, MainActivity.class);
+                startActivity(perfil);
+            }
+        });
 
     }
     View.OnClickListener AddressHandler = new View.OnClickListener(){

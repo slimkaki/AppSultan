@@ -16,7 +16,7 @@ import android.widget.Toolbar;
     ImageView imagem;
     TextView desc;
     TextView preco;
-    Button botao_perfil, carrinho;
+    ImageButton perfil, carrinho, pedidos, catalogo;
     ImageButton zapzap;
 
     @Override
@@ -28,8 +28,10 @@ import android.widget.Toolbar;
         imagem = findViewById(R.id.imageView2);
         desc = findViewById(R.id.desc);
         preco = findViewById(R.id.preco);
-        botao_perfil = findViewById(R.id.buttonProfile);
+        perfil = findViewById(R.id.buttonProfile);
         carrinho = findViewById(R.id.buttonCart);
+        catalogo = findViewById(R.id.buttonCat);
+        pedidos = findViewById(R.id.buttonRequests);
         zapzap = findViewById(R.id.zapshare);
 
 
@@ -62,10 +64,24 @@ import android.widget.Toolbar;
         });
 
 
-        botao_perfil.setOnClickListener(new View.OnClickListener() {
+        perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent perfil = new Intent(ProductActivity.this, PerfilActivity.class);
+                startActivity(perfil);
+            }
+        });
+        catalogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
+                startActivity(perfil);
+            }
+        });
+        pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
                 startActivity(perfil);
             }
         });
