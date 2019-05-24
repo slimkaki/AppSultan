@@ -78,37 +78,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
+        <ImageButton
             android:id="@+id/buttonRequests"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="2dp"
-            android:text="@string/requests"
-            android:textColor="#C0BEC3" />
+            android:src="@drawable/ic_requests"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonCart"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="2dp"
-            android:text="@string/carrinho"
-            android:textColor="#C0BEC3" />
+            android:src="@drawable/ic_cart" />
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonCat"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="2dp"
-            android:text="@string/Catalogo"
-            android:textColor="#C0BEC3" />
+            android:src="@drawable/ic_catalog"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonProfile"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
@@ -116,8 +113,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="2dp"
-            android:text="@string/perfilTitle"
-            android:textColor="#C0BEC3" />
+            android:src="@drawable/ic_profile"/>
     </LinearLayout>
 
 </RelativeLayout>
