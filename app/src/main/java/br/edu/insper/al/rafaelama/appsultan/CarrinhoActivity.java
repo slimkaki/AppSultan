@@ -104,9 +104,9 @@ public class CarrinhoActivity extends AppCompatActivity {
             }
         });
 
-        Adapter adapter = new Adapter(CarrinhoActivity.this, nomeProduto, imagemProduto);
+        //Adapter adapter = new Adapter(CarrinhoActivity.this, nomeProduto, imagemProduto);
 
-        produtos.setAdapter(adapter);
+        //produtos.setAdapter(adapter);
 
     }
 }

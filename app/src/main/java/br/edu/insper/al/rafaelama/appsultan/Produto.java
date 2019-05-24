@@ -6,6 +6,10 @@ public class Produto {
     private String imagePath;
     private double price;
 
+    public Produto() {
+
+    }
+
     public Produto(String name, String desc, String imagePath, double price) {
         this.name = name;
         this.desc = desc;

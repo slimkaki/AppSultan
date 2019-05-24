@@ -1,20 +1,35 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.renderscript.Sampler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,55 +42,25 @@ public class MainActivity extends AppCompatActivity {
     protected ImageButton botao_pedidos;
     protected ImageButton botao_cat;
     private FirebaseDatabase database;
+    private static final String TAG = "MUSTAFAR";
+    private Context mContext;
 
-    private String[] nomeProduto = {
-            "Sofá",
-            "Tapete",
-            "Toalha",
-            "Toalha de mesa",
-            "Copo",
-            "Prato"};
-
-    int[] imagemProduto = {
-            R.drawable.blackmetal,
-            R.drawable.mine,
-            R.drawable.arveres,
-            R.drawable.bunito,
-            R.drawable.lofi_capa,
-            R.drawable.lvanda
-    };
-    private String[] descri = {
-            "Lorem ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
-            "Laura ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
-            "Lorenzo ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
-            "Laurinha ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
-            "Lororo ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. ",
-            "Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. Laririri ipsum dolor sit amet consectetur adipiscing elit. Nulla a nulla ac tellus gravida sagittis consectetur ac quam. "
-    };
-
-    private String[] preco = {
-            "R$120,00",
-            "R$13,00",
-            "R$130,00",
-            "R$1300,00",
-            "R$13000,00",
-            "R$130000,00"
-    };
+    private SwipeMenuListView listView;
+    DatabaseReference databaseReference;
+    List<Produto> productsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        database = FirebaseDatabase.getInstance();
-
-        DatabaseReference refUsers = database.getReference().child("produtos");
+        listView = (SwipeMenuListView) findViewById(R.id.list_view);
 
         procura = findViewById(R.id.buttonSearch);
 
         filtro = findViewById(R.id.buttonFiltro);
 
-        catalogo = (SwipeMenuListView) findViewById(R.id.catalogo);
+        //catalogo = (SwipeMenuListView) findViewById(R.id.catalogo);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
@@ -84,6 +69,34 @@ public class MainActivity extends AppCompatActivity {
         botao_pedidos = findViewById(R.id.buttonRequests);
 
         botao_carrinho = findViewById(R.id.buttonCart);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Produtos");
+        productsList = new ArrayList<>();
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productsList.clear();
+                if (dataSnapshot != null) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Produto produto = child.getValue(Produto.class);
+                        productsList.add(produto);
+                        System.out.println(productsList);
+                    }
+                    ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
+                    listView.setAdapter(productInfoAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+
+        System.out.println(productsList);
 
         botao_carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,11 +120,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(perfil);
             }
         });
-
-        Adapter adapter = new Adapter(MainActivity.this, nomeProduto, imagemProduto);
-
-        catalogo.setAdapter(adapter);
-
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -144,9 +152,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        catalogo.setMenuCreator(creator);
+        listView.setMenuCreator(creator);
 
-        catalogo.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
@@ -154,10 +162,12 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
 
-                        mIntent.putExtra("Nome", nomeProduto[position]);
-                        mIntent.putExtra("Imagem", imagemProduto[position]);
-                        mIntent.putExtra("descri", descri[position]);
-                        mIntent.putExtra("preco", preco[position]);
+                        // Precisa atualizar as intents
+
+//                        mIntent.putExtra("Nome", productsList[position]);
+//                        mIntent.putExtra("Imagem", imagemProduto[position]);
+//                        mIntent.putExtra("descri", descri[position]);
+//                        mIntent.putExtra("preco", preco[position]);
 
                         Bundle mBundle = getIntent().getExtras();
 
@@ -186,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        catalogo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 
             @Override
@@ -194,10 +204,12 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
 
-                mIntent.putExtra("Nome", nomeProduto[position]);
-                mIntent.putExtra("Imagem", imagemProduto[position]);
-                mIntent.putExtra("descri", descri[position]);
-                mIntent.putExtra("preco", preco[position]);
+                // Precisa atualizar as intents
+
+//                mIntent.putExtra("Nome", nomeProduto[position]);
+//                mIntent.putExtra("Imagem", imagemProduto[position]);
+//                mIntent.putExtra("descri", descri[position]);
+//                mIntent.putExtra("preco", preco[position]);
 
                 startActivity(mIntent);
             }
