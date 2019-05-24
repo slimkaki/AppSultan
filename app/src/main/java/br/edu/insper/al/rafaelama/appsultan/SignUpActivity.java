@@ -56,15 +56,12 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference aa = database.getReference("");
+        DatabaseReference idNumber = database.getReference("id");
 
-        aa.addValueEventListener(new ValueEventListener() {
+        idNumber.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                id = value.length();
+                id = dataSnapshot.getValue(int.class);
             }
 
             @Override
@@ -111,9 +108,10 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
                         referenceA_address.setValue(addressString);
 
                         id++;
+                        idNumber.setValue(id);
 
-//                        Intent main = new Intent(SignUpActivity.this, MainActivity.class);
-//                        startActivity(main);
+                        Intent main = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(main);
                     }
                     else {
                         showToast("Senhas diferentes");
