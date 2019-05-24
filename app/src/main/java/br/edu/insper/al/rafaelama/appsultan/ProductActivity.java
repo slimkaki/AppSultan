@@ -1,6 +1,10 @@
     package br.edu.insper.al.rafaelama.appsultan;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
     public class ProductActivity extends AppCompatActivity {
 
@@ -48,6 +56,7 @@ import android.widget.Toolbar;
         zapzap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
 
@@ -55,10 +64,29 @@ import android.widget.Toolbar;
                 String shareBody = mBundle.getString("descri");
                 String sharePrice = mBundle.getString("preco");
 
-                share.putExtra(Intent.EXTRA_SUBJECT, shareTitle);
-                share.putExtra(Intent.EXTRA_TEXT, shareBody + sharePrice);
+                share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
+                share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
 
                 startActivity(Intent.createChooser(share, "sharing..."));
+
+
+//                Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.arveres); //mBundle.getInt("imagem"));
+//
+//                Intent share = new Intent(Intent.ACTION_SEND);
+//
+//                share.setType("image/jpeg");
+//
+//                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//
+//                b.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+//
+//                String path = MediaStore.Images.Media.insertImage(getContentResolver(), b, mBundle.getString("Nome"), mBundle.getString("descri"));
+//                Uri imageUri =  Uri.parse(path);
+//
+//                grantUriPermission(path, imageUri, );
+//
+//                share.putExtra(Intent.EXTRA_STREAM, imageUri);
+//                startActivity(Intent.createChooser(share, "Select"));
 
             }
         });
