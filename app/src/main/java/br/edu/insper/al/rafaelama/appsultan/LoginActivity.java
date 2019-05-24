@@ -27,8 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        emailn = (EditText)findViewById(R.id.email);
-        passwordn = (EditText)findViewById(R.id.password);
+        emailn = findViewById(R.id.email);
+        passwordn = findViewById(R.id.password);
         firebaseAuth = FirebaseAuth.getInstance();
 
         Button loginButton = findViewById(R.id.login_button);
@@ -42,28 +42,27 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordn.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(LoginActivity.this,"campo email invalido", Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginActivity.this,"campo email invalido", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
 
-                    Toast.makeText(LoginActivity.this,"campo senha invalido", Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginActivity.this,"campo senha invalido", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        firebaseAuth.signInWithEmailAndPassword(email,password)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    Intent returnIntent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivityForResult(returnIntent, 1);
                                 } else {
-                                    Toast.makeText(LoginActivity.this,"Login falhou ou usuario invalido", Toast.LENGTH_SHORT);
+                                    Toast.makeText(LoginActivity.this,"Login falhou ou usuario invalido", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
                         });
-
-
             }
         });
 
