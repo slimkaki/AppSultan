@@ -42,12 +42,12 @@ public class LoginActivity extends AppCompatActivity {
                 String password = passwordn.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)){
-                    Toast.makeText(LoginActivity.this,"campo email invalido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Email inválido", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
 
-                    Toast.makeText(LoginActivity.this,"campo senha invalido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Senha inválida", Toast.LENGTH_SHORT).show();
                     return;
                 }
                         firebaseAuth.signInWithEmailAndPassword(email,password)
@@ -55,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(LoginActivity.this,"Efetuando Login", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this,"Login Efetuado", Toast.LENGTH_SHORT).show();
                                     Intent returnIntent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivityForResult(returnIntent, 1);
 
                                 } else {
-                                    Toast.makeText(LoginActivity.this,"Login falhou ou usuario invalido", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this,"Login falhou ou usuário inválido", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
