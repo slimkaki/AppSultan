@@ -13,6 +13,8 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected ImageButton botao_carrinho;
     protected ImageButton botao_pedidos;
     protected ImageButton botao_cat;
+    private FirebaseDatabase database;
 
     private String[] nomeProduto = {
             "Sofá",
@@ -64,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        database = FirebaseDatabase.getInstance();
+
+        DatabaseReference refUsers = database.getReference().child("produtos");
 
         procura = findViewById(R.id.buttonSearch);
 
