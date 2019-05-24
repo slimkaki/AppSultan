@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         catalogo.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index, ) {
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
 
