@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference idNumber = database.getReference("id");
+        DatabaseReference idNumber = database.getReference("users/id");
 
         idNumber.addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,13 +80,13 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
             @Override
             public void onClick(View v) {
 
-                DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
-                DatabaseReference referenceA_email = database.getReference(String.valueOf(id)+"/email");
-                DatabaseReference referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
-                DatabaseReference referenceA_password = database.getReference(String.valueOf(id)+"/password");
-                DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
-                DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
-                DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
+                DatabaseReference referenceA_name = database.getReference("users/"+String.valueOf(id)+"/name");
+                DatabaseReference referenceA_email = database.getReference("users/"+String.valueOf(id)+"/email");
+                DatabaseReference referenceA_cpf = database.getReference("users/"+String.valueOf(id)+"/cpf");
+                DatabaseReference referenceA_password = database.getReference("users/"+String.valueOf(id)+"/password");
+                DatabaseReference referenceA_celphone = database.getReference("users/"+String.valueOf(id)+"/celphone");
+                DatabaseReference referenceA_cep = database.getReference("users/"+String.valueOf(id)+"/cep");
+                DatabaseReference referenceA_address = database.getReference("users/"+String.valueOf(id)+"/address");
 
                 String nameString = name.getText().toString();
                 String emailString = email.getText().toString();
