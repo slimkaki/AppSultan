@@ -3,18 +3,11 @@ package br.edu.insper.al.rafaelama.appsultan;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
-import android.nfc.Tag;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -149,13 +142,37 @@ public class MainActivity extends AppCompatActivity {
 
         catalogo.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index, ) {
                 switch (index) {
                     case 0:
-                        //Adiciona whatsapp
+
+                        Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
+
+                        mIntent.putExtra("Nome", nomeProduto[position]);
+                        mIntent.putExtra("Imagem", imagemProduto[position]);
+                        mIntent.putExtra("descri", descri[position]);
+                        mIntent.putExtra("preco", preco[position]);
+
+                        Bundle mBundle = getIntent().getExtras();
+
+                        Intent share = new Intent(Intent.ACTION_SEND);
+                        share.setType("text/plain");
+
+                        String shareTitle = mBundle.getString("Nome");
+                        String shareBody = mBundle.getString("descri");
+                        String sharePrice = mBundle.getString("preco");
+
+                        share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
+                        share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
+
+                        startActivity(Intent.createChooser(share, "sharing..."));
+
                         break;
+
                     case 1:
+
                         //Adiciona ao carrinho
+
                         break;
                 }
                 // false : close the menu; true : not close the menu
