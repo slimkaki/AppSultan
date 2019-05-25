@@ -9,17 +9,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
-    protected ImageButton backButton;
-    protected Button buttonCancel;
-    protected Button buttonConfirm;
-    protected ImageButton botao_perfil;
-    protected ImageButton botao_catalogo;
-    protected ImageButton botao_carrinho;
-    protected ImageButton botao_pedidos;
-
+    protected Button buttonCancel,buttonConfirm,endereco,fabrica;
+    protected ImageButton backButton, botao_perfil,botao_pedidos,botao_catalogo,botao_carrinho;
+    protected String localEnvio;
     protected ListView produtos;
 
     private String[] nomeProduto = {
@@ -51,6 +47,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         botao_catalogo = findViewById(R.id.buttonCat);
         botao_carrinho = findViewById(R.id.buttonCart);
         botao_pedidos = findViewById(R.id.buttonRequests);
+        fabrica = findViewById(R.id.buttonFabrica);
+        endereco = findViewById(R.id.buttonEndereco);
 
         produtos = findViewById(R.id.prodCarrinho);
 
@@ -100,9 +98,27 @@ public class CarrinhoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+                Intent intento = new Intent(CarrinhoActivity.this,PaymentActivity.class);
+                intento.putExtra("envio",localEnvio);
+                startActivity(intento);
+                finish();
             }
         });
+        fabrica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                localEnvio = "Fabrica";
+                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como fábrica",Toast.LENGTH_LONG).show();
+            }
+        });
+        endereco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                localEnvio = "Endereço";
+                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como seu endereço",Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         //Adapter adapter = new Adapter(CarrinhoActivity.this, nomeProduto, imagemProduto);
 
