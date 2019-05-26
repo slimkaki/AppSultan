@@ -49,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         password = findViewById(R.id.password_signup);
         password_confirmation = findViewById(R.id.password_signup_confirmation);
         celular = findViewById(R.id.celphone_signup);
+        numero = findViewById(R.id.number_signup);
         cep = findViewById(R.id.cep_signup);
         address = findViewById(R.id.address_signup);
         numero = findViewById(R.id.number_signup);
