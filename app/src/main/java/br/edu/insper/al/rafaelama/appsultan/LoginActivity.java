@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailn;
     private EditText passwordn;
     private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -32,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         Button loginButton = findViewById(R.id.login_button);
-        Button singupButton = findViewById(R.id.singup_button);
+        Button criar = findViewById(R.id.criarconta);
         Button forgotPasswordButton = findViewById(R.id.forgot_password_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        singupButton.setOnClickListener(new View.OnClickListener() {
+        criar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent returnIntent = new Intent(LoginActivity.this, SignUpActivity.class);
