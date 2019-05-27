@@ -34,11 +34,17 @@ public class ProductInfoAdapter extends ArrayAdapter<Produto> {
         TextView productPrice = (TextView) listView.findViewById(R.id.textViewPrice);
         TextView productDesc = (TextView) listView.findViewById(R.id.textViewDesc);
         ImageView productImage = (ImageView) listView.findViewById(R.id.imageViewSultan);
+        TextView productMinQuant = (TextView) listView.findViewById(R.id.textViewMinQuant);
 
         Produto produto = productsList.get(position);
         productName.setText(produto.getName());
         productDesc.setText(produto.getDesc());
         productPrice.setText("R$ "+ String.valueOf(produto.getPrice()) + "0");
+        if (produto.getMinQuant() == 1) {
+            productMinQuant.setText("Qmm: " + String.valueOf(produto.getMinQuant()) + " Peça");
+        } else {
+            productMinQuant.setText("Qmm: " + String.valueOf(produto.getMinQuant()) + " Peças");
+        }
         //productImage.setImageDrawable();
         int id = productImage.getContext().getResources().getIdentifier(produto.getImagePath(), "drawable", "br.edu.insper.al.rafaelama.appsultan");
         productImage.setImageResource(id);
