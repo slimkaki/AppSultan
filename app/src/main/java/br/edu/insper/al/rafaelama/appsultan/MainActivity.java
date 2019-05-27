@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         filtro = findViewById(R.id.buttonFiltro);
 
-        catalogo = findViewById(R.id.catalogo);
+        // catalogo = findViewById(R.id.catalogo);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
@@ -185,10 +185,10 @@ public class MainActivity extends AppCompatActivity {
 
                 // Precisa atualizar as intents
 
-               mIntent.putExtra("Nome", nomeProduto[position]);
-               mIntent.putExtra("Imagem", imagemProduto[position]);
-               mIntent.putExtra("descri", descri[position]);
-               mIntent.putExtra("preco", preco[position]);
+//               mIntent.putExtra("Nome", nomeProduto[position]);
+//               mIntent.putExtra("Imagem", imagemProduto[position]);
+//               mIntent.putExtra("descri", descri[position]);
+//               mIntent.putExtra("preco", preco[position]);
 
                 startActivity(mIntent);
             }

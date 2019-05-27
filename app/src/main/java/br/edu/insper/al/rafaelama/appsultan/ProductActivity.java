@@ -92,16 +92,16 @@ import java.io.InputStream;
 //                startActivity(Intent.createChooser(share, "Select"));
 
 
-                Uri imageUri = Uri.parse("android.resource://" + getPackageName() + "/drawable/" + "ic_launcher");
-                
-                Intent intent = new Intent(Intent.ACTION_SEND);
-
-                intent.putExtra(Intent.EXTRA_TEXT, mBundle.getString("descri"));
-
-                intent.putExtra(Intent.EXTRA_STREAM, imageUri);
-
-                intent.setType("*/*");
-                startActivity(intent);
+//                Uri imageUri = Uri.parse("android.resource://" + getPackageName() + "/drawable/" + "ic_launcher");
+//
+//                Intent intent = new Intent(Intent.ACTION_SEND);
+//
+//                intent.putExtra(Intent.EXTRA_TEXT, mBundle.getString("descri"));
+//
+//                intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+//
+//                intent.setType("*/*");
+//                startActivity(intent);
 
             }
         });
