@@ -48,6 +48,8 @@ public class ProductInfoAdapter extends ArrayAdapter<Produto> {
         //productImage.setImageDrawable();
         int id = productImage.getContext().getResources().getIdentifier(produto.getImagePath(), "drawable", "br.edu.insper.al.rafaelama.appsultan");
         productImage.setImageResource(id);
+        productImage.setMaxHeight(100);
+        productImage.setMaxWidth(100);
         return listView;
     }
 }

@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
                 }
+
                 ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
                 listView.setAdapter(productInfoAdapter);
             }
@@ -155,24 +156,23 @@ public class MainActivity extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
+                        Produto produto = (Produto) listView.getItemAtPosition(position);
 
                         // Precisa atualizar as intents
-
-
-    //                        mIntent.putExtra("listView", DataSnapshot);
-    //                        mIntent.putExtra("Nome", productsList[position]);
-    //                        mIntent.putExtra("Imagem", imagemProduto[position]);
-    //                        mIntent.putExtra("descri", descri[position]);
-    //                        mIntent.putExtra("preco", preco[position]);
+                        mIntent.putExtra("minQuant", produto.getMinQuant());
+                        mIntent.putExtra("name", produto.getName());
+                        mIntent.putExtra("imagePath", produto.getImagePath());
+                        mIntent.putExtra("desc", produto.getDesc());
+                        mIntent.putExtra("price", produto.getPrice());
 
                         Bundle mBundle = getIntent().getExtras();
 
                         Intent share = new Intent(Intent.ACTION_SEND);
                         share.setType("text/plain");
 
-                        String shareTitle = mBundle.getString("Nome");
-                        String shareBody = mBundle.getString("descri");
-                        String sharePrice = mBundle.getString("preco");
+                        String shareTitle = mBundle.getString("name");
+                        String shareBody = mBundle.getString("desc");
+                        String sharePrice = mBundle.getString("price");
 
                         share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
                         share.putExtra(Intent.EXTRA_TEXT, shareBody + sharePrice);
@@ -199,13 +199,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
+                Produto produto = (Produto) listView.getItemAtPosition(position);
 
-                // Precisa atualizar as intents
-                mIntent.putExtra("produto", id);
-    //                mIntent.putExtra("Nome", nomeProduto[position]);
-    //                mIntent.putExtra("Imagem", imagemProduto[position]);
-    //                mIntent.putExtra("descri", descri[position]);
-    //                mIntent.putExtra("preco", preco[position]);
+                mIntent.putExtra("minQuant", produto.getMinQuant());
+                mIntent.putExtra("name", produto.getName());
+                mIntent.putExtra("imagePath", produto.getImagePath());
+                mIntent.putExtra("desc", produto.getDesc());
+                mIntent.putExtra("price", produto.getPrice());
 
                 startActivity(mIntent);
             }
