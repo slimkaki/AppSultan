@@ -1,145 +1,99 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseException;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.Path;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class SignUpActivity extends AppCompatActivity implements ValueEventListener {
 
-    protected Button buttonCancela;
-    protected Button buttonInscreve;
+public class SignUpActivity extends AppCompatActivity {
 
-    private TextView name, email, cpf, password, password_confirmation, celular, cep, address, numero;
-
-    private int id;
-
-    private void showToast(String text) {
-        // Constrói uma bolha de duração curta.
-        Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
-
-        // Mostra essa bolha.
-        toast.show();
-    }
+    private EditText emailSign;
+    private EditText passwordSign;
+    private EditText passwordSignConf;
+    private FirebaseAuth firebaseAuth;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        emailSign = findViewById(R.id.email_signup);
+        passwordSign = findViewById(R.id.password_signup);
+        passwordSignConf = findViewById(R.id.password_signup_confirmation);
 
-        id = 1;
 
-        name = findViewById(R.id.name_signup);
-        email = findViewById(R.id.email_signup);
-        cpf = findViewById(R.id.cpf_signup);
-        password = findViewById(R.id.password_signup);
-        password_confirmation = findViewById(R.id.password_signup_confirmation);
-        celular = findViewById(R.id.celphone_signup);
-        cep = findViewById(R.id.cep_signup);
-        address = findViewById(R.id.address_signup);
-        numero = findViewById(R.id.number_signup);
+        Button cancel = findViewById(R.id.buttonCancel);
+        Button register = findViewById(R.id.signup_button);
 
-        FirebaseApp.initializeApp(this);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        DatabaseReference idNumber = database.getReference("id");
-
-        idNumber.addValueEventListener(new ValueEventListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                id = dataSnapshot.getValue(int.class);
-            }
+            public void onClick(View view) {
+                String email = emailSign.getText().toString().trim();
+                String password = passwordSign.getText().toString().trim();
+                String passwordConf = passwordSignConf.getText().toString().trim();
+                String password1 = passwordSign.getText().toString();
+                String password2 = passwordSignConf.getText().toString();
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-            }
-        });
-
-
-
-
-        buttonCancela = findViewById(R.id.buttonCancel);
-        buttonInscreve = findViewById(R.id.signup_button);
-
-        buttonInscreve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
-                DatabaseReference referenceA_email = database.getReference(String.valueOf(id)+"/email");
-                DatabaseReference referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
-                DatabaseReference referenceA_password = database.getReference(String.valueOf(id)+"/password");
-                DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
-                DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
-                DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
-
-                String nameString = name.getText().toString();
-                String emailString = email.getText().toString();
-                String cpfString = cpf.getText().toString();
-                String passwordString = password.getText().toString();
-                String passwordConfirmationString = password_confirmation.getText().toString();
-                String celularString = celular.getText().toString();
-                String cepString = cep.getText().toString();
-                String addressString = address.getText().toString();
-
-                if(!nameString.equals("") && !emailString.equals("") && !cpfString.equals("") && !passwordString.equals("") && !celularString.equals("") && !cepString.equals("") && !addressString.equals("")){
-                    if(passwordConfirmationString.equals(passwordString)){
-                        referenceA_name.setValue(nameString);
-                        referenceA_email.setValue(emailString);
-                        referenceA_cpf.setValue(cpfString);
-                        referenceA_password.setValue(passwordString);
-                        referenceA_celphone.setValue(celularString);
-                        referenceA_cep.setValue(cepString);
-                        referenceA_address.setValue(addressString);
-
-                        id++;
-                        idNumber.setValue(id);
-
-                        Intent main = new Intent(SignUpActivity.this, MainActivity.class);
-                        startActivity(main);
-                    }
-                    else {
-                        showToast("Senhas diferentes");
-                    }
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(SignUpActivity.this, "Email inválido", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else{
-                    showToast("Campos vazios");
+                if (TextUtils.isEmpty(password)) {
+
+                    Toast.makeText(SignUpActivity.this, "Senha inválida", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(passwordConf)) {
+
+                    Toast.makeText(SignUpActivity.this, "Senhas incompatíveis", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.length() < 6) {
+
+                    Toast.makeText(SignUpActivity.this, "Senha muito curta", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
+                if (password1.equals(password2)) {
+                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser user = firebaseAuth.getCurrentUser();
 
+                                     } else {
+
+                    Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                                }
+                            });
+                }
             }
         });
-        buttonCancela.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent returnIntent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivityForResult(returnIntent, 1);
             }
         });
-}
-
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError databaseError) {
-
     }
 }

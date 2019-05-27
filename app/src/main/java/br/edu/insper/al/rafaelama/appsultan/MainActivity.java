@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-
                         Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
 
                         // Precisa atualizar as intents
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
 
                 // Precisa atualizar as intents
-
                 mIntent.putExtra("produto", id);
     //                mIntent.putExtra("Nome", nomeProduto[position]);
     //                mIntent.putExtra("Imagem", imagemProduto[position]);

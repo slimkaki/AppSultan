@@ -24,6 +24,7 @@
             android:gravity="center"
             android:text="Parabéns, seu pedido vai te lucrar:" />
         <TextView
+            android:id="@+id/lucroArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

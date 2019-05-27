@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "336970179442-3kuhfd0p97dl7oieq32m9vpsk2juim67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.insper.al.rafaelama.appsultan",
+            "certificate_hash": "2cd3ea023897eeda958ac9c6fed8ee146f9f468b"
+          }
+        },
+        {
           "client_id": "336970179442-nju87rvaf4viv4lddkg11l13773jfsou.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

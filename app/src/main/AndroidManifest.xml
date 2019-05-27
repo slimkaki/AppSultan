@@ -14,12 +14,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity"/>
-        <activity android:name=".SignUpActivity"/>
+        <activity android:name=".SignUpActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ProductActivity" />
         <activity android:name=".PerfilActivity" />
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".CarrinhoActivity"/>
-
+        <activity android:name=".PaymentActivity"/>
+        <activity android:name=".EndingActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
