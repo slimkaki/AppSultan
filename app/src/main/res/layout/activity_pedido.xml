@@ -20,16 +20,19 @@
     <GridLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:columnCount="5"
         android:rowCount="2"
         android:columnOrderPreserved="true">
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:scaleType="fitXY"
-        android:src="@drawable/circulo"
+        android:src="@drawable/circulo_cheio"
         android:layout_row="0"
+        android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_gravity="center"/>
 
@@ -40,6 +43,7 @@
         android:background="@color/sultanColor"
         android:layout_row="0"
         android:layout_column="1"
+        android:layout_rowWeight="1"
         android:layout_gravity="center"/>
 
     <ImageView
@@ -49,6 +53,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/circulo"
         android:layout_row="0"
+        android:layout_rowWeight="1"
         android:layout_column="2"
         android:layout_gravity="center"/>
 
@@ -58,6 +63,7 @@
         android:layout_height="1dip"
         android:background="@color/sultanColor"
         android:layout_row="0"
+        android:layout_rowWeight="1"
         android:layout_column="3"
         android:layout_gravity="center"/>
 
@@ -68,6 +74,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/circulo"
         android:layout_row="0"
+        android:layout_rowWeight="1"
         android:layout_column="4"
         android:layout_gravity="center"/>
 
@@ -96,33 +103,39 @@
 
     <View
         android:id="@+id/view3"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escolha onde retirar?"
+            android:layout_marginStart="10dp"/>
 
-    <TextView
-        android:id="@+id/textView5"
+    <Button
+        android:id="@+id/buttonEndereco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_gravity="center"
         android:text="Rua Quatá 300 sala 404"
         android:textSize="28sp" />
 
     <View
         android:id="@+id/view4"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:background="@color/colorPrimaryDark"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="309dp" />
+        android:background="@color/colorPrimaryDark" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <Button
+        android:id="@+id/buttonFabrica"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:text="Na fábrica"

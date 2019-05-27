@@ -15,7 +15,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.Path;
 
 public class SignUpActivity extends AppCompatActivity implements ValueEventListener {
 
@@ -47,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         password = findViewById(R.id.password_signup);
         password_confirmation = findViewById(R.id.password_signup_confirmation);
         celular = findViewById(R.id.celphone_signup);
+        numero = findViewById(R.id.number_signup);
         cep = findViewById(R.id.cep_signup);
         address = findViewById(R.id.address_signup);
         numero = findViewById(R.id.number_signup);
@@ -54,13 +57,22 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         FirebaseApp.initializeApp(this);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
-        DatabaseReference referenceA_email = database.getReference(String.valueOf(id)+"/email");
-        DatabaseReference referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
-        DatabaseReference referenceA_password = database.getReference(String.valueOf(id)+"/password");
-        DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
-        DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
-        DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
+        DatabaseReference idNumber = database.getReference("id");
+
+        idNumber.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                id = dataSnapshot.getValue(int.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+            }
+        });
+
+
+
 
         buttonCancela = findViewById(R.id.buttonCancel);
         buttonInscreve = findViewById(R.id.signup_button);
@@ -68,6 +80,14 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
         buttonInscreve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                DatabaseReference referenceA_name = database.getReference(String.valueOf(id)+"/name");
+                DatabaseReference referenceA_email = database.getReference(String.valueOf(id)+"/email");
+                DatabaseReference referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
+                DatabaseReference referenceA_password = database.getReference(String.valueOf(id)+"/password");
+                DatabaseReference referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
+                DatabaseReference referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
+                DatabaseReference referenceA_address = database.getReference(String.valueOf(id)+"/address");
 
                 String nameString = name.getText().toString();
                 String emailString = email.getText().toString();
@@ -89,13 +109,7 @@ public class SignUpActivity extends AppCompatActivity implements ValueEventListe
                         referenceA_address.setValue(addressString);
 
                         id++;
-//                        referenceA_name = database.getReference(String.valueOf(id)+"/name");
-//                        referenceA_email = database.getReference(String.valueOf(id)+"/email");
-//                        referenceA_cpf = database.getReference(String.valueOf(id)+"/cpf");
-//                        referenceA_password = database.getReference(String.valueOf(id)+"/password");
-//                        referenceA_celphone = database.getReference(String.valueOf(id)+"/celphone");
-//                        referenceA_cep = database.getReference(String.valueOf(id)+"/cep");
-//                        referenceA_address = database.getReference(String.valueOf(id)+"/address");
+                        idNumber.setValue(id);
 
                         Intent main = new Intent(SignUpActivity.this, MainActivity.class);
                         startActivity(main);

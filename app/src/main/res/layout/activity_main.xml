@@ -36,9 +36,13 @@
     </LinearLayout>
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
-            android:id="@+id/catalogo"
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="634dp" />
+            android:layout_height="634dp"/>
+      <!--  <ListView
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="633dp" /> -->
 
 <!--Incício da Barra de Navegação-->
     </LinearLayout>
