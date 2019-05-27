@@ -1,20 +1,22 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
 public class Produto {
-    private String name;
-    private String desc;
-    private String imagePath;
-    private double price;
+    private String name; // Nome do produto
+    private String desc; // Descrição do produto
+    private String imagePath; // Nome do arquivo da imagem (ela deve estar tbm em app -> res -> drawable)
+    private double price; // Preço do produto
+    private int minQuant; // Quantindade mínima de compra do produto
 
     public Produto() {
 
     }
 
-    public Produto(String name, String desc, String imagePath, double price) {
+    public Produto(String name, String desc, String imagePath, double price, int minQuant) {
         this.name = name;
         this.desc = desc;
         this.imagePath = imagePath;
         this.price = price;
+        this.minQuant  = minQuant;
     }
 
     public String getName() {
@@ -47,5 +49,13 @@ public class Produto {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getMinQuant() {
+        return minQuant;
+    }
+
+    public void setMinQuant(int minQuant) {
+        this.minQuant = minQuant;
     }
 }

@@ -14,7 +14,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -34,13 +36,12 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    protected ImageButton procura;
-    protected ImageButton filtro;
-    protected SwipeMenuListView catalogo;
-    protected ImageButton botao_perfil;
-    protected ImageButton botao_carrinho;
-    protected ImageButton botao_pedidos;
-    protected ImageButton botao_cat;
+    ImageButton procura;
+    ImageButton filtro;
+    ImageButton botao_perfil;
+    ImageButton botao_carrinho;
+    ImageButton botao_pedidos;
+    ImageButton botao_cat;
     private FirebaseDatabase database;
     private static final String TAG = "MUSTAFAR";
     private Context mContext;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         listView = (SwipeMenuListView) findViewById(R.id.list_view);
@@ -59,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         procura = findViewById(R.id.buttonSearch);
 
         filtro = findViewById(R.id.buttonFiltro);
-
-        //catalogo = (SwipeMenuListView) findViewById(R.id.catalogo);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
@@ -71,21 +71,18 @@ public class MainActivity extends AppCompatActivity {
         botao_carrinho = findViewById(R.id.buttonCart);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Produtos");
-        productsList = new ArrayList<>();
+        productsList = new ArrayList<Produto>();
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productsList.clear();
-                if (dataSnapshot != null) {
-                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        Produto produto = child.getValue(Produto.class);
-                        productsList.add(produto);
-                        System.out.println(productsList);
-                    }
-                    ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
-                    listView.setAdapter(productInfoAdapter);
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Produto produto = child.getValue(Produto.class);
+                    productsList.add(produto);
                 }
+                ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
+                listView.setAdapter(productInfoAdapter);
             }
 
             @Override
@@ -95,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
-        System.out.println(productsList);
 
         botao_carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,35 +117,35 @@ public class MainActivity extends AppCompatActivity {
         });
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
-            @Override
-            public void create(SwipeMenu menu) {
-                SwipeMenuItem whats = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                whats.setBackground(new ColorDrawable(Color.rgb(0x25,
-                        0xd3, 0x66)));
-                // set item width
-                whats.setWidth(400);
-                // set a icon
-                whats.setTitle("Whatsapp");
-                whats.setTitleSize(18);
-                whats.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(whats);
+        @Override
+        public void create(SwipeMenu menu) {
+            SwipeMenuItem whats = new SwipeMenuItem(
+                    getApplicationContext());
+            // set item background
+            whats.setBackground(new ColorDrawable(Color.rgb(0x25,
+                    0xd3, 0x66)));
+            // set item width
+            whats.setWidth(400);
+            // set a icon
+            whats.setTitle("Whatsapp");
+            whats.setTitleSize(18);
+            whats.setTitleColor(Color.WHITE);
+            // add to menu
+            menu.addMenuItem(whats);
 
-                SwipeMenuItem to_cart = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                to_cart.setBackground(new ColorDrawable(Color.rgb(0xFF,
-                        0xFF, 0xFF)));
-                // set item width
-                to_cart.setWidth(400);
-                // set a icon
-                to_cart.setIcon(R.drawable.ic_cart);
-                // add to menu
-                menu.addMenuItem(to_cart);
-            }
-        };
+            SwipeMenuItem to_cart = new SwipeMenuItem(
+                    getApplicationContext());
+            // set item background
+            to_cart.setBackground(new ColorDrawable(Color.rgb(0xFF,
+                    0xFF, 0xFF)));
+            // set item width
+            to_cart.setWidth(400);
+            // set a icon
+            to_cart.setIcon(R.drawable.ic_cart);
+            // add to menu
+            menu.addMenuItem(to_cart);
+        }
+    };
 
         listView.setMenuCreator(creator);
 
@@ -164,10 +159,12 @@ public class MainActivity extends AppCompatActivity {
 
                         // Precisa atualizar as intents
 
-//                        mIntent.putExtra("Nome", productsList[position]);
-//                        mIntent.putExtra("Imagem", imagemProduto[position]);
-//                        mIntent.putExtra("descri", descri[position]);
-//                        mIntent.putExtra("preco", preco[position]);
+
+    //                        mIntent.putExtra("listView", DataSnapshot);
+    //                        mIntent.putExtra("Nome", productsList[position]);
+    //                        mIntent.putExtra("Imagem", imagemProduto[position]);
+    //                        mIntent.putExtra("descri", descri[position]);
+    //                        mIntent.putExtra("preco", preco[position]);
 
                         Bundle mBundle = getIntent().getExtras();
 
@@ -179,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         String sharePrice = mBundle.getString("preco");
 
                         share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
-                        share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
+                        share.putExtra(Intent.EXTRA_TEXT, shareBody + sharePrice);
 
                         startActivity(Intent.createChooser(share, "sharing..."));
 
@@ -206,10 +203,11 @@ public class MainActivity extends AppCompatActivity {
 
                 // Precisa atualizar as intents
 
-//                mIntent.putExtra("Nome", nomeProduto[position]);
-//                mIntent.putExtra("Imagem", imagemProduto[position]);
-//                mIntent.putExtra("descri", descri[position]);
-//                mIntent.putExtra("preco", preco[position]);
+                mIntent.putExtra("produto", id);
+    //                mIntent.putExtra("Nome", nomeProduto[position]);
+    //                mIntent.putExtra("Imagem", imagemProduto[position]);
+    //                mIntent.putExtra("descri", descri[position]);
+    //                mIntent.putExtra("preco", preco[position]);
 
                 startActivity(mIntent);
             }

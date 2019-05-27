@@ -48,5 +48,17 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/textViewMinQuant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDesc"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/textViewPrice"
+        android:text="TextView"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp" />
+
 
 </RelativeLayout>
