@@ -42,15 +42,21 @@ import java.io.InputStream;
         catalogo = findViewById(R.id.buttonCat);
         pedidos = findViewById(R.id.buttonRequests);
         zapzap = findViewById(R.id.zapshare);
-
-
         Bundle mBundle = getIntent().getExtras();
 
         if (mBundle != null){
+            String pName = mBundle.getString("name");
+            String pDesc = mBundle.getString("desc");
+            String pImagePath = mBundle.getString("imagePath");
+            double pPrice = mBundle.getDouble("price");
+            int pMinQuant = mBundle.getInt("minQuant");
 
-            imagem.setImageResource(mBundle.getInt("Imagem"));
-            desc.setText(mBundle.getString("descri"));
-            preco.setText(mBundle.getString("preco"));
+            Produto produto = new Produto(pName, pDesc, pImagePath, pPrice, pMinQuant);
+
+            int id = this.getResources().getIdentifier(mBundle.getString("imagePath"), "drawable", "br.edu.insper.al.rafaelama.appsultan");
+            imagem.setImageResource(id);
+            desc.setText(mBundle.getString("desc"));
+            preco.setText(mBundle.getString("price"));
 
         }
 
