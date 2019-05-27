@@ -27,6 +27,7 @@ import java.io.InputStream;
     ImageButton perfil, carrinho, pedidos, catalogo;
     ImageButton zapzap;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,24 +58,26 @@ import java.io.InputStream;
             @Override
             public void onClick(View v) {
 
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
+//                Intent share = new Intent(Intent.ACTION_SEND);
+//                share.setType("text/plain");
+//
+//                String shareTitle = mBundle.getString("Nome");
+//                String shareBody = mBundle.getString("descri");
+//                String sharePrice = mBundle.getString("preco");
+//
+//                share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
+//                share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
+//
+//                startActivity(Intent.createChooser(share, "sharing..."));
 
-                String shareTitle = mBundle.getString("Nome");
-                String shareBody = mBundle.getString("descri");
-                String sharePrice = mBundle.getString("preco");
 
-                share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
-                share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
-
-                startActivity(Intent.createChooser(share, "sharing..."));
-
-
-//                Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.arveres); //mBundle.getInt("imagem"));
+//                Bitmap b = BitmapFactory.decodeResource();
 //
 //                Intent share = new Intent(Intent.ACTION_SEND);
 //
-//                share.setType("image/jpeg");
+//                share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//                share.setType("image/*");
 //
 //                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
 //
@@ -83,10 +86,22 @@ import java.io.InputStream;
 //                String path = MediaStore.Images.Media.insertImage(getContentResolver(), b, mBundle.getString("Nome"), mBundle.getString("descri"));
 //                Uri imageUri =  Uri.parse(path);
 //
-//                grantUriPermission(path, imageUri, );
+////                grantUriPermission(path, imageUri, );
 //
 //                share.putExtra(Intent.EXTRA_STREAM, imageUri);
 //                startActivity(Intent.createChooser(share, "Select"));
+
+
+                Uri imageUri = Uri.parse("android.resource://" + getPackageName() + "/drawable/" + "ic_launcher");
+                
+                Intent intent = new Intent(Intent.ACTION_SEND);
+
+                intent.putExtra(Intent.EXTRA_TEXT, mBundle.getString("descri"));
+
+                intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+
+                intent.setType("*/*");
+                startActivity(intent);
 
             }
         });

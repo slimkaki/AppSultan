@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         filtro = findViewById(R.id.buttonFiltro);
 
-        catalogo = (SwipeMenuListView) findViewById(R.id.catalogo);
+        catalogo = findViewById(R.id.catalogo);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
@@ -142,30 +142,11 @@ public class MainActivity extends AppCompatActivity {
 
         catalogo.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index, ) {
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
 
-                        Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
-
-                        mIntent.putExtra("Nome", nomeProduto[position]);
-                        mIntent.putExtra("Imagem", imagemProduto[position]);
-                        mIntent.putExtra("descri", descri[position]);
-                        mIntent.putExtra("preco", preco[position]);
-
-                        Bundle mBundle = getIntent().getExtras();
-
-                        Intent share = new Intent(Intent.ACTION_SEND);
-                        share.setType("text/plain");
-
-                        String shareTitle = mBundle.getString("Nome");
-                        String shareBody = mBundle.getString("descri");
-                        String sharePrice = mBundle.getString("preco");
-
-                        share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
-                        share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
-
-                        startActivity(Intent.createChooser(share, "sharing..."));
+                        //zapzap share
 
                         break;
 
