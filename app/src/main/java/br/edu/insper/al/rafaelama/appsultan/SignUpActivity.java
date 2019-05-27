@@ -69,18 +69,20 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (password1.equals(password2)) {
-                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                if (password.equals(passwordConf)) {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                        Toast.makeText(SignUpActivity.this, "Conta criada",
+                                                Toast.LENGTH_SHORT).show();
 
-                                     } else {
+                                    } else {
 
-                    Toast.makeText(SignUpActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpActivity.this, "Falha ao criar a conta",
+                                    Toast.LENGTH_SHORT).show();
 
                 }
                                 }
