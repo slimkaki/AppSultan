@@ -54,9 +54,10 @@ import java.io.InputStream;
             Produto produto = new Produto(pName, pDesc, pImagePath, pPrice, pMinQuant);
 
             int id = this.getResources().getIdentifier(mBundle.getString("imagePath"), "drawable", "br.edu.insper.al.rafaelama.appsultan");
+
             imagem.setImageResource(id);
-            desc.setText(mBundle.getString("desc"));
-            preco.setText(mBundle.getString("price"));
+            desc.setText(produto.getDesc());
+            preco.setText(produto.getPriceString());
 
         }
 
