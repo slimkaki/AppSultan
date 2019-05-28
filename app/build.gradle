@@ -37,4 +37,6 @@ dependencies {
 
     // Swipe Menue dependencies
     implementation 'com.baoyz.swipemenulistview:library:1.3.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
 }

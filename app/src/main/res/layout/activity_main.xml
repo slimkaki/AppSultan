@@ -50,13 +50,16 @@
         android:scaleType="fitXY"
         android:src="@drawable/filter" />
 
-    <ImageButton
-        android:id="@+id/buttonSearch"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/sultanColor"
-        android:scaleType="fitXY"
-        android:src="@drawable/searchlupa"/>
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="359dp"
+            android:layout_height="?attr/actionBarSize"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
     </LinearLayout>
