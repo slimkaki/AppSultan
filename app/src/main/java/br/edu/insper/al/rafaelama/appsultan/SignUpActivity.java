@@ -16,6 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignUpActivity extends AppCompatActivity {
@@ -23,7 +26,13 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText emailSign;
     private EditText passwordSign;
     private EditText passwordSignConf;
+    private EditText nameSign;
+    private EditText cpfSign;
+    private EditText cepSign;
+    private EditText celphoneSign;
+    private EditText addressSign;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +42,17 @@ public class SignUpActivity extends AppCompatActivity {
         emailSign = findViewById(R.id.email_signup);
         passwordSign = findViewById(R.id.password_signup);
         passwordSignConf = findViewById(R.id.password_signup_confirmation);
-
+        nameSign = findViewById(R.id.name_signup);
+        cpfSign = findViewById(R.id.cpf_signup);
+        cepSign = findViewById(R.id.cep_signup);
+        celphoneSign = findViewById(R.id.celphone_signup);
+        addressSign = findViewById(R.id.address_signup);
 
         Button cancel = findViewById(R.id.buttonCancel);
         Button register = findViewById(R.id.signup_button);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,8 +60,11 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = emailSign.getText().toString().trim();
                 String password = passwordSign.getText().toString().trim();
                 String passwordConf = passwordSignConf.getText().toString().trim();
-                String password1 = passwordSign.getText().toString();
-                String password2 = passwordSignConf.getText().toString();
+                String address = addressSign.getText().toString().trim();
+                String name = nameSign.getText().toString().trim();
+                String cep = cepSign.getText().toString().trim();
+                String cpf = cpfSign.getText().toString().trim();
+                String celphone = celphoneSign.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(SignUpActivity.this, "Email inválido", Toast.LENGTH_SHORT).show();
@@ -68,25 +85,51 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Senha muito curta", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(SignUpActivity.this, "Nome inválido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(address)) {
+                    Toast.makeText(SignUpActivity.this, "Endereço inválido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(cep)) {
+                    Toast.makeText(SignUpActivity.this, "Cep inválido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(cpf)) {
+                    Toast.makeText(SignUpActivity.this, "CPF inválido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(celphone)) {
+                    Toast.makeText(SignUpActivity.this, "Telefone inválido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (password.equals(passwordConf)) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                       startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                                        Toast.makeText(SignUpActivity.this, "Conta criada",
-                                                Toast.LENGTH_SHORT).show();
+                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                                    } else {
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(name).build();
 
-                                    Toast.makeText(SignUpActivity.this, "Falha ao criar a conta",
-                                    Toast.LENGTH_SHORT).show();
+                                user.updateProfile(profileUpdates);
 
-                }
-                                }
-                            });
+                                String id = user.getUid();
+
+                                writeNewUser(name, email, address, cep, cpf, celphone, id);
+
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                Toast.makeText(SignUpActivity.this, "Conta criada",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Falha ao criar a conta", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
         });
@@ -97,5 +140,11 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivityForResult(returnIntent, 1);
             }
         });
+    }
+
+    private void writeNewUser(String name, String email, String address, String cep, String cpf, String celular, String id) {
+        User user = new User(name, email, address, cep, cpf, celular, id);
+
+        mDatabase.child("users").child(id).setValue(user);
     }
 }
