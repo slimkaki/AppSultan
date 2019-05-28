@@ -47,6 +47,11 @@ public class Produto {
         return price;
     }
 
+    public String getPriceString(){
+        String p = Double.toString(this.price);
+        return "R$ " + p;
+    }
+
     public void setPrice(double price) {
         this.price = price;
     }
