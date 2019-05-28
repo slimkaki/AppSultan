@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -36,7 +37,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton procura;
+//    ImageButton procura;
     ImageButton filtro;
     ImageButton botao_perfil;
     ImageButton botao_carrinho;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private static final String TAG = "MUSTAFAR";
     private Context mContext;
+    TextView procura;
 
     private SwipeMenuListView listView;
     DatabaseReference databaseReference;
