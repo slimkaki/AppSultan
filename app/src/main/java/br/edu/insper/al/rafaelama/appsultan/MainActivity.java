@@ -118,35 +118,35 @@ public class MainActivity extends AppCompatActivity {
         });
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
-        @Override
-        public void create(SwipeMenu menu) {
-            SwipeMenuItem whats = new SwipeMenuItem(
-                    getApplicationContext());
-            // set item background
-            whats.setBackground(new ColorDrawable(Color.rgb(0x25,
-                    0xd3, 0x66)));
-            // set item width
-            whats.setWidth(400);
-            // set a icon
-            whats.setTitle("Whatsapp");
-            whats.setTitleSize(18);
-            whats.setTitleColor(Color.WHITE);
-            // add to menu
-            menu.addMenuItem(whats);
+            @Override
+            public void create(SwipeMenu menu) {
+                SwipeMenuItem whats = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                whats.setBackground(new ColorDrawable(Color.rgb(0x25,
+                        0xd3, 0x66)));
+                // set item width
+                whats.setWidth(400);
+                // set a icon
+                whats.setTitle("Whatsapp");
+                whats.setTitleSize(18);
+                whats.setTitleColor(Color.WHITE);
+                // add to menu
+                menu.addMenuItem(whats);
 
-            SwipeMenuItem to_cart = new SwipeMenuItem(
-                    getApplicationContext());
-            // set item background
-            to_cart.setBackground(new ColorDrawable(Color.rgb(0xFF,
-                    0xFF, 0xFF)));
-            // set item width
-            to_cart.setWidth(400);
-            // set a icon
-            to_cart.setIcon(R.drawable.ic_cart);
-            // add to menu
-            menu.addMenuItem(to_cart);
-        }
-    };
+                SwipeMenuItem to_cart = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                to_cart.setBackground(new ColorDrawable(Color.rgb(0xFF,
+                        0xFF, 0xFF)));
+                // set item width
+                to_cart.setWidth(400);
+                // set a icon
+                to_cart.setIcon(R.drawable.ic_cart);
+                // add to menu
+                menu.addMenuItem(to_cart);
+            }
+        };
 
         listView.setMenuCreator(creator);
 
@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
                         Produto produto = (Produto) listView.getItemAtPosition(position);
 
-                        // Precisa atualizar as intents
                         mIntent.putExtra("minQuant", produto.getMinQuant());
                         mIntent.putExtra("name", produto.getName());
                         mIntent.putExtra("imagePath", produto.getImagePath());
