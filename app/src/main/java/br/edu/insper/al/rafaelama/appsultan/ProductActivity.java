@@ -14,6 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -26,6 +31,7 @@ import java.io.InputStream;
     TextView preco;
     ImageButton perfil, carrinho, pedidos, catalogo;
     ImageButton zapzap;
+    Button addCar;
 
 
     @Override
@@ -42,6 +48,8 @@ import java.io.InputStream;
         catalogo = findViewById(R.id.buttonCat);
         pedidos = findViewById(R.id.buttonRequests);
         zapzap = findViewById(R.id.zapshare);
+        addCar = findViewById(R.id.addCarrinho);
+
         Bundle mBundle = getIntent().getExtras();
 
         if (mBundle != null){
@@ -142,6 +150,16 @@ import java.io.InputStream;
                 Intent carrinho = new Intent(ProductActivity.this, CarrinhoActivity.class);
                 startActivity(carrinho);
 
+            }
+        });
+
+        addCar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                DatabaseReference databaseReference;
+                String currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                databaseReference = FirebaseDatabase.getInstance().getReference("users/" + currentFirebaseUser);
             }
         });
 
