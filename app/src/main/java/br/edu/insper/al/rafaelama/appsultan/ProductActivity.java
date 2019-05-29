@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -167,6 +168,7 @@ import java.util.ArrayList;
                     DatabaseReference uidRef = databaseReference.child("users").child(uid);
                     DatabaseReference carRef = uidRef.child("carrinho");
                     carRef.push().setValue(produto);
+                    Toast.makeText(ProductActivity.this, "Produto adicionado ao carrinho!", Toast.LENGTH_SHORT).show();
                 }
             });
 
