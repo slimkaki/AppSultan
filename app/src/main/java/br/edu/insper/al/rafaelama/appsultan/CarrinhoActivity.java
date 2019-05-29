@@ -3,42 +3,47 @@ package br.edu.insper.al.rafaelama.appsultan;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
-    protected Button buttonCancel,buttonConfirm,endereco,fabrica;
+    protected Button buttonCancel,buttonConfirm;//,endereco,fabrica;
     protected ImageButton backButton, botao_perfil,botao_pedidos,botao_catalogo,botao_carrinho;
+    protected TextView priceText, totalText;
     protected String localEnvio;
-    protected ListView produtos;
-
-    private String[] nomeProduto = {
-            "Sofá",
-            "Tapete",
-            "Toalha",
-            "Toalha de mesa",
-            "Copo",
-            "Prato"};
-
-    int[] imagemProduto = {
-            R.drawable.blackmetal,
-            R.drawable.mine,
-            R.drawable.arveres,
-            R.drawable.bunito,
-            R.drawable.lofi_capa,
-            R.drawable.lvanda
-    };
+    private static final String TAG = "MUSTAFAR";
+    private FirebaseDatabase database;
+    private ListView listView;
+    List<Produto> productsList;
+    private int productCount;
+    private double calcTotal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrinho);
+        listView = (ListView) findViewById(R.id.prodCarrinho);
 
         backButton = findViewById(R.id.backButton);
         buttonCancel = findViewById(R.id.buttonCancel);
@@ -47,10 +52,43 @@ public class CarrinhoActivity extends AppCompatActivity {
         botao_catalogo = findViewById(R.id.buttonCat);
         botao_carrinho = findViewById(R.id.buttonCart);
         botao_pedidos = findViewById(R.id.buttonRequests);
-        fabrica = findViewById(R.id.buttonFabrica);
-        endereco = findViewById(R.id.buttonEndereco);
+        priceText = (TextView) findViewById(R.id.produto_preco);
+        totalText = findViewById(R.id.total_preco);
+        //fabrica = findViewById(R.id.buttonFabrica);
+        //endereco = findViewById(R.id.buttonEndereco);
 
-        produtos = findViewById(R.id.prodCarrinho);
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentFirebaseUser.getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference uidRef = databaseReference.child("users").child(uid);
+        DatabaseReference carRef = uidRef.child("carrinho");
+        productsList = new ArrayList<Produto>();
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productsList.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Produto produto = child.getValue(Produto.class);
+                    productsList.add(produto);
+                    productCount++;
+                    calcTotal += produto.getPrice();
+
+                    priceText.setText(String.valueOf(productCount) + ",00");
+                    totalText.setText(String.valueOf(calcTotal) + "0");
+                }
+
+                ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(CarrinhoActivity.this, productsList);
+                listView.setAdapter(productInfoAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+
+        carRef.addListenerForSingleValueEvent(valueEventListener);
 
         botao_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,25 +142,20 @@ public class CarrinhoActivity extends AppCompatActivity {
                 finish();
             }
         });
-        fabrica.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                localEnvio = "Fabrica";
-                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como fábrica",Toast.LENGTH_LONG).show();
-            }
-        });
-        endereco.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                localEnvio = "Endereço";
-                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como seu endereço",Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-        //Adapter adapter = new Adapter(CarrinhoActivity.this, nomeProduto, imagemProduto);
-
-        //produtos.setAdapter(adapter);
+//        fabrica.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                localEnvio = "Fabrica";
+//                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como fábrica", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//        endereco.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                localEnvio = "Endereço";
+//                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como seu endereço",Toast.LENGTH_LONG).show();
+//            }
+//        });
 
     }
 }

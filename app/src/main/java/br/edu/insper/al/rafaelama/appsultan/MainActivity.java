@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -24,6 +25,8 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -181,9 +184,14 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 1:
-
-                        //Adiciona ao carrinho
-
+                        Produto produtoAdd = (Produto) listView.getItemAtPosition(position);
+                        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        String uid = currentFirebaseUser.getUid();
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                        DatabaseReference uidRef = databaseReference.child("users").child(uid);
+                        DatabaseReference carRef = uidRef.child("carrinho");
+                        carRef.push().setValue(produtoAdd);
+                        Toast.makeText(MainActivity.this, "Produto adicionado ao carrinho!", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 // false : close the menu; true : not close the menu
