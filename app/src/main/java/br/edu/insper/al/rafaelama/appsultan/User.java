@@ -10,11 +10,13 @@ public class User {
     public String cep;
     public String cpf;
     public String celular;
+    public String number;
+    public String profit;
     public LinkedList<Produto> carrinho;
     public String id;
     public ArrayList<Produto> userCarrinho;
 
-    public User(String name, String email, String address, String cep, String cpf, String celular, String id) {
+    public User(String name, String email, String address, String cep, String cpf, String celular, String id, String number) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -22,11 +24,9 @@ public class User {
         this.cpf = cpf;
         this.celular = celular;
         this.id = id;
+        this.number = number;
         this.userCarrinho = new ArrayList<>();
-    }
-
-    public User() {
-
+        this.profit = "";
     }
 
     public ArrayList<Produto> getCarrinho() {

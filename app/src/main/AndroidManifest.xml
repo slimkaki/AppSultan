@@ -19,6 +19,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ProductActivity" />
         <activity android:name=".PerfilActivity" />
+        <activity android:name=".ProfitActivity" />
         <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".CarrinhoActivity"/>
         <activity android:name=".PaymentActivity"/>
