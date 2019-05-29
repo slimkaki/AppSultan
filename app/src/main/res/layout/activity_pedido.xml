@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_gravity="center"
-        android:text="Rua Quatá 300 sala 404"
+        android:text="Seu endereço"
         android:textSize="28sp" />
 
     <View
@@ -204,6 +204,7 @@
             android:text="@string/lucro" />
 
         <TextView
+            android:id="@+id/qtd"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -211,6 +212,7 @@
             android:text="0,00" />
 
         <TextView
+            android:id="@+id/desc"
             android:layout_row="1"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -218,6 +220,7 @@
             android:text="0,00" />
 
         <TextView
+            android:id="@+id/frete"
             android:layout_row="2"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -225,6 +228,7 @@
             android:text="0,00" />
 
         <TextView
+            android:id="@+id/total"
             android:layout_row="3"
             android:layout_column="1"
             android:layout_gravity="center"
@@ -232,6 +236,7 @@
             android:text="0,00" />
 
         <TextView
+            android:id="@+id/lucro"
             android:layout_row="4"
             android:layout_column="1"
             android:layout_gravity="center"

@@ -3,6 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/sultanGrayColor">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +35,7 @@
             android:textColor="@color/sultanColor"
             android:text="R$0,00"/>
 
-        <ScrollView
+        <ListView
             android:id="@+id/itemPedido"
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -77,6 +80,7 @@
             android:background="@color/sultanColor"
             android:layout_gravity="center"/>
     </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_alignParentBottom="true"
