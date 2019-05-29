@@ -63,4 +63,12 @@ public class Produto {
     public void setMinQuant(int minQuant) {
         this.minQuant = minQuant;
     }
+
+    public String getShareProduct(){
+        String b = "*_Produto:_* " + getName();
+        String a = getDesc();
+        String p = "*_Preço:_* " + getPriceString();
+
+        return b + "\n" +"\n" + a + "\n" +"\n" + p;
+    }
 }
