@@ -26,41 +26,34 @@
             android:layout_column="0"
             android:layout_gravity="center"
             android:scaleType="fitCenter"
-            android:src="@drawable/unknown"
-            />
+            android:src="@drawable/unknown" />
 
         <TextView
-            android:id="@+id/NameButton"
+            android:id="@+id/nameText"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_gravity="center"
             android:text="@string/Perfil_namo" />
 
         <TextView
-            android:id="@+id/EmailButton"
+            android:id="@+id/emailText"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_gravity="center"
             android:text="@string/Perfil_e_mail" />
 
-        <Button
-            android:id="@+id/AddressButton"
+        <TextView
+            android:id="@+id/addressButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_gravity="center"
             android:text="@string/adress" />
 
         <Button
-            android:id="@+id/EditButton"
+            android:id="@+id/editButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_gravity="center"
             android:text="@string/edit" />
 
         <Button
-            android:id="@+id/RequestsButton"
-            style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_gravity="center"
-            android:text="@string/requests" />
-
-        <Button
-            android:id="@+id/LucroButton"
+            android:id="@+id/lucroButton"
             style="@android:style/Widget.DeviceDefault.Button.Borderless"
             android:layout_gravity="center"
             android:text="@string/lucro" />
