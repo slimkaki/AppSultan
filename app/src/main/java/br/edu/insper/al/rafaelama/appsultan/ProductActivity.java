@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,12 +17,16 @@ import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
     public class ProductActivity extends AppCompatActivity {
 
@@ -52,7 +57,7 @@ import java.io.InputStream;
 
         Bundle mBundle = getIntent().getExtras();
 
-        if (mBundle != null){
+        if (mBundle != null) {
             String pName = mBundle.getString("name");
             String pDesc = mBundle.getString("desc");
             String pImagePath = mBundle.getString("imagePath");
@@ -67,11 +72,10 @@ import java.io.InputStream;
             desc.setText(produto.getDesc());
             preco.setText(produto.getPriceString());
 
-        }
 
-        zapzap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            zapzap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
 //                Intent share = new Intent(Intent.ACTION_SEND);
 //                share.setType("text/plain");
@@ -118,50 +122,54 @@ import java.io.InputStream;
 //                intent.setType("*/*");
 //                startActivity(intent);
 
-            }
-        });
+                }
+            });
 
 
-        perfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(ProductActivity.this, PerfilActivity.class);
-                startActivity(perfil);
-            }
-        });
-        catalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
-                startActivity(perfil);
-            }
-        });
-        pedidos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
-                startActivity(perfil);
-            }
-        });
+            perfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent perfil = new Intent(ProductActivity.this, PerfilActivity.class);
+                    startActivity(perfil);
+                }
+            });
+            catalogo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
+                    startActivity(perfil);
+                }
+            });
+            pedidos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
+                    startActivity(perfil);
+                }
+            });
 
-        carrinho.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent carrinho = new Intent(ProductActivity.this, CarrinhoActivity.class);
-                startActivity(carrinho);
+            carrinho.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent carrinho = new Intent(ProductActivity.this, CarrinhoActivity.class);
+                    startActivity(carrinho);
 
-            }
-        });
+                }
+            });
 
-        addCar.setOnClickListener(new View.OnClickListener() {
+            addCar.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                DatabaseReference databaseReference;
-                String currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                databaseReference = FirebaseDatabase.getInstance().getReference("users/" + currentFirebaseUser);
-            }
-        });
+                @Override
+                public void onClick(View view) {
+                    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = currentFirebaseUser.getUid();
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference uidRef = databaseReference.child("users").child(uid);
+                    DatabaseReference carRef = uidRef.child("carrinho");
+                    carRef.push().setValue(produto);
+                }
+            });
 
+        }
     }
 }

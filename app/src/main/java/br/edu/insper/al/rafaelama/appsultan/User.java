@@ -1,5 +1,6 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class User {
@@ -11,6 +12,7 @@ public class User {
     public String celular;
     public LinkedList<Produto> carrinho;
     public String id;
+    public ArrayList<Produto> userCarrinho;
 
     public User(String name, String email, String address, String cep, String cpf, String celular, String id) {
         this.name = name;
@@ -20,6 +22,31 @@ public class User {
         this.cpf = cpf;
         this.celular = celular;
         this.id = id;
-        this.carrinho = new LinkedList<>();
+        this.userCarrinho = new ArrayList<>();
     }
+
+    public User() {
+
+    }
+
+    public ArrayList<Produto> getCarrinho() {
+        return this.userCarrinho;
+    }
+
+    public void addOnCarrinho(Produto produto) {
+        userCarrinho.add(produto);
+    }
+
+    public void limpaCarrinho() {
+        userCarrinho.clear();
+    }
+
+    public void removeCarrinhoItem(Produto produto) {
+        for (Produto p : userCarrinho) {
+            if (p.getName().equals(produto.getName())) {
+                userCarrinho.remove(produto);
+            }
+        }
+    }
+
 }
