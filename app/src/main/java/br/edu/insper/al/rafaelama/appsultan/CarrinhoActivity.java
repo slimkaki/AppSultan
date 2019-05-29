@@ -155,8 +155,10 @@ public class CarrinhoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intento = new Intent(CarrinhoActivity.this,PaymentActivity.class);
+                Intent intento = new Intent(CarrinhoActivity.this,PedidoActivity.class);
                 intento.putExtra("envio",localEnvio);
+                intento.putExtra("quantidade", productCount);
+                intento.putExtra("total", calcTotal);
                 startActivity(intento);
                 finish();
             }

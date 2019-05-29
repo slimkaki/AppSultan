@@ -51,6 +51,7 @@
                 android:text="CPF"/>
             <EditText
                 android:id="@+id/cpf_signup"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -77,6 +78,7 @@
                 android:text="Telefone / Celular"/>
             <EditText
                 android:id="@+id/celphone_signup"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -85,6 +87,7 @@
                 android:text="CEP"/>
             <EditText
                 android:id="@+id/cep_signup"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <TextView
@@ -101,6 +104,7 @@
                 android:text="Número"/>
             <EditText
                 android:id="@+id/number_signup"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <LinearLayout

@@ -9,16 +9,16 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 
 public class PaymentActivity extends AppCompatActivity {
-    String local;
-    Button continuar;
-    ImageButton perfil, pedidos, catalogo, carrinho;
-    CheckBox boleto, credito, debito, tranferencia;
+    protected String local;
+    protected Button continuar;
+    protected ImageButton perfil, pedidos, catalogo, carrinho;
+    protected CheckBox boleto, credito, debito, tranferencia;
 
     @Override
     public void onCreate(Bundle Saved){
         super.onCreate(Saved);
         setContentView(R.layout.activity_pagamento);
-        local = getIntent().getStringExtra("envio");
+        local = getIntent().getStringExtra("local");
 
         perfil = findViewById(R.id.buttonProfile);
         catalogo = findViewById(R.id.buttonCat);

@@ -1,30 +1,22 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +31,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton procura;
-    ImageButton filtro;
     ImageButton botao_perfil;
     ImageButton botao_carrinho;
     ImageButton botao_pedidos;
     ImageButton botao_cat;
+
     private FirebaseDatabase database;
     private static final String TAG = "MUSTAFAR";
     private Context mContext;
@@ -62,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         listView = (SwipeMenuListView) findViewById(R.id.list_view);
 
         procura = findViewById(R.id.buttonSearch);
-
-        filtro = findViewById(R.id.buttonFiltro);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
