@@ -1,9 +1,13 @@
     package br.edu.insper.al.rafaelama.appsultan;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -78,50 +83,11 @@ import java.util.ArrayList;
                 @Override
                 public void onClick(View v) {
 
-//                Intent share = new Intent(Intent.ACTION_SEND);
-//                share.setType("text/plain");
-//
-//                String shareTitle = mBundle.getString("Nome");
-//                String shareBody = mBundle.getString("descri");
-//                String sharePrice = mBundle.getString("preco");
-//
-//                share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
-//                share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
-//
-//                startActivity(Intent.createChooser(share, "sharing..."));
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
 
-
-//                Bitmap b = BitmapFactory.decodeResource();
-//
-//                Intent share = new Intent(Intent.ACTION_SEND);
-//
-//                share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//
-//                share.setType("image/*");
-//
-//                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//
-//                b.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-//
-//                String path = MediaStore.Images.Media.insertImage(getContentResolver(), b, mBundle.getString("Nome"), mBundle.getString("descri"));
-//                Uri imageUri =  Uri.parse(path);
-//
-////                grantUriPermission(path, imageUri, );
-//
-//                share.putExtra(Intent.EXTRA_STREAM, imageUri);
-//                startActivity(Intent.createChooser(share, "Select"));
-
-
-//                Uri imageUri = Uri.parse("android.resource://" + getPackageName() + "/drawable/" + "ic_launcher");
-//
-//                Intent intent = new Intent(Intent.ACTION_SEND);
-//
-//                intent.putExtra(Intent.EXTRA_TEXT, mBundle.getString("descri"));
-//
-//                intent.putExtra(Intent.EXTRA_STREAM, imageUri);
-//
-//                intent.setType("*/*");
-//                startActivity(intent);
+                share.putExtra(Intent.EXTRA_TEXT, produto.getShareProduct());
+                startActivity(Intent.createChooser(share, "sharing..."));
 
                 }
             });
