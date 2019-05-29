@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneNumberUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -56,27 +57,15 @@ public class EndingActivity extends AppCompatActivity {
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
-
-                String shareTitle = "Pedido";
-                String shareBody = "";
-                for (String s:pagamento){
-                    shareBody += " " + s;
+                try {
+                    GMailSender sender = new GMailSender("pedidossultan@gmail.com", "SultanMohammed");
+                    sender.sendMail("Pedido pendente",
+                            "Mensagem de teste",
+                            "pedidossultan@gmail.com",
+                            "joaomeirelles575@gmail.com");
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
                 }
-
-                String sharePrice = "Talvez mais coisas";
-
-                share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
-                share.putExtra(Intent.EXTRA_TEXT,shareBody + sharePrice);
-                share.putExtra("jid", PhoneNumberUtils.stripSeparators("551198051435")+"@s.whatsapp.net");
-
-                startActivity(Intent.createChooser(share, "sharing..."));
-
-
-                Intent intento = new Intent(EndingActivity.this, MainActivity.class);
-                startActivity(intento);
-                finish();
             }
         });
     }
