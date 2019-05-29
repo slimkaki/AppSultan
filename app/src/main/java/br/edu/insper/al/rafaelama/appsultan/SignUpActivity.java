@@ -31,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText cepSign;
     private EditText celphoneSign;
     private EditText addressSign;
+    private EditText numberSign;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
@@ -47,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         cepSign = findViewById(R.id.cep_signup);
         celphoneSign = findViewById(R.id.celphone_signup);
         addressSign = findViewById(R.id.address_signup);
+        numberSign = findViewById(R.id.number_signup);
 
         Button cancel = findViewById(R.id.buttonCancel);
         Button register = findViewById(R.id.signup_button);
@@ -65,6 +67,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String cep = cepSign.getText().toString().trim();
                 String cpf = cpfSign.getText().toString().trim();
                 String celphone = celphoneSign.getText().toString().trim();
+                String number = numberSign.getText().toString().trim();
+
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(SignUpActivity.this, "Email inválido", Toast.LENGTH_SHORT).show();
@@ -105,6 +109,10 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Telefone inválido", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (TextUtils.isEmpty(number)) {
+                    Toast.makeText(SignUpActivity.this, "Número inválido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (password.equals(passwordConf)) {
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
@@ -120,9 +128,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 String id = user.getUid();
 
-                                writeNewUser(name, email, address, cep, cpf, celphone, id);
+                                writeNewUser(name, email, address, cep, cpf, celphone, id, number);
 
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                startActivity(new Intent(getApplicationContext(),ProfitActivity.class));
                                 Toast.makeText(SignUpActivity.this, "Conta criada",
                                         Toast.LENGTH_SHORT).show();
                             } else {
@@ -142,8 +150,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void writeNewUser(String name, String email, String address, String cep, String cpf, String celular, String id) {
-        User user = new User(name, email, address, cep, cpf, celular, id);
+    private void writeNewUser(String name, String email, String address, String cep, String cpf, String celular, String id, String number) {
+        User user = new User(name, email, address, cep, cpf, celular, id, number);
 
         mDatabase.child("users").child(id).setValue(user);
     }
