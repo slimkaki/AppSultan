@@ -28,7 +28,7 @@ public class PerfilActivity extends AppCompatActivity {
 
         Button btEdit = findViewById(R.id.editButton);
         Button btLucro = findViewById(R.id.lucroButton);
-        Button voltar = findViewById(R.id.voltar);
+        Button sair = findViewById(R.id.logOut);
 
         ImageButton perfil = findViewById(R.id.buttonProfile);
         ImageButton carrinho = findViewById(R.id.buttonCart);
@@ -67,19 +67,28 @@ public class PerfilActivity extends AppCompatActivity {
 
         uidRef.addListenerForSingleValueEvent(valueEventListener);
 
-        voltar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
-                setResult(2, intent);
-                finish();
-            }
-        });
+//        voltar.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
+//                setResult(2, intent);
+//                finish();
+//            }
+//        });
         carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent perfil = new Intent(PerfilActivity.this, CarrinhoActivity.class);
+                startActivity(perfil);
+            }
+        });
+        sair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseAuth.getInstance().signOut();
+                Intent perfil = new Intent(PerfilActivity.this, LoginActivity.class);
                 startActivity(perfil);
             }
         });
