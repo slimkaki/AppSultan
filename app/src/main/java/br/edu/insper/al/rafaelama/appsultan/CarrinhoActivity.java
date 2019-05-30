@@ -97,8 +97,8 @@ public class CarrinhoActivity extends AppCompatActivity {
                 profitText.setText(String.valueOf(calcTotal*profitNumber/100));
 
 
-                ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(CarrinhoActivity.this, productsList);
-                listView.setAdapter(productInfoAdapter);
+                CartInfoAdapter cartInfoAdapter = new CartInfoAdapter(CarrinhoActivity.this, productsList);
+                listView.setAdapter(cartInfoAdapter);
             }
 
             @Override

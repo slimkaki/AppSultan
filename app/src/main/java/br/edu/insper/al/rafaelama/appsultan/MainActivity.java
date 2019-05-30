@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
                 }
-
                 ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
                 listView.setAdapter(productInfoAdapter);
             }
