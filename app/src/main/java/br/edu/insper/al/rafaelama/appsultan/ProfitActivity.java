@@ -37,7 +37,7 @@ public class ProfitActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String profit = profitSign.getText().toString().trim();
-                if("profit.equals(""))
+                //if("profit.equals(""))
                 mDatabase.child("users").child(id).child("profit").setValue(profit);
                 Intent returnIntent = new Intent(ProfitActivity.this, MainActivity.class);
                 startActivityForResult(returnIntent, 1);

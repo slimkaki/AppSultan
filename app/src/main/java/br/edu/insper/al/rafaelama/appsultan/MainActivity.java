@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (SwipeMenuListView) findViewById(R.id.list_view);
 
-        procura = findViewById(R.id.search);
+        //procura = findViewById(R.id.search);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
                 }
-
                 ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
                 listView.setAdapter(productInfoAdapter);
             }
