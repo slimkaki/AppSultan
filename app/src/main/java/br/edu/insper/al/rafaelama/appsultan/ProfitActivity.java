@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,8 +38,13 @@ public class ProfitActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String profit = profitSign.getText().toString().trim();
-                //if("profit.equals(""))
-                mDatabase.child("users").child(id).child("profit").setValue(profit);
+                if(profit.equals("")){
+                    mDatabase.child("users").child(id).child("profit").setValue(0);
+                }
+                else{
+                    mDatabase.child("users").child(id).child("profit").setValue(Double.valueOf(profit));
+                }
+              
                 Intent returnIntent = new Intent(ProfitActivity.this, MainActivity.class);
                 startActivityForResult(returnIntent, 1);
             }
