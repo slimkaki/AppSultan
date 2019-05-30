@@ -30,7 +30,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton procura;
     ImageButton botao_perfil;
     ImageButton botao_carrinho;
     ImageButton botao_pedidos;
@@ -51,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (SwipeMenuListView) findViewById(R.id.list_view);
-
-        procura = findViewById(R.id.buttonSearch);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
