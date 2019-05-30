@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (SwipeMenuListView) findViewById(R.id.list_view);
 
-        procura = findViewById(R.id.search);
+        procura = findViewById(R.id.buttonSearch);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
