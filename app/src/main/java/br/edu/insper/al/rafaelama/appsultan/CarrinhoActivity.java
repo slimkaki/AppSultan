@@ -88,8 +88,8 @@ public class CarrinhoActivity extends AppCompatActivity {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
-                    productCount++;
-                    calcTotal += produto.getPrice();
+                    productCount += produto.getMinQuant();
+                    calcTotal += produto.getMinQuant()*produto.getPrice();
 
                     priceText.setText(String.valueOf(productCount) + ",00");
                     totalText.setText(String.valueOf(calcTotal) + "0");
