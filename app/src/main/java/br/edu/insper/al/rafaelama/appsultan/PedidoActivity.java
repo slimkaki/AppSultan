@@ -42,11 +42,13 @@ public class PedidoActivity extends AppCompatActivity {
         fab = findViewById(R.id.buttonFabrica);
         enderco = findViewById(R.id.buttonEndereco);
         confirmar = findViewById(R.id.buttonConfirm);
-        qtd = (int) getIntent().getIntExtra("quantidade",1);
+        qtdtxt = findViewById(R.id.qtd);
+        qtd = (int) getIntent().getIntExtra("quantidade",0);
         qtdtxt.setText(String.valueOf(qtd));
         //desc = findViewById(R.id.desc);
        // frete = findViewById(R.id.frete);
-        total = getIntent().getIntExtra("total",1);
+        totaltxt = findViewById(R.id.total);
+        total = getIntent().getIntExtra("total",0);
         totaltxt.setText(String.valueOf(total));
         //lucro = findViewById(R.id.lucro);
         perfil.setOnClickListener(new View.OnClickListener() {
