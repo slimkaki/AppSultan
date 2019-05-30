@@ -97,13 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(perfil);
             }
         });
-        botao_pedidos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(MainActivity.this, PerfilActivity.class);
-                startActivity(perfil);
-            }
-        });
+
+        
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
