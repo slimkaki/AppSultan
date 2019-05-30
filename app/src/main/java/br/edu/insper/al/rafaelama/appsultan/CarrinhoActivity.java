@@ -30,7 +30,7 @@ public class CarrinhoActivity extends AppCompatActivity {
 
     protected Button buttonCancel,buttonConfirm;//,endereco,fabrica;
     protected ImageButton backButton, botao_perfil,botao_pedidos,botao_catalogo,botao_carrinho;
-    protected TextView priceText, totalText;
+    protected TextView priceText, totalText, profitText;
     protected String localEnvio;
     private static final String TAG = "MUSTAFAR";
     private FirebaseDatabase database;
@@ -38,6 +38,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     List<Produto> productsList;
     private int productCount;
     private double calcTotal;
+    private double profitNumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         botao_pedidos = findViewById(R.id.buttonRequests);
         priceText = (TextView) findViewById(R.id.produto_preco);
         totalText = findViewById(R.id.total_preco);
+        profitText = findViewById(R.id.lucro_preco);
         //fabrica = findViewById(R.id.buttonFabrica);
         //endereco = findViewById(R.id.buttonEndereco);
 
@@ -62,12 +64,27 @@ public class CarrinhoActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = databaseReference.child("users").child(uid);
         DatabaseReference carRef = uidRef.child("carrinho");
+        DatabaseReference profitRef = uidRef.child("profit");
         productsList = new ArrayList<Produto>();
+
+        profitRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                profitNumber = dataSnapshot.getValue(Double.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productsList.clear();
+
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
@@ -77,6 +94,8 @@ public class CarrinhoActivity extends AppCompatActivity {
                     priceText.setText(String.valueOf(productCount) + ",00");
                     totalText.setText(String.valueOf(calcTotal) + "0");
                 }
+                profitText.setText(String.valueOf(calcTotal*profitNumber/100));
+
 
                 ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(CarrinhoActivity.this, productsList);
                 listView.setAdapter(productInfoAdapter);

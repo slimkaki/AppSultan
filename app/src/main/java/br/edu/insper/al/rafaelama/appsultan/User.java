@@ -11,7 +11,7 @@ public class User {
     public String cpf;
     public String celular;
     public String number;
-    public String profit;
+    public double profit;
     public LinkedList<Produto> carrinho;
     public String id;
     public ArrayList<Produto> userCarrinho;
@@ -26,7 +26,7 @@ public class User {
         this.id = id;
         this.number = number;
         this.userCarrinho = new ArrayList<>();
-        this.profit = "";
+        this.profit = 0;
     }
 
     public ArrayList<Produto> getCarrinho() {
@@ -48,5 +48,4 @@ public class User {
             }
         }
     }
-
 }
