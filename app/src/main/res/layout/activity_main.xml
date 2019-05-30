@@ -41,14 +41,11 @@
             android:layout_height="wrap_content"
             android:background="@color/sultanColor"
             android:theme="?attr/actionBarTheme">
-            <ImageButton
-                android:id="@+id/buttonSearch"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:backgroundTint="@color/sultanColor"
-                android:scaleType="fitXY"
-                android:src="@drawable/searchlupa"/>
-            
+
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
 
         </LinearLayout>
 
