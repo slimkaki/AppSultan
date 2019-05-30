@@ -107,6 +107,15 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
+        btLucro.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent perfil = new Intent(PerfilActivity.this, ProfitActivity.class);
+                startActivity(perfil);
+            }
+        });
+
 
     }
 
