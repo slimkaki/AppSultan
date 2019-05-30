@@ -44,4 +44,6 @@
     <string name="preco">Preço</string>
     <string name="car">Adicionar ao Carrinho</string>
     <string name="sair">Sair</string>
+    <string name="para_resetar_sua_senha_entre_com_email_no_campo_abaixo">Para resetar sua senha entre com email, no campo abaixo:</string>
+    <string name="resetar_senha">resetar senha</string>
 </resources>
