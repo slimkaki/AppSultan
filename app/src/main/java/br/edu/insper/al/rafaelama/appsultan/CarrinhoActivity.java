@@ -30,7 +30,7 @@ public class CarrinhoActivity extends AppCompatActivity {
 
     protected Button buttonCancel,buttonConfirm;//,endereco,fabrica;
     protected ImageButton backButton, botao_perfil,botao_pedidos,botao_catalogo,botao_carrinho;
-    protected TextView priceText, totalText, profitText;
+    protected TextView priceText, totalText, profitText, fretePrice;
     protected String localEnvio;
     private static final String TAG = "MUSTAFAR";
     private FirebaseDatabase database;
@@ -56,6 +56,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         priceText = (TextView) findViewById(R.id.produto_preco);
         totalText = findViewById(R.id.total_preco);
         profitText = findViewById(R.id.lucro_preco);
+        fretePrice = findViewById(R.id.frete_preco);
         //fabrica = findViewById(R.id.buttonFabrica);
         //endereco = findViewById(R.id.buttonEndereco);
 
@@ -94,6 +95,7 @@ public class CarrinhoActivity extends AppCompatActivity {
                     priceText.setText(String.valueOf(productCount) + ",00");
                     totalText.setText(String.valueOf(calcTotal) + "0");
                 }
+                fretePrice.setText(String.valueOf(0.04*calcTotal));
                 profitText.setText(String.valueOf(calcTotal*profitNumber/100));
 
 
