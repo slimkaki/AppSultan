@@ -25,14 +25,13 @@ import java.util.List;
 public class EndingActivity extends AppCompatActivity {
     protected String[] pagamento;
     protected String local;
-    private TextView preco, total;
+    private TextView lucro, total;
     protected Button finalizar;
     ImageButton perfil, catalogo, pedidos, carrinho;
     private static final String TAG = "MUSTAFAR";
     private FirebaseDatabase database;
     private ListView listView;
     List<Produto> productsList;
-    private int productCount;
     private double calcTotal;
 
     @Override
@@ -42,7 +41,7 @@ public class EndingActivity extends AppCompatActivity {
         total = findViewById(R.id.lucroArea);
         pagamento = getIntent().getStringArrayExtra("pagamentos");
         local = getIntent().getStringExtra("envio");
-        finalizar = findViewById(R.id.buttonOkPedido);
+        finalizar = findViewById(R.id.buttonFazerPedido);
         perfil = findViewById(R.id.buttonProfile);
         catalogo = findViewById(R.id.buttonCat);
         carrinho = findViewById(R.id.buttonCart);
@@ -65,7 +64,6 @@ public class EndingActivity extends AppCompatActivity {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
-                    productCount++;
                     calcTotal += produto.getPrice();
 
                     total.setText(String.valueOf(calcTotal) + "0");
@@ -110,14 +108,15 @@ public class EndingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     Toast.makeText(EndingActivity.this,"Pedido enviado",Toast.LENGTH_LONG);
-                    GMailSender sender = new GMailSender("pedidossultan@gmail.com", "SultanMohammed");
-                    sender.sendMail("Pedido pendente",
-                            "Mensagem de teste",
-                            "pedidossultan@gmail.com",
-                            "joaomeirelles575@gmail.com");
+                    GMailSender sender = new GMailSender("pedidossultan@gmail.com", "SenhaSultan");
+                    sender.sendMail("Pedido pendente", "Mensagem de teste", "pedidossultan@gmail.com", "joaomeirelles575@gmail.com");
                 } catch (Exception e) {
+                    Toast.makeText(EndingActivity.this,"Envio falho",Toast.LENGTH_LONG);
                     Log.e("SendMail", e.getMessage(), e);
                 }
+                Intent intento = new Intent(EndingActivity.this, MainActivity.class);
+                startActivity(intento);
+                finish();
             }
         });
     }
