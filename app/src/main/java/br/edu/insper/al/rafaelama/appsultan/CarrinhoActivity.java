@@ -145,6 +145,8 @@ public class CarrinhoActivity extends AppCompatActivity {
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                carRef.removeValue();
+                Toast.makeText(CarrinhoActivity.this, "Itens removidos com sucesso!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CarrinhoActivity.this, MainActivity.class);
                 setResult(2, intent);
                 finish();
