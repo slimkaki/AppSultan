@@ -44,4 +44,5 @@
     <string name="preco">Preço</string>
     <string name="car">Adicionar ao Carrinho</string>
     <string name="sair">Sair</string>
+    <string name="info_edit">Editar informações</string>
 </resources>
