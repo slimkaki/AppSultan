@@ -106,18 +106,16 @@ public class EndingActivity extends AppCompatActivity {
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    Toast.makeText(EndingActivity.this,"Pedido enviado",Toast.LENGTH_LONG);
-                    GMailSender sender = new GMailSender("pedidossultan@gmail.com", "SenhaSultan");
-                    sender.sendMail("Pedido pendente", "Mensagem de teste", "pedidossultan@gmail.com", "joaomeirelles575@gmail.com");
-                } catch (Exception e) {
-                    Toast.makeText(EndingActivity.this,"Envio falho",Toast.LENGTH_LONG);
-                    Log.e("SendMail", e.getMessage(), e);
-                }
-                Intent intento = new Intent(EndingActivity.this, MainActivity.class);
-                startActivity(intento);
-                finish();
-            }
-        });
+                //Getting content for email
+                String email = "joaomeirelles575@gmail.com";
+                String subject = "Pedido teste";
+                String message = "Aqui é o que tem que ter no e-mail";
+
+                //Creating SendMail object
+                SendMail sm = new SendMail(EndingActivity.this, email, subject, message);
+
+                //Executing sendmail to send email
+                sm.execute();
+            }});
+        }
     }
-}

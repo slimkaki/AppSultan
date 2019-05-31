@@ -28,7 +28,7 @@ public class PedidoActivity extends AppCompatActivity {
     protected Button fab, enderco, confirmar;
     protected TextView qtdtxt, desctxt, fretetxt, totaltxt, lucrotxt;
     protected String localEnvio = "Fábrica";
-    protected int qtd, desconto, frete, total, lucro;
+    protected double qtd, desconto, frete, total, lucro;
 
     @Override
     public void onCreate(Bundle saved){
