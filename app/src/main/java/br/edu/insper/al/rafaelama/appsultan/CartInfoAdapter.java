@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +45,7 @@ public class CartInfoAdapter extends ArrayAdapter<Produto>{
         TextView productPrice = (TextView) listView.findViewById(R.id.textViewPrice);
         ImageView productImage = (ImageView) listView.findViewById(R.id.imageViewSultan);
         TextView productMinQuant = (TextView) listView.findViewById(R.id.textViewMinQuant);
-        Button buttonRemove = (Button) listView.findViewById(R.id.buttonRemove);
+        ImageButton buttonRemove = (ImageButton) listView.findViewById(R.id.buttonRemove);
 
         Produto produto = productsList.get(position);
         productName.setText(produto.getName());
@@ -77,6 +78,8 @@ public class CartInfoAdapter extends ArrayAdapter<Produto>{
                             Produto deleteProduct = child.getValue(Produto.class);
                             if (deleteProduct.getName().equals(produto.getName())) {
                                 child.getRef().removeValue();
+                                productsList.remove(position);
+                                notifyDataSetChanged();
                                 break;
                             }
                         }
