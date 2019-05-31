@@ -71,9 +71,11 @@ public class CarrinhoActivity extends AppCompatActivity {
         profitRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try{
-                profitNumber = dataSnapshot.getValue(Double.class);}
-                catch (Exception e){e.fillInStackTrace();}
+                try {
+                    profitNumber = dataSnapshot.getValue(Double.class);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
             }
 
             @Override
@@ -81,6 +83,8 @@ public class CarrinhoActivity extends AppCompatActivity {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
+
+
         });
 
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -92,13 +96,13 @@ public class CarrinhoActivity extends AppCompatActivity {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
                     productCount += produto.getMinQuant();
-                    calcTotal += produto.getMinQuant()*produto.getPrice();
+                    calcTotal += produto.getMinQuant() * produto.getPrice();
 
                     priceText.setText(String.valueOf(productCount) + ",00");
                     totalText.setText(String.valueOf(calcTotal) + "0");
                 }
-                fretePrice.setText(String.valueOf(0.04*calcTotal));
-                profitText.setText(String.valueOf(calcTotal*profitNumber/100));
+                fretePrice.setText(String.valueOf(0.04 * calcTotal));
+                profitText.setText(String.valueOf(calcTotal * profitNumber / 100));
 
 
                 CartInfoAdapter cartInfoAdapter = new CartInfoAdapter(CarrinhoActivity.this, productsList);
@@ -161,28 +165,14 @@ public class CarrinhoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intento = new Intent(CarrinhoActivity.this,PedidoActivity.class);
-                intento.putExtra("envio",localEnvio);
+                Intent intento = new Intent(CarrinhoActivity.this, PedidoActivity.class);
+                intento.putExtra("envio", localEnvio);
                 intento.putExtra("quantidade", productCount);
                 intento.putExtra("total", calcTotal);
                 startActivity(intento);
                 finish();
             }
         });
-//        fabrica.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                localEnvio = "Fabrica";
-//                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como fábrica", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//        endereco.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                localEnvio = "Endereço";
-//                Toast.makeText(CarrinhoActivity.this,"Local de entrega definida como seu endereço",Toast.LENGTH_LONG).show();
-//            }
-//        });
 
     }
 }
