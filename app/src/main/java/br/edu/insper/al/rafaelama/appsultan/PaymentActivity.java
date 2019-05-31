@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class PaymentActivity extends AppCompatActivity {
     protected String local;
@@ -57,19 +58,21 @@ public class PaymentActivity extends AppCompatActivity {
         continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int it = 0;
                 String[] pagamento = new String[4];
-                if (boleto.isChecked()){pagamento[0] = "boleto";}
-                if (credito.isChecked()){pagamento[1] = " crédito";}
-                if (debito.isChecked()){pagamento[2] = " debito";}
-                if (tranferencia.isChecked()){pagamento[3] = " tranferência";}
-                Intent intento = new Intent(PaymentActivity.this, EndingActivity.class);
-                intento.putExtra("pagamentos", pagamento);
-                intento.putExtra("envio", local);
-                startActivity(intento);
-                finish();
+                if (boleto.isChecked()){pagamento[0] = "boleto";it++;}
+                if (credito.isChecked()){pagamento[1] = " crédito";it++;}
+                if (debito.isChecked()){pagamento[2] = " debito";it++;}
+                if (tranferencia.isChecked()){pagamento[3] = " tranferência";it++;}
+                if (it!=0) {
+                    Intent intento = new Intent(PaymentActivity.this, EndingActivity.class);
+                    intento.putExtra("pagamentos", pagamento);
+                    intento.putExtra("envio", local);
+                    startActivity(intento);
+                    finish();
+                }else {
+                    Toast.makeText(PaymentActivity.this,"Nenhum método selecionado",Toast.LENGTH_SHORT);}
             }
         });
-
-
     }
 }

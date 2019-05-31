@@ -71,7 +71,9 @@ public class CarrinhoActivity extends AppCompatActivity {
         profitRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                profitNumber = dataSnapshot.getValue(Double.class);
+                try{
+                profitNumber = dataSnapshot.getValue(Double.class);}
+                catch (Exception e){e.fillInStackTrace();}
             }
 
             @Override
