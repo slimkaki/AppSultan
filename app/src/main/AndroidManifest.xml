@@ -25,6 +25,7 @@
         <activity android:name=".CarrinhoActivity"/>
         <activity android:name=".PaymentActivity"/>
         <activity android:name=".EndingActivity"/>
+        <activity android:name=".EditInfoActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

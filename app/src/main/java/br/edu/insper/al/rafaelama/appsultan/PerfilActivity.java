@@ -116,6 +116,15 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
+        btEdit.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent editInfoTextIntent = new Intent(PerfilActivity.this, EditInfoActivity.class);
+                startActivity(editInfoTextIntent);
+            }
+        });
+
 
     }
 
