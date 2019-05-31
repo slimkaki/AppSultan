@@ -111,9 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 // set item width
                 whats.setWidth(400);
                 // set a icon
-                whats.setTitle("Whatsapp");
-                whats.setTitleSize(18);
-                whats.setTitleColor(Color.WHITE);
+                whats.setIcon(R.drawable.ic_share);
                 // add to menu
                 menu.addMenuItem(whats);
 
