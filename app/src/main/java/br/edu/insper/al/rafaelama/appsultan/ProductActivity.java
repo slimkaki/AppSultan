@@ -84,8 +84,15 @@ import java.util.ArrayList;
                 public void onClick(View v) {
 
                 Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
 
+                share.setType("image/jpeg");
+
+                Uri imagemUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                       "://" + getApplicationContext().getResources().getResourcePackageName(id)
+                       + '/' + getApplicationContext().getResources().getResourceTypeName(id)
+                       + '/' + getApplicationContext().getResources().getResourceEntryName(id) );
+
+                share.putExtra(Intent.EXTRA_STREAM, imagemUri);
                 share.putExtra(Intent.EXTRA_TEXT, produto.getShareProduct());
                 startActivity(Intent.createChooser(share, "sharing..."));
 
