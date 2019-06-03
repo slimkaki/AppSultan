@@ -1,11 +1,15 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
 import android.content.Intent;
+import android.icu.lang.UScript;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
+import android.text.TextWatcher;
+import android.util.JsonReader;
+import android.view.InputDevice;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +23,22 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.Buffer;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -130,7 +149,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 writeNewUser(name, email, address, cep, cpf, celphone, id, number);
 
-                                startActivity(new Intent(getApplicationContext(),ProfitActivity.class));
+                                startActivity(new Intent(getApplicationContext(), ProfitActivity.class));
                                 Toast.makeText(SignUpActivity.this, "Conta criada",
                                         Toast.LENGTH_SHORT).show();
                             } else {
@@ -141,6 +160,32 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+        cepSign.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 8) {
+                    String cep = cepSign.getText().toString();
+                    try {
+                        String log = getLogradourp(cep).getAsString();
+                    } catch (IOException e) {
+                        System.out.println("BUG");
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +197,27 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void writeNewUser(String name, String email, String address, String cep, String cpf, String celular, String id, String number) {
         User user = new User(name, email, address, cep, cpf, celular, id, number);
-
         mDatabase.child("users").child(id).setValue(user);
     }
+    public JsonElement getLogradourp(String cep) throws JsonIOException, JsonSyntaxException, IOException {
+
+        // Setting URL
+        String url_str = "http://api.postmon.com.br/v1/cep/"+cep;
+
+        // Making Request
+        URL url = new URL(url_str);
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+        request.connect();
+
+        // Convert to JSON
+        JsonParser jp = new JsonParser();
+        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+        JsonObject jsonobj = root.getAsJsonObject();
+        JsonObject rates = (JsonObject) jsonobj.get("logradouro");
+        System.out.println(rates);
+        // Accessing element
+        return rates;
+
+    }
 }
+
