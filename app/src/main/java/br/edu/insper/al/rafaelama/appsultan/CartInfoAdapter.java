@@ -47,6 +47,7 @@ public class CartInfoAdapter extends ArrayAdapter<Produto>{
         TextView productMinQuant = (TextView) listView.findViewById(R.id.textViewMinQuant);
         ImageButton buttonRemove = (ImageButton) listView.findViewById(R.id.buttonRemove);
 
+
         Produto produto = productsList.get(position);
         productName.setText(produto.getName());
         productPrice.setText("R$ "+ String.valueOf(produto.getPrice()) + "0");
