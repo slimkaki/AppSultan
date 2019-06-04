@@ -29,7 +29,7 @@ import java.util.List;
 public class CarrinhoActivity extends AppCompatActivity {
 
     protected Button buttonCancel,buttonConfirm;//,endereco,fabrica;
-    protected ImageButton backButton, botao_perfil,botao_pedidos,botao_catalogo,botao_carrinho;
+    protected ImageButton backButton, botao_perfil,botao_pedidos,botao_carrinho;
     protected TextView priceText, totalText, profitText, fretePrice;
     protected String localEnvio;
     private static final String TAG = "MUSTAFAR";
@@ -51,7 +51,6 @@ public class CarrinhoActivity extends AppCompatActivity {
         buttonCancel = findViewById(R.id.buttonCancel);
         buttonConfirm = findViewById(R.id.buttonConfirm);
         botao_perfil = findViewById(R.id.buttonProfile);
-        botao_catalogo = findViewById(R.id.buttonCat);
         botao_carrinho = findViewById(R.id.buttonCart);
         botao_pedidos = findViewById(R.id.buttonRequests);
         priceText = (TextView) findViewById(R.id.produto_preco);
@@ -132,15 +131,6 @@ public class CarrinhoActivity extends AppCompatActivity {
                 startActivity(perfil);
             }
         });
-
-        botao_catalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(CarrinhoActivity.this, MainActivity.class);
-                startActivity(perfil);
-            }
-        });
-
         backButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

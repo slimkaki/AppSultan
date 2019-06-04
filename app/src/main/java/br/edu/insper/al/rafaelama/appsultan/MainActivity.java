@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
-        botao_cat = findViewById(R.id.buttonCat);
-
         botao_pedidos = findViewById(R.id.buttonRequests);
 
         botao_carrinho = findViewById(R.id.buttonCart);
@@ -223,12 +221,13 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                String cap = s.substring(0, 1).toUpperCase() + s.substring(1);
                     ValueEventListener valueEventListener1 = new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 Produto produto = child.getValue(Produto.class);
-                                if (produto.getName().equals(s)) {
+                                if (produto.getName().equals(cap)) {
                                     searchedProductsList.add(produto);
                                 }
                             }

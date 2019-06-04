@@ -43,7 +43,6 @@ public class EndingActivity extends AppCompatActivity {
         local = getIntent().getStringExtra("envio");
         finalizar = findViewById(R.id.buttonFazerPedido);
         perfil = findViewById(R.id.buttonProfile);
-        catalogo = findViewById(R.id.buttonCat);
         carrinho = findViewById(R.id.buttonCart);
         listView = findViewById(R.id.itemPedido);
         pedidos = findViewById(R.id.buttonRequests);
