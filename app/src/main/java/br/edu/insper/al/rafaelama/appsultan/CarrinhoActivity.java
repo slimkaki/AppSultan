@@ -39,6 +39,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     private int productCount;
     private double calcTotal;
     private double profitNumber;
+    private double freteCounter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,6 @@ public class CarrinhoActivity extends AppCompatActivity {
         totalText = findViewById(R.id.total_preco);
         profitText = findViewById(R.id.lucro_preco);
         fretePrice = findViewById(R.id.frete_preco);
-        //fabrica = findViewById(R.id.buttonFabrica);
-        //endereco = findViewById(R.id.buttonEndereco);
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentFirebaseUser.getUid();
@@ -97,12 +96,14 @@ public class CarrinhoActivity extends AppCompatActivity {
                     productsList.add(produto);
                     productCount += produto.getMinQuant();
                     calcTotal += produto.getMinQuant() * produto.getPrice();
-
-                    priceText.setText(String.valueOf(productCount) + ",00");
-                    totalText.setText(String.valueOf(calcTotal) + "0");
                 }
-                fretePrice.setText(String.valueOf(0.04 * calcTotal));
-                profitText.setText(String.valueOf(calcTotal * profitNumber / 100));
+                productCount = Math.round(productCount*100)/100;
+                calcTotal = Math.round(calcTotal*100.00)/100.00;
+                freteCounter = Math.round(0.04 * calcTotal*100.00)/100.00;
+                priceText.setText(String.valueOf(productCount));
+                totalText.setText(String.valueOf(calcTotal));
+                fretePrice.setText(String.valueOf(freteCounter));
+                profitText.setText(String.valueOf(calcTotal * profitNumber / 100.00));
 
 
                 CartInfoAdapter cartInfoAdapter = new CartInfoAdapter(CarrinhoActivity.this, productsList);
