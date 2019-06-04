@@ -4,6 +4,7 @@ package br.edu.insper.al.rafaelama.appsultan;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SearchRecentSuggestionsProvider;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,10 +16,13 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton botao_carrinho;
     ImageButton botao_pedidos;
     ImageButton botao_cat;
+    SearchView searchView;
 
     private FirebaseDatabase database;
     private static final String TAG = "MUSTAFAR";
@@ -59,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (SwipeMenuListView) findViewById(R.id.list_view);
+
+        searchView = (SearchView) findViewById(R.id.search_view);
 
         botao_perfil = findViewById(R.id.buttonProfile);
 
@@ -210,5 +217,48 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });
+
+        searchView.setInputType(InputType.TYPE_CLASS_TEXT);
+        List<Produto> searchedProductsList  = new ArrayList<Produto>();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                    ValueEventListener valueEventListener1 = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                Produto produto = child.getValue(Produto.class);
+                                if (produto.getName().equals(s)) {
+                                    searchedProductsList.add(produto);
+                                }
+                            }
+                            ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, searchedProductsList);
+                            listView.setAdapter(productInfoAdapter);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    };
+                    databaseReference.addListenerForSingleValueEvent(valueEventListener1);
+                    onSearchRequested();
+                    return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                return false;
+            }
+        });
+
     }
 }

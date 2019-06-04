@@ -44,7 +44,9 @@
 
             <SearchView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:queryHint="O que deseja buscar?"
+                android:id="@+id/search_view"/>
 
 
         </LinearLayout>
