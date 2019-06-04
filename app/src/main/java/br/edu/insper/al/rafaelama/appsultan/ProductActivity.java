@@ -50,8 +50,8 @@ import java.util.ArrayList;
     ImageView imagem;
     TextView desc;
     TextView preco;
-    ImageButton perfil, carrinho, pedidos, catalogo;
-    ImageButton zapzap;
+    ImageButton perfil, carrinho, pedidos;
+    ImageButton zapzap, backButton1;
     Button addCar;
 
 
@@ -66,10 +66,10 @@ import java.util.ArrayList;
         preco = findViewById(R.id.preco);
         perfil = findViewById(R.id.buttonProfile);
         carrinho = findViewById(R.id.buttonCart);
-        catalogo = findViewById(R.id.buttonCat);
         pedidos = findViewById(R.id.buttonRequests);
         zapzap = findViewById(R.id.zapshare);
         addCar = findViewById(R.id.addCarrinho);
+        backButton1 = findViewById(R.id.backButton1);
 
         Bundle mBundle = getIntent().getExtras();
 
@@ -130,13 +130,6 @@ import java.util.ArrayList;
                     startActivity(perfil);
                 }
             });
-            catalogo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent perfil = new Intent(ProductActivity.this, MainActivity.class);
-                    startActivity(perfil);
-                }
-            });
             pedidos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -165,6 +158,14 @@ import java.util.ArrayList;
                     DatabaseReference carRef = uidRef.child("carrinho");
                     carRef.push().setValue(produto);
                     Toast.makeText(ProductActivity.this, "Produto adicionado ao carrinho!", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            backButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent returnIntent = new Intent(ProductActivity.this, MainActivity.class);
+                    startActivityForResult(returnIntent, 1);
                 }
             });
 

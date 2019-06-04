@@ -24,11 +24,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoActivity extends AppCompatActivity {
-    protected ImageButton perfil, catalogo, carrinho, pedidos;
+    protected ImageButton perfil, carrinho, pedidos;
     protected Button fab, enderco, confirmar;
     protected TextView qtdtxt, desctxt, fretetxt, totaltxt, lucrotxt;
     protected String localEnvio = "Fábrica";
     protected double qtd, desconto, frete, total, lucro;
+    private static final String TAG = "MUSTAFAR";
+    private FirebaseDatabase database;
+    private ListView listView;
+    List<Produto> productsList;
+    private int productCount;
+    private double calcTotal;
+    private double profitNumber;
+    private double freteCounter;
 
     @Override
     public void onCreate(Bundle saved){
@@ -36,7 +44,6 @@ public class PedidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pedido);
 
         perfil = findViewById(R.id.buttonProfile);
-        catalogo = findViewById(R.id.buttonCat);
         carrinho = findViewById(R.id.buttonCart);
         pedidos = findViewById(R.id.buttonRequests);
         fab = findViewById(R.id.buttonFabrica);
@@ -46,23 +53,51 @@ public class PedidoActivity extends AppCompatActivity {
         qtd = (int) getIntent().getIntExtra("quantidade",0);
         qtdtxt.setText(String.valueOf(qtd));
         //desc = findViewById(R.id.desc);
-       // frete = findViewById(R.id.frete);
+        fretetxt = findViewById(R.id.frete);
         totaltxt = findViewById(R.id.total);
         total = getIntent().getIntExtra("total",0);
         totaltxt.setText(String.valueOf(total));
         //lucro = findViewById(R.id.lucro);
+
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentFirebaseUser.getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference uidRef = databaseReference.child("users").child(uid);
+        DatabaseReference carRef = uidRef.child("carrinho");
+        DatabaseReference profitRef = uidRef.child("profit");
+        productsList = new ArrayList<Produto>();
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productsList.clear();
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Produto produto = child.getValue(Produto.class);
+                    productsList.add(produto);
+                    productCount += produto.getMinQuant();
+                    calcTotal += produto.getMinQuant() * produto.getPrice();
+                }
+                productCount = Math.round(productCount*100)/100;
+                calcTotal = Math.round(calcTotal*100.00)/100.00;
+                freteCounter = Math.round(0.04 * calcTotal*100.00)/100.00;
+                qtdtxt.setText(String.valueOf(productCount));
+                totaltxt.setText(String.valueOf(calcTotal));
+                fretetxt.setText(String.valueOf(freteCounter));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, databaseError.getMessage());
+            }
+        };
+
+        carRef.addListenerForSingleValueEvent(valueEventListener);
+
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intento = new Intent(PedidoActivity.this,PerfilActivity.class);
-                startActivity(intento);
-                finish();
-            }
-        });
-        catalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intento = new Intent(PedidoActivity.this, MainActivity.class);
                 startActivity(intento);
                 finish();
             }

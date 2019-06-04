@@ -32,7 +32,6 @@ public class PerfilActivity extends AppCompatActivity {
 
         ImageButton perfil = findViewById(R.id.buttonProfile);
         ImageButton carrinho = findViewById(R.id.buttonCart);
-        ImageButton catalogo = findViewById(R.id.buttonCat);
         ImageButton pedidos = findViewById(R.id.buttonRequests);
 
         btEdit.setOnClickListener(EditHandler);
@@ -89,13 +88,6 @@ public class PerfilActivity extends AppCompatActivity {
 
                 FirebaseAuth.getInstance().signOut();
                 Intent perfil = new Intent(PerfilActivity.this, LoginActivity.class);
-                startActivity(perfil);
-            }
-        });
-        catalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(PerfilActivity.this, MainActivity.class);
                 startActivity(perfil);
             }
         });

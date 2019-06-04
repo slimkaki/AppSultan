@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class PaymentActivity extends AppCompatActivity {
     protected String local;
     protected Button continuar;
-    protected ImageButton perfil, pedidos, catalogo, carrinho;
+    protected ImageButton perfil, pedidos, carrinho;
     protected CheckBox boleto, credito, debito, tranferencia;
 
     @Override
@@ -22,7 +22,6 @@ public class PaymentActivity extends AppCompatActivity {
         local = getIntent().getStringExtra("local");
 
         perfil = findViewById(R.id.buttonProfile);
-        catalogo = findViewById(R.id.buttonCat);
         carrinho = findViewById(R.id.buttonCart);
         pedidos = findViewById(R.id.buttonRequests);
         boleto = findViewById(R.id.cb_bb);
@@ -35,14 +34,6 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intento = new Intent(PaymentActivity.this, PerfilActivity.class);
-                startActivity(intento);
-                finish();
-            }
-        });
-        catalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intento =  new Intent(PaymentActivity.this, MainActivity.class);
                 startActivity(intento);
                 finish();
             }

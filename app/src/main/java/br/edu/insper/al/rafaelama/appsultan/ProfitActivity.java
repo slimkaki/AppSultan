@@ -29,7 +29,6 @@ public class ProfitActivity extends AppCompatActivity {
 
         ImageButton perfil = findViewById(R.id.buttonProfile);
         ImageButton carrinho = findViewById(R.id.buttonCart);
-        ImageButton catalogo = findViewById(R.id.buttonCat);
         ImageButton pedidos = findViewById(R.id.buttonRequests);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -60,14 +59,6 @@ public class ProfitActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent perfil = new Intent(ProfitActivity.this, CarrinhoActivity.class);
-                startActivity(perfil);
-            }
-        });
-
-        catalogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(ProfitActivity.this, MainActivity.class);
                 startActivity(perfil);
             }
         });

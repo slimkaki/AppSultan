@@ -136,7 +136,7 @@
                 android:id="@+id/cb_tb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trnaferência bancária"/>
+                android:text="Transferência bancária"/>
         </LinearLayout>
 
         <Button
@@ -157,39 +157,30 @@
         <ImageButton
             android:id="@+id/buttonRequests"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/ic_requests"/>
+            android:src="@drawable/ic_requests" />
 
         <ImageButton
             android:id="@+id/buttonCart"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="2dp"
             android:src="@drawable/ic_cart" />
 
         <ImageButton
-            android:id="@+id/buttonCat"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="2dp"
-            android:src="@drawable/ic_catalog"/>
-
-        <ImageButton
             android:id="@+id/buttonProfile"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/ic_profile"/>
+            android:src="@drawable/ic_profile" />
     </LinearLayout>
 
 </RelativeLayout>
