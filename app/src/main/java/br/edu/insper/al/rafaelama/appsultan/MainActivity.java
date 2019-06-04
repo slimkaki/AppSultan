@@ -1,12 +1,19 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +31,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,28 +145,34 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        Intent mIntent = new Intent(MainActivity.this, ProductActivity.class);
+
                         Produto produto = (Produto) listView.getItemAtPosition(position);
 
-                        mIntent.putExtra("minQuant", produto.getMinQuant());
-                        mIntent.putExtra("name", produto.getName());
-                        mIntent.putExtra("imagePath", produto.getImagePath());
-                        mIntent.putExtra("desc", produto.getDesc());
-                        mIntent.putExtra("price", produto.getPrice());
-
-                        Bundle mBundle = getIntent().getExtras();
+                        int id = listView.getContext().getResources().getIdentifier(produto.getImagePath(), "drawable", "br.edu.insper.al.rafaelama.appsultan");
 
                         Intent share = new Intent(Intent.ACTION_SEND);
-                        share.setType("text/plain");
 
-                        String shareTitle = mBundle.getString("name");
-                        String shareBody = mBundle.getString("desc");
-                        String sharePrice = mBundle.getString("price");
+                        Bitmap bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(), id);
 
-                        share.putExtra(Intent.EXTRA_COMPONENT_NAME, shareTitle);
-                        share.putExtra(Intent.EXTRA_TEXT, shareBody + sharePrice);
+                        int check = ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-                        startActivity(Intent.createChooser(share, "sharing..."));
+                        if (check == PackageManager.PERMISSION_GRANTED) {
+
+                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                            String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), bitmap, "Produto", null);
+                            Uri imageUri = Uri.parse(path);
+
+                            share.setType("*/*");
+                            share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            share.putExtra(Intent.EXTRA_STREAM, imageUri);
+                            share.setPackage("com.whatsapp");
+                            share.putExtra(Intent.EXTRA_TEXT, produto.getShareProduct());
+                            startActivity(Intent.createChooser(share, "Compartilhar produto"));
+
+                        } else {
+                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1024);
+                        }
 
                         break;
 
