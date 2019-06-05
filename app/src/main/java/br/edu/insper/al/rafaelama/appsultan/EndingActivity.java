@@ -27,7 +27,7 @@ public class EndingActivity extends AppCompatActivity {
     protected String local;
     private TextView lucro, total;
     protected Button finalizar;
-    ImageButton perfil, catalogo, pedidos, carrinho;
+    ImageButton perfil, catalogo, pedidos,botao_carrinho,botao_pedidos;
     private static final String TAG = "MUSTAFAR";
     private FirebaseDatabase database;
     private ListView listView;
@@ -43,7 +43,8 @@ public class EndingActivity extends AppCompatActivity {
         local = getIntent().getStringExtra("envio");
         finalizar = findViewById(R.id.buttonFazerPedido);
         perfil = findViewById(R.id.buttonProfile);
-        carrinho = findViewById(R.id.buttonCart);
+        botao_carrinho = findViewById(R.id.buttonCart);
+        botao_pedidos = findViewById(R.id.buttonRequests);
         listView = findViewById(R.id.itemPedido);
         pedidos = findViewById(R.id.buttonRequests);
 
@@ -86,20 +87,18 @@ public class EndingActivity extends AppCompatActivity {
                 finish();
             }
         });
-        catalogo.setOnClickListener(new View.OnClickListener() {
+        botao_carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intento =  new Intent(EndingActivity.this, MainActivity.class);
-                startActivity(intento);
-                finish();
+                Intent perfil = new Intent(EndingActivity.this, CarrinhoActivity.class);
+                startActivity(perfil);
             }
         });
-        carrinho.setOnClickListener(new View.OnClickListener() {
+        botao_pedidos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intento = new Intent(EndingActivity.this, CarrinhoActivity.class);
-                startActivity(intento);
-                finish();
+                Intent perfil = new Intent(EndingActivity.this, MainActivity.class);
+                startActivity(perfil);
             }
         });
         finalizar.setOnClickListener(new View.OnClickListener() {
