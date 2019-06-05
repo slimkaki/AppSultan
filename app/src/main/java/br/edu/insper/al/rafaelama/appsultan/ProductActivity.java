@@ -53,6 +53,8 @@ import java.util.ArrayList;
     ImageButton perfil, carrinho, pedidos;
     ImageButton zapzap, backButton1;
     Button addCar;
+    private double userProfit;
+    private double sharedPrice;
 
 
     @Override
@@ -88,6 +90,27 @@ import java.util.ArrayList;
             desc.setText(produto.getDesc());
             preco.setText(produto.getPriceString());
 
+            // Salvando o dado de lucro do usuário na variável userProfit
+            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = currentFirebaseUser.getUid();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference uidRef = databaseReference.child("users").child(uid);
+            DatabaseReference profitRef = uidRef.child("profit");
+
+            profitRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    try {
+                        userProfit = dataSnapshot.getValue(Double.class);
+                    } catch (Exception e) {
+                        e.fillInStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                }
+            });
 
             zapzap.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,6 +126,12 @@ import java.util.ArrayList;
 
                 if (check == PackageManager.PERMISSION_GRANTED) {
 
+                    sharedPrice = Math.round(produto.getPrice()*(1.0+(userProfit/100.0))*100)/100;
+                    String b = "*_Produto:_* " + produto.getName();
+                    String a = produto.getDesc();
+                    String p = "*_Preço:_* " + sharedPrice;
+                    String send = b + "\n" +"\n" + a + "\n" +"\n" + p;
+
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
                     String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), bitmap, "Produto", null);
@@ -112,7 +141,7 @@ import java.util.ArrayList;
                     share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     share.putExtra(Intent.EXTRA_STREAM, imageUri);
                     share.setPackage("com.whatsapp");
-                    share.putExtra(Intent.EXTRA_TEXT, produto.getShareProduct());
+                    share.putExtra(Intent.EXTRA_TEXT, send);
                     startActivity(Intent.createChooser(share, "Compartilhar produto"));
 
                 } else {
