@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private static final String TAG = "MUSTAFAR";
     private Context mContext;
+    private double userProfit;
+    private double sharedPrice;
 
     private SwipeMenuListView listView;
     DatabaseReference databaseReference;
@@ -112,7 +114,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        
+        // Salvando o dado de lucro do usuário na variável userProfit
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentFirebaseUser.getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference uidRef = databaseReference.child("users").child(uid);
+        DatabaseReference profitRef = uidRef.child("profit");
+
+        profitRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    userProfit = dataSnapshot.getValue(Double.class);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+        // Controle deslizante dos itens
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -150,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-
                         Produto produto = (Produto) listView.getItemAtPosition(position);
 
                         int id = listView.getContext().getResources().getIdentifier(produto.getImagePath(), "drawable", "br.edu.insper.al.rafaelama.appsultan");
@@ -163,6 +186,12 @@ public class MainActivity extends AppCompatActivity {
 
                         if (check == PackageManager.PERMISSION_GRANTED) {
 
+                            sharedPrice = Math.round(produto.getPrice()*(1.0+(userProfit/100.0))*100)/100;
+                            String b = "*_Produto:_* " + produto.getName();
+                            String a = produto.getDesc();
+                            String p = "*_Preço:_* " + sharedPrice;
+                            String send = b + "\n" +"\n" + a + "\n" +"\n" + p;
+
                             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
                             String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), bitmap, "Produto", null);
@@ -172,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                             share.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                             share.putExtra(Intent.EXTRA_STREAM, imageUri);
                             share.setPackage("com.whatsapp");
-                            share.putExtra(Intent.EXTRA_TEXT, produto.getShareProduct());
+                            share.putExtra(Intent.EXTRA_TEXT, send);
                             startActivity(Intent.createChooser(share, "Compartilhar produto"));
 
                         } else {
@@ -216,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Botão de busca a partir do nome do produto
         searchView.setInputType(InputType.TYPE_CLASS_TEXT);
         List<Produto> searchedProductsList  = new ArrayList<Produto>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
