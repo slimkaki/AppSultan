@@ -24,53 +24,79 @@ import java.util.List;
 
 public class EndingActivity extends AppCompatActivity {
     protected String[] pagamento;
-    protected String local;
-    private TextView lucro, total;
+    protected String local, items,nome;
+    private TextView lucro;
     protected Button finalizar;
-    ImageButton perfil, catalogo, pedidos,botao_carrinho,botao_pedidos;
+    ImageButton perfil, catalogo, pedidos,botao_carrinho;
     private static final String TAG = "MUSTAFAR";
     private FirebaseDatabase database;
     private ListView listView;
     List<Produto> productsList;
     private double calcTotal;
+    private double productCount,freteCounter;
+    private TextView qtdtxt,totaltxt,fretetxt;
+    private double profitNumber;
 
     @Override
     public void onCreate(Bundle Saved){
         super.onCreate(Saved);
         setContentView(R.layout.activity_pedido_confirmado);
-        total = findViewById(R.id.lucroArea);
+        lucro = findViewById(R.id.lucroArea);
         pagamento = getIntent().getStringArrayExtra("pagamentos");
         local = getIntent().getStringExtra("envio");
         finalizar = findViewById(R.id.buttonFazerPedido);
         perfil = findViewById(R.id.buttonProfile);
         botao_carrinho = findViewById(R.id.buttonCart);
-        botao_pedidos = findViewById(R.id.buttonRequests);
         listView = findViewById(R.id.itemPedido);
         pedidos = findViewById(R.id.buttonRequests);
-
-        Bundle mBundle = getIntent().getExtras();
+        items = "";
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentFirebaseUser.getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference uidRef = databaseReference.child("users").child(uid);
         DatabaseReference carRef = uidRef.child("carrinho");
+        DatabaseReference profitRef = uidRef.child("profit");
         productsList = new ArrayList<Produto>();
+
+        profitRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    profitNumber = dataSnapshot.getValue(Double.class);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+
+
+        });
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productsList.clear();
+                nome = dataSnapshot.child("name").getValue(String.class);
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
-                    calcTotal += produto.getPrice();
-
-                    total.setText(String.valueOf(calcTotal) + "0");
+                    productCount += produto.getMinQuant();
+                    calcTotal += produto.getMinQuant() * produto.getPrice();
+                    items += produto.getName() + "\n";
                 }
-
-                ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(EndingActivity.this, productsList);
-                listView.setAdapter(productInfoAdapter);
+                productCount = Math.round(productCount*100)/100;
+                calcTotal = Math.round(calcTotal*100.00)/100.00;
+                freteCounter = Math.round(0.04 * calcTotal*100.00)/100.00;
+                qtdtxt.setText(String.valueOf(productCount));
+                totaltxt.setText(String.valueOf(calcTotal));
+                fretetxt.setText(String.valueOf(freteCounter));
+                lucro.setText(String.valueOf(Math.round(calcTotal*profitNumber)));
             }
 
             @Override
@@ -94,20 +120,16 @@ public class EndingActivity extends AppCompatActivity {
                 startActivity(perfil);
             }
         });
-        botao_pedidos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent perfil = new Intent(EndingActivity.this, MainActivity.class);
-                startActivity(perfil);
-            }
-        });
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Getting content for email
                 String email = "joaomeirelles575@gmail.com";
                 String subject = "Pedido teste";
-                String message = "Aqui é o que tem que ter no e-mail";
+                String message = "";
+                message += "Cliente: "+nome+"\n";
+                message += "Preço: "+String.valueOf(calcTotal)+"\n";
+                message += "Produtos" + items;
 
                 //Creating SendMail object
                 SendMail sm = new SendMail(EndingActivity.this, email, subject, message);
