@@ -103,29 +103,25 @@
         <ImageButton
             android:id="@+id/buttonRequests"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="128dp"
+            android:layout_marginLeft="20dp"
+
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="2dp"
             android:src="@drawable/ic_requests" />
 
         <ImageButton
             android:id="@+id/buttonCart"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="128dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="2dp"
             android:src="@drawable/ic_cart" />
 
         <ImageButton
             android:id="@+id/buttonProfile"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="128dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="20dp"
             android:src="@drawable/ic_profile" />
     </LinearLayout>
 </RelativeLayout>
