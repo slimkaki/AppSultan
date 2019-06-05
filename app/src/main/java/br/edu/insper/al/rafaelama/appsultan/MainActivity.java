@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SwipeMenuListView listView;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceP;
     List<Produto> productsList;
+    List<Produto> searchedProductsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,8 +248,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Botão de busca a partir do nome do produto
+        databaseReferenceP = FirebaseDatabase.getInstance().getReference("Produtos");
         searchView.setInputType(InputType.TYPE_CLASS_TEXT);
-        List<Produto> searchedProductsList  = new ArrayList<Produto>();
+        searchedProductsList  = new ArrayList<Produto>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -255,9 +258,10 @@ public class MainActivity extends AppCompatActivity {
                     ValueEventListener valueEventListener1 = new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            searchedProductsList.clear();
                             for (DataSnapshot child : dataSnapshot.getChildren()) {
                                 Produto produto = child.getValue(Produto.class);
-                                if (produto.getName().equals(cap)) {
+                                if (produto.getName().contains(cap)) {
                                     searchedProductsList.add(produto);
                                 }
                             }
@@ -270,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     };
-                    databaseReference.addListenerForSingleValueEvent(valueEventListener1);
+                    databaseReferenceP.addListenerForSingleValueEvent(valueEventListener1);
                     onSearchRequested();
                     return false;
             }
@@ -284,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                databaseReferenceP.addListenerForSingleValueEvent(valueEventListener);
                 return false;
             }
         });
