@@ -46,6 +46,13 @@ public class PaymentActivity extends AppCompatActivity {
                 finish();
             }
         });
+        pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(PaymentActivity.this, MainActivity.class);
+                startActivity(perfil);
+            }
+        });
         continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

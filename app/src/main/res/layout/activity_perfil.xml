@@ -61,7 +61,8 @@
         <Button
             android:id="@+id/logOut"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="@string/sair" />
+            android:text="@string/sair"
+            android:layout_marginBottom="8dp"/>
 
     </TableLayout>
 

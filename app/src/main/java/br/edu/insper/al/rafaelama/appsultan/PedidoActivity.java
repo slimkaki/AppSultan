@@ -110,6 +110,13 @@ public class PedidoActivity extends AppCompatActivity {
                 finish();
             }
         });
+        pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent perfil = new Intent(PedidoActivity.this, MainActivity.class);
+                startActivity(perfil);
+            }
+        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
