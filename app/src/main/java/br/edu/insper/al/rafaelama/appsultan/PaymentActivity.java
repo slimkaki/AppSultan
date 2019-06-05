@@ -58,6 +58,10 @@ public class PaymentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int it = 0;
                 String[] pagamento = new String[4];
+                pagamento[0]="";
+                pagamento[1]="";
+                pagamento[2]="";
+                pagamento[3]="";
                 if (boleto.isChecked()){pagamento[0] = "boleto";it++;}
                 if (credito.isChecked()){pagamento[1] = " crédito";it++;}
                 if (debito.isChecked()){pagamento[2] = " debito";it++;}

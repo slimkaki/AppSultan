@@ -21,27 +21,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Attributes;
 
 public class EndingActivity extends AppCompatActivity {
     protected String[] pagamento;
-    protected String local, items,nome;
-    private TextView lucro;
+    protected String local, items,nome,celular, endereco,numero;
+    private TextView profitText;
     protected Button finalizar;
-    ImageButton perfil, catalogo, pedidos,botao_carrinho;
+    ImageButton perfil, pedidos,botao_carrinho;
     private static final String TAG = "MUSTAFAR";
     private FirebaseDatabase database;
     private ListView listView;
     List<Produto> productsList;
     private double calcTotal;
-    private double productCount,freteCounter;
-    private TextView qtdtxt,totaltxt,fretetxt;
+    private double productCount;
     private double profitNumber;
 
     @Override
     public void onCreate(Bundle Saved){
         super.onCreate(Saved);
         setContentView(R.layout.activity_pedido_confirmado);
-        lucro = findViewById(R.id.lucroArea);
+        profitText = findViewById(R.id.lucroArea);
         pagamento = getIntent().getStringArrayExtra("pagamentos");
         local = getIntent().getStringExtra("envio");
         finalizar = findViewById(R.id.buttonFazerPedido);
@@ -57,7 +57,12 @@ public class EndingActivity extends AppCompatActivity {
         DatabaseReference uidRef = databaseReference.child("users").child(uid);
         DatabaseReference carRef = uidRef.child("carrinho");
         DatabaseReference profitRef = uidRef.child("profit");
+        DatabaseReference NameRef = uidRef.child("name");
+        DatabaseReference CelRef = uidRef.child("celular");
+        DatabaseReference EndRef = uidRef.child("address");
+        DatabaseReference NumRef = uidRef.child("number");
         productsList = new ArrayList<Produto>();
+
 
         profitRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,29 +79,25 @@ public class EndingActivity extends AppCompatActivity {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
-
-
         });
+
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productsList.clear();
-                nome = dataSnapshot.child("name").getValue(String.class);
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Produto produto = child.getValue(Produto.class);
                     productsList.add(produto);
-                    productCount += produto.getMinQuant();
                     calcTotal += produto.getMinQuant() * produto.getPrice();
                     items += produto.getName() + "\n";
                 }
                 productCount = Math.round(productCount*100)/100;
                 calcTotal = Math.round(calcTotal*100.00)/100.00;
-                freteCounter = Math.round(0.04 * calcTotal*100.00)/100.00;
-                qtdtxt.setText(String.valueOf(productCount));
-                totaltxt.setText(String.valueOf(calcTotal));
-                fretetxt.setText(String.valueOf(freteCounter));
-                lucro.setText(String.valueOf(Math.round(calcTotal*profitNumber)));
+                profitText.setText(String.valueOf(calcTotal * profitNumber / 100.00));
+
+                CartInfoAdapter cartInfoAdapter = new CartInfoAdapter(EndingActivity.this, productsList);
+                listView.setAdapter(cartInfoAdapter);
             }
 
             @Override
@@ -104,6 +105,61 @@ public class EndingActivity extends AppCompatActivity {
                 Log.d(TAG, databaseError.getMessage());
             }
         };
+        carRef.addListenerForSingleValueEvent(valueEventListener);
+        NameRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
+                    nome=dataSnapshot.getValue(String.class);
+                }catch (Exception e){
+                    e.fillInStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        CelRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
+                    celular=dataSnapshot.getValue(String.class);
+                }catch (Exception e){
+                    e.fillInStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });EndRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
+                    endereco=dataSnapshot.getValue(String.class);
+                }catch (Exception e){
+                    e.fillInStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });NumRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try{
+                    numero=dataSnapshot.getValue(String.class);
+                }catch (Exception e){
+                    e.fillInStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +174,15 @@ public class EndingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent perfil = new Intent(EndingActivity.this, CarrinhoActivity.class);
                 startActivity(perfil);
+                finish();
+            }
+        });
+        pedidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intento = new Intent(EndingActivity.this, MainActivity.class);
+                startActivity(intento);
+                finish();
             }
         });
         finalizar.setOnClickListener(new View.OnClickListener() {
@@ -128,14 +193,25 @@ public class EndingActivity extends AppCompatActivity {
                 String subject = "Pedido teste";
                 String message = "";
                 message += "Cliente: "+nome+"\n";
-                message += "Preço: "+String.valueOf(calcTotal)+"\n";
-                message += "Produtos" + items;
+                message += "Contato: "+celular+"\n";
+                message += "Endereço: "+endereco+"  Número:"+numero+"\n";
+                message += "Preço: "+calcTotal+"\n";
+                message += "Local de retirada: " + local + "\n";
+                message += "Produtos" + items + "\n";
+                message += "Pagamento: \n";
+                for (String s:pagamento){
+                    message += s + "\n";
+                }
 
                 //Creating SendMail object
                 SendMail sm = new SendMail(EndingActivity.this, email, subject, message);
 
                 //Executing sendmail to send email
                 sm.execute();
+
+                carRef.removeValue();
+                Intent intent = new Intent(EndingActivity.this, MainActivity.class);
+                startActivity(intent);
             }});
         }
     }

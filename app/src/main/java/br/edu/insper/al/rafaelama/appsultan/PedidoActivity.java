@@ -26,7 +26,7 @@ import java.util.List;
 public class PedidoActivity extends AppCompatActivity {
     protected ImageButton perfil, carrinho, pedidos;
     protected Button fab, enderco, confirmar;
-    protected TextView qtdtxt, desctxt, fretetxt, totaltxt, lucrotxt;
+    protected TextView qtdtxt, desctxt, fretetxt, totaltxt, profitText;
     protected String localEnvio = "Fábrica";
     protected double qtd, desconto, frete, total, lucro;
     private static final String TAG = "MUSTAFAR";
@@ -50,14 +50,9 @@ public class PedidoActivity extends AppCompatActivity {
         enderco = findViewById(R.id.buttonEndereco);
         confirmar = findViewById(R.id.buttonConfirm);
         qtdtxt = findViewById(R.id.qtd);
-        qtd = (int) getIntent().getIntExtra("quantidade",0);
-        qtdtxt.setText(String.valueOf(qtd));
-        //desc = findViewById(R.id.desc);
         fretetxt = findViewById(R.id.frete);
         totaltxt = findViewById(R.id.total);
-        total = getIntent().getIntExtra("total",0);
-        totaltxt.setText(String.valueOf(total));
-        //lucro = findViewById(R.id.lucro);
+        profitText = findViewById(R.id.lucro);
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentFirebaseUser.getUid();
@@ -66,6 +61,23 @@ public class PedidoActivity extends AppCompatActivity {
         DatabaseReference carRef = uidRef.child("carrinho");
         DatabaseReference profitRef = uidRef.child("profit");
         productsList = new ArrayList<Produto>();
+
+
+        profitRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                    profitNumber = dataSnapshot.getValue(Double.class);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -84,6 +96,7 @@ public class PedidoActivity extends AppCompatActivity {
                 qtdtxt.setText(String.valueOf(productCount));
                 totaltxt.setText(String.valueOf(calcTotal));
                 fretetxt.setText(String.valueOf(freteCounter));
+                profitText.setText(String.valueOf(calcTotal * profitNumber / 100.00));
             }
 
             @Override
@@ -91,7 +104,6 @@ public class PedidoActivity extends AppCompatActivity {
                 Log.d(TAG, databaseError.getMessage());
             }
         };
-
         carRef.addListenerForSingleValueEvent(valueEventListener);
 
         perfil.setOnClickListener(new View.OnClickListener() {
@@ -135,13 +147,10 @@ public class PedidoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intento = new Intent(PedidoActivity.this, PaymentActivity.class);
-                intento.putExtra(localEnvio,"local");
+                intento.putExtra("local",localEnvio);
                 startActivity(intento);
                 finish();
             }
         });
-
-
     }
-
 }
