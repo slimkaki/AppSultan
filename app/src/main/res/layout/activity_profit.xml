@@ -37,6 +37,7 @@
             android:textColor="#C0BEC3"
             android:text="%"/>
         <EditText
+            android:singleLine="true"
             android:id="@+id/LucroEdit"
             android:layout_column="0"
             android:inputType="number"
