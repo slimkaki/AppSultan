@@ -99,7 +99,7 @@ public class Produto {
             }
         });
 
-        double sharedPrice = getMinQuant()*getPrice()*(1.0+(userProfit/100.0));
+        double sharedPrice = getPrice()*(1.0+(userProfit/100.0));
 
         String b = "*_Produto:_* " + getName();
         String a = getDesc();
