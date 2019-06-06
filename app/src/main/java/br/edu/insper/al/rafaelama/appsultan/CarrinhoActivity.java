@@ -1,20 +1,17 @@
 package br.edu.insper.al.rafaelama.appsultan;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,12 +25,10 @@ import java.util.List;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
-    protected Button buttonCancel,buttonConfirm;//,endereco,fabrica;
+    protected Button buttonCancel,buttonConfirm;
     protected ImageButton backButton, botao_perfil,botao_pedidos,botao_carrinho;
     protected TextView priceText, totalText, profitText, fretePrice;
-    protected String localEnvio;
     private static final String TAG = "MUSTAFAR";
-    private FirebaseDatabase database;
     private ListView listView;
     List<Produto> productsList;
     private int productCount;
@@ -57,7 +52,6 @@ public class CarrinhoActivity extends AppCompatActivity {
         totalText = findViewById(R.id.total_preco);
         profitText = findViewById(R.id.lucro_preco);
         fretePrice = findViewById(R.id.frete_preco);
-
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentFirebaseUser.getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -66,24 +60,20 @@ public class CarrinhoActivity extends AppCompatActivity {
         DatabaseReference profitRef = uidRef.child("profit");
         productsList = new ArrayList<Produto>();
 
-        profitRef.addValueEventListener(new ValueEventListener() {
+        ValueEventListener valueEventListenerProfit = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                try {
-                    profitNumber = dataSnapshot.getValue(Double.class);
-                } catch (Exception e) {
-                    e.fillInStackTrace();
-                }
+                profitNumber = dataSnapshot.getValue(Double.class);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w("MUSTAFAR", "Failed to read value.", error.toException());
             }
+        };
 
-
-        });
+        profitRef.addListenerForSingleValueEvent(valueEventListenerProfit);
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
