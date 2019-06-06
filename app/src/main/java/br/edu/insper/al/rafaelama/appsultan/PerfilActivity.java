@@ -30,7 +30,6 @@ public class PerfilActivity extends AppCompatActivity {
         Button btLucro = findViewById(R.id.lucroButton);
         Button sair = findViewById(R.id.logOut);
 
-        ImageButton perfil = findViewById(R.id.buttonProfile);
         ImageButton carrinho = findViewById(R.id.buttonCart);
         ImageButton pedidos = findViewById(R.id.buttonRequests);
 
@@ -66,15 +65,6 @@ public class PerfilActivity extends AppCompatActivity {
 
         uidRef.addListenerForSingleValueEvent(valueEventListener);
 
-//        voltar.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(PerfilActivity.this, MainActivity.class);
-//                setResult(2, intent);
-//                finish();
-//            }
-//        });
         carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

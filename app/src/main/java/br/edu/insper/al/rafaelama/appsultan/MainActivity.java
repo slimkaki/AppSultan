@@ -4,7 +4,6 @@ package br.edu.insper.al.rafaelama.appsultan;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SearchRecentSuggestionsProvider;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,14 +12,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -35,7 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReferenceP;
     List<Produto> productsList;
     List<Produto> searchedProductsList;
+    FirebaseCatalogoInfo firebaseCatalogoInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,25 +76,8 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Produtos");
         productsList = new ArrayList<Produto>();
 
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                productsList.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Produto produto = child.getValue(Produto.class);
-                    productsList.add(produto);
-                }
-                ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, productsList);
-                listView.setAdapter(productInfoAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, databaseError.getMessage());
-            }
-        };
-
-        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+        firebaseCatalogoInfo = new FirebaseCatalogoInfo(MainActivity.this);
+        firebaseCatalogoInfo.getCatalogoList(databaseReference, listView, productsList);
 
         botao_carrinho.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,28 +234,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 String cap = s.substring(0, 1).toUpperCase() + s.substring(1);
-                    ValueEventListener valueEventListener1 = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            searchedProductsList.clear();
-                            for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                Produto produto = child.getValue(Produto.class);
-                                if (produto.getName().contains(cap)) {
-                                    searchedProductsList.add(produto);
-                                }
-                            }
-                            ProductInfoAdapter productInfoAdapter = new ProductInfoAdapter(MainActivity.this, searchedProductsList);
-                            listView.setAdapter(productInfoAdapter);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    };
-                    databaseReferenceP.addListenerForSingleValueEvent(valueEventListener1);
-                    onSearchRequested();
-                    return false;
+                firebaseCatalogoInfo.getSearchCatalogoList(databaseReferenceP, listView, searchedProductsList, cap);
+                onSearchRequested();
+                return false;
             }
 
             @Override
@@ -288,7 +248,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                databaseReferenceP.addListenerForSingleValueEvent(valueEventListener);
+//                databaseReferenceP.addListenerForSingleValueEvent(valueEventListener);
+                firebaseCatalogoInfo.getCatalogoList(databaseReference, listView, productsList);
                 return false;
             }
         });
