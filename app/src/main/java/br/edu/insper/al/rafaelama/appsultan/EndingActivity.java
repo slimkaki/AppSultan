@@ -189,7 +189,7 @@ public class EndingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Getting content for email
-                String email = "joaomeirelles575@gmail.com";
+                String email = "mchauki.orra@gmail.com";
                 String subject = "Pedido teste";
                 String message = "";
                 message += "Cliente: "+nome+"\n";
